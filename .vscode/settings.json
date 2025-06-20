@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Game_TopDown_Rouge Like.sln"
+    "dotnet.defaultSolution": "Project-Topdown.sln"
 }
