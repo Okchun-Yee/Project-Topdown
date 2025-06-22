@@ -20,6 +20,7 @@ public class TransparentDetection : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
+            if (!gameObject.activeInHierarchy) return; // GameObject 비활성 시 방지
             if (spriteRenderer)
             {
                 StartCoroutine(FadeRoutine(spriteRenderer, fadeTime,
@@ -36,6 +37,7 @@ public class TransparentDetection : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
+            if (!gameObject.activeInHierarchy) return; // GameObject 비활성 시 방지
             if (spriteRenderer)
             {
                 StartCoroutine(FadeRoutine(spriteRenderer, fadeTime,
