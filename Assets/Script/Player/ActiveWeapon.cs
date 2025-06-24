@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class ActiveWeapon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public delegate void OnWeaponChanged(Sprite newWeaponSprite);
+    public  event OnWeaponChanged onWeaponChanged;
 
-    // Update is called once per frame
-    void Update()
+    private GameObject currentWeapon;
+
+    public void EquipWeapon(GameObject newWeapon)
     {
-        
+        currentWeapon = newWeapon;
+
+        // 무기 Sprite를 가져와 이벤트 발생
+        SpriteRenderer sr = newWeapon.GetComponent<SpriteRenderer>();
+        if (sr != null && onWeaponChanged != null)
+        {
+            onWeaponChanged.Invoke(sr.sprite);
+        }
     }
 }
