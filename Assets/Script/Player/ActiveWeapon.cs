@@ -2,22 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActiveWeapon : MonoBehaviour
+public class ActiveWeapon : Singleton<ActiveWeapon>
 {
-    public delegate void OnWeaponChanged(Sprite newWeaponSprite);
-    public  event OnWeaponChanged onWeaponChanged;
+    [SerializeField] private MonoBehaviour currentActiveWeapon;
+    private PlayerContorls playerContorls;
+    private bool attackButtonDown, isAttacking = false;
 
-    private GameObject currentWeapon;
-
-    public void EquipWeapon(GameObject newWeapon)
+    protected override void Awake()
     {
-        currentWeapon = newWeapon;
+        base.Awake();
+        playerContorls = new PlayerContorls();
+    }
 
-        // 무기 Sprite를 가져와 이벤트 발생
-        SpriteRenderer sr = newWeapon.GetComponent<SpriteRenderer>();
-        if (sr != null && onWeaponChanged != null)
+    private void OnEnable()
+    {
+        playerContorls.Enable();
+    }
+    private void Start()
+    {
+        playerContorls.Combat.Attack.started += _ => StartAttacking();
+        playerContorls.Combat.Attack.canceled += _ => StopAttacking();
+    }
+    private void Update()
+    {
+        Attack();
+    }
+    public void ToggleIsAttacking(bool value)
+    {
+        isAttacking = value;
+    }
+    private void StartAttacking()
+    {
+        attackButtonDown = true;
+    }
+    private void StopAttacking()
+    {
+        attackButtonDown = false;
+    }
+    private void Attack()
+    {
+        if (attackButtonDown && !isAttacking)
         {
-            onWeaponChanged.Invoke(sr.sprite);
+            isAttacking = true;
+            (currentActiveWeapon as IWeapon).Attack();
         }
     }
 }

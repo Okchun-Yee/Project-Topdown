@@ -5,34 +5,32 @@ using UnityEngine.UI;
 
 public class ActiveInventory : MonoBehaviour
 {
-    [SerializeField] private Image curWeaponImage;
-    [SerializeField] private ActiveWeapon activeWeapon;
+    [SerializeField] private Image curWeaponImage; // UI 이미지
+    [SerializeField] private string childObjectName = "Weapon_Sword";
+    [SerializeField] private float iconSize;
 
     private void Start()
     {
-        // WeaponManager를 할당하거나 Find로 가져올 수도 있음
-        if (activeWeapon == null)
+        // 무기 오브젝트 찾기
+        GameObject weaponObject = GameObject.Find(childObjectName);
+        if (weaponObject != null)
         {
-            activeWeapon = FindObjectOfType<ActiveWeapon>();
+            SpriteRenderer spriteRenderer = weaponObject.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null && curWeaponImage != null)
+            {
+                curWeaponImage.sprite = spriteRenderer.sprite;
+                curWeaponImage.SetNativeSize();
+                var rt = curWeaponImage.rectTransform;
+                rt.sizeDelta = new Vector2(rt.sizeDelta.x * iconSize, rt.sizeDelta.y * iconSize);
+            }
+            else
+            {
+                Debug.LogWarning("SpriteRenderer 또는 curWeaponImage가 null입니다.");
+            }
         }
-
-        if (activeWeapon != null)
+        else
         {
-            activeWeapon.onWeaponChanged += UpdateWeaponIcon;
+            Debug.LogWarning("무기 오브젝트를 찾을 수 없습니다.");
         }
-    }
-
-    private void UpdateWeaponIcon(Sprite newSprite)
-    {
-        if (curWeaponImage != null && newSprite != null)
-        {
-            curWeaponImage.sprite = newSprite;
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (activeWeapon != null)
-            activeWeapon.onWeaponChanged -= UpdateWeaponIcon;
     }
 }
