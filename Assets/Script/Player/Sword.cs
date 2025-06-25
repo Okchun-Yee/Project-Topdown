@@ -10,6 +10,10 @@ public class Sword : MonoBehaviour, IWeapon
     [SerializeField] private Transform slashAnimSpawnPoint;
     [SerializeField] private Transform weaponCollider;
     [SerializeField] private float swordAttackCD = .5f;
+    //무기 종류 체크
+    [Header("Weapon Type")]
+    [SerializeField] private WeaponCategory category;
+    public WeaponCategory Category => category;
     private Animator myAnim;
     private PlayerController playerController;
     private ActiveWeapon activeWeapon;

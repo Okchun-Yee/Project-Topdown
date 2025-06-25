@@ -1,23 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public delegate void OnWeaponChanged(Sprite newWeaponSprite);
-    public  event OnWeaponChanged onWeaponChanged;
+    public event Action<Sprite> onCategoryIconChanged;
 
-    private GameObject currentWeapon;
+    [Header("Weapon Icon")]
+    [SerializeField] private Sprite meleeIcon;
+    [SerializeField] private Sprite rangedIcon;
+    [SerializeField] private Sprite staffIcon;
 
-    public void EquipWeapon(GameObject newWeapon)
+    //시작 시 현재 무기 종류가 무엇인지 파악하는 설정 << 이후에 제거 가능
+    [SerializeField] private WeaponCategory startingCategory;
+    public WeaponCategory StartingCategory => startingCategory;
+    
+    private void Start()
     {
-        currentWeapon = newWeapon;
+        // 구독된 UI가 있으면 초기에 한 번 호출
+        WeaponCategoryChange(startingCategory);
+    }
 
-        // 무기 Sprite를 가져와 이벤트 발생
-        SpriteRenderer sr = newWeapon.GetComponent<SpriteRenderer>();
-        if (sr != null && onWeaponChanged != null)
+    public void WeaponCategoryChange(WeaponCategory category)
+    {
+        Sprite icon = category switch
         {
-            onWeaponChanged.Invoke(sr.sprite);
-        }
+            WeaponCategory.Melee => meleeIcon,
+            WeaponCategory.Range => rangedIcon,
+            WeaponCategory.Staff => staffIcon,
+            _ => null
+        };
+        onCategoryIconChanged?.Invoke(icon);
     }
 }
