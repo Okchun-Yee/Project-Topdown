@@ -3,7 +3,9 @@ guid: 05bc5e14ef7342b40b058a171d6d9a8f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - info: {instanceID: 0}
+  - slashAnimPrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

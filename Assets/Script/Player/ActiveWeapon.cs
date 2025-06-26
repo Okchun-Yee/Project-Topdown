@@ -49,10 +49,14 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     }
     private void Attack()
     {
+
         if (attackButtonDown && !isAttacking)
         {
-            isAttacking = true;
-            (currentActiveWeapon as IWeapon).Attack();
+            if (currentActiveWeapon is IWeapon weapon)
+            {
+                isAttacking = true;
+                weapon.Attack();
+            }
         }
     }
 }

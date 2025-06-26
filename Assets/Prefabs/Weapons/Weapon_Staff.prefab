@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f939b5ea6abfbe34297a7a0ba4d4f317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: {fileID: 11400000, guid: 4a413fa8014a86348bb238a8ecbdd25c, type: 2}
+  lastAttackTime: 0
   category: 2
 --- !u!58 &333683196492439101
 CircleCollider2D:

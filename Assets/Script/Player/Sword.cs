@@ -10,21 +10,19 @@ public class Sword : WeaponBase
 {
     [Header("Sword Settings")]
     [SerializeField] private GameObject slashAnimPrefab;
-    [SerializeField] private Transform slashAnimSpawnPoint;
+
+    private Transform slashAnimSpawnPoint;
     private Transform weaponCollider;
-    //무기 종류 체크
     private Animator myAnim;
     private GameObject slashAnim;
 
     //private bool facingLeft = false;
-    private void Awake()
+     // Awake는 지우고 Start만 사용
+    public void Initialize(Transform collider, Transform spawnPoint, Animator animator)
     {
-        myAnim = GetComponent<Animator>();
-    }
-    private void Start()
-    {
-        weaponCollider = PlayerController.Instance.GetWeaponCollider();
-        slashAnimSpawnPoint = GameObject.Find("EffectSpawnPoint").transform;
+        weaponCollider       = collider;
+        slashAnimSpawnPoint  = spawnPoint;
+        myAnim               = animator;
     }
     private void Update()
     {
@@ -32,12 +30,26 @@ public class Sword : WeaponBase
     }
     protected override void OnAttack()
     {
-        //isAttacking = true;
+        Debug.Log($"{name}: OnAttack() 실행 (Start 호출 후 프레임?)");
+
+        // 최종 null 체크
+        if (myAnim == null || weaponCollider == null || slashAnimSpawnPoint == null)
+        {
+            Debug.LogError($"{name}: OnAttack 진입 시 참조 누락! " +
+                $"myAnim={myAnim}, weaponCollider={weaponCollider}, slashAnimSpawnPoint={slashAnimSpawnPoint}");
+            return;
+        }
+
+
+        // 실제 공격 동작
         myAnim.SetTrigger("isAttack");
         weaponCollider.gameObject.SetActive(true);
 
-        slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
-        slashAnim.transform.parent = this.transform.parent;
+        slashAnim = Instantiate(
+            slashAnimPrefab,
+            slashAnimSpawnPoint.position,
+            Quaternion.identity);
+        slashAnim.transform.parent = transform.parent;
 
         StartCoroutine(EndAttackRoutine());
     }
@@ -74,12 +86,12 @@ public class Sword : WeaponBase
 
         if (mousePos.x < playerScreenPoint.x)
         {
-            transform.rotation = Quaternion.Euler(0, -180, angle);
+            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, -180, angle);
             weaponCollider.transform.rotation = Quaternion.Euler(0, -180, 0);
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, angle);
             weaponCollider.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
