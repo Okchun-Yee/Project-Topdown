@@ -13,7 +13,6 @@ public class ActiveInventory : MonoBehaviour
     {
         if (weaponManager == null)
             weaponManager = FindObjectOfType<WeaponManager>();
-
         weaponManager.onCategoryIconChanged += UpdateIcon;
     }
     private void UpdateIcon(Sprite newIcon)

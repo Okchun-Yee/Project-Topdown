@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3030366407386941223}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.13647932, w: 0.9906429}
+  m_LocalRotation: {x: 0, y: 0, z: 0.13647641, w: 0.9906433}
   m_LocalPosition: {x: 0.378, y: 0.1, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
@@ -121,11 +121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05bc5e14ef7342b40b058a171d6d9a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: {fileID: 11400000, guid: d26060ad53f05f34eb08ac5c55140df7, type: 2}
+  lastAttackTime: 0.5
   slashAnimPrefab: {fileID: 655316301406190869, guid: cc53450770e59754c8ecebeaf2fdcee1, type: 3}
   slashAnimSpawnPoint: {fileID: 0}
   weaponCollider: {fileID: 0}
-  swordAttackCD: 0.5
-  category: 0
 --- !u!58 &1776974188898455182
 CircleCollider2D:
   m_ObjectHideFlags: 0

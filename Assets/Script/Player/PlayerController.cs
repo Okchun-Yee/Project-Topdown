@@ -7,9 +7,11 @@ using UnityEngine.InputSystem;
 public class PlayerController : Singleton<PlayerController>
 {
     public bool FacingLeft { get { return facingLeft; } }
+
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float dashSpeed = 4f;
     [SerializeField] private TrailRenderer myTrailRenderer;
+    [SerializeField] private Transform weaponCollider;
     
     private PlayerContorls playerControls;
     private Vector2 movement;
@@ -45,20 +47,10 @@ public class PlayerController : Singleton<PlayerController>
     {
         playerControls.Enable();
     }
-    void Update()
-    {
-        PlayerInput();
-    }
-    void FixedUpdate()
-    {
-        AdjustPlayerDirection();
-        Move();
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Weapon"))
         {
-            Debug.Log("Weapon");
             curPickUp = collision.GetComponent<WeaponPickUp>();
         }
     }
@@ -68,6 +60,18 @@ public class PlayerController : Singleton<PlayerController>
         {
             curPickUp = null;
         }
+    }
+    void Update()
+    {
+        PlayerInput();
+    }
+    void FixedUpdate()
+    {
+        AdjustPlayerDirection();
+        Move();
+    }
+    public Transform GetWeaponCollider() {
+        return weaponCollider;
     }
     void PlayerInput()
     {
@@ -81,8 +85,7 @@ public class PlayerController : Singleton<PlayerController>
             Keyboard.current.eKey.wasPressedThisFrame)
         {
             // UI 갱신 이벤트
-            weaponManager.WeaponCategoryChange(curPickUp.info.category);
-            // 씬에서 오브젝트 제거
+            weaponManager.EquipWeapon(curPickUp.info);
             Destroy(curPickUp.gameObject);
             curPickUp = null;
         }

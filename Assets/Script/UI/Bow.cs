@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Bow : MonoBehaviour, IWeapon
+public class Bow : WeaponBase
 {
     [Header("Weapon Type")]
     [SerializeField] private WeaponCategory category;
     public WeaponCategory Category => category;
-    public void Attack()
+    protected override void OnAttack()
     {
         Debug.Log("Bow");
         ActiveWeapon.Instance.ToggleIsAttacking(false);
