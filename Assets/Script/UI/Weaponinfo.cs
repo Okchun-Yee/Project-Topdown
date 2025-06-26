@@ -12,6 +12,7 @@ public enum WeaponCategory
 [CreateAssetMenu(menuName = "New Weapon")]
 public class Weaponinfo : ScriptableObject
 {
+    public WeaponCategory category;
     public GameObject weaponPrefab;
     public float weaponCooldown;
 }

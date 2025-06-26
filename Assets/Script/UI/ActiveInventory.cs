@@ -15,8 +15,6 @@ public class ActiveInventory : MonoBehaviour
             weaponManager = FindObjectOfType<WeaponManager>();
 
         weaponManager.onCategoryIconChanged += UpdateIcon;
-        // 시작 시 한번 강제 호출로 현재 무기 아이콘과 동기화
-        weaponManager.WeaponCategoryChange(weaponManager.StartingCategory);
     }
     private void UpdateIcon(Sprite newIcon)
     {
