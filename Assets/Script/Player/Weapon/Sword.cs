@@ -2,59 +2,68 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Timeline;
 
-public class Sword : MonoBehaviour, IWeapon
+/// <summary>
+/// 검 무기 클래스
+/// └ BaseWeapon을 상속받아 공통 쿨다운·초기화 로직 적용
+/// </summary>
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Collider2D))]
+public class Sword : BaseWeapon
 {
     [SerializeField] private GameObject slashAnimPrefab;
-    [SerializeField] private Transform slashAnimSpawnPoint;
-    [SerializeField] private Transform weaponCollider;
-    [SerializeField] private float swordAttackCD = .5f;
-    //무기 종류 체크
-    [Header("Weapon Type")]
-    [SerializeField] private WeaponCategory category;
-    public WeaponCategory Category => category;
     private Animator myAnim;
     private PlayerController playerController;
-    private ActiveWeapon activeWeapon;
-    private GameObject slashAnim;
+    private GameObject        slashAnim;
 
-    //private bool facingLeft = false;
     private void Awake()
     {
         myAnim = GetComponent<Animator>();
         playerController = GetComponentInParent<PlayerController>();
-        activeWeapon = GetComponentInParent<ActiveWeapon>();
+
+        // ① 부모가 WeaponCollider 이므로
+        // 부모가 WeaponCollider 오브젝트이므로
+        var mount = transform.parent;
+        if (mount == null)
+        {
+            Debug.LogError("[Sword] WeaponCollider(부모)가 없습니다.");
+            return;
+        }
+        weaponColliderGO = mount.gameObject;          // BaseWeapon 필드 사용
+        weaponColliderGO.SetActive(false);
+        // ② 이펙트 스폰 포인트
+        slashSpawnPoint = mount.Find("EffectSpawnPoint");
+        if (slashSpawnPoint == null)
+            Debug.LogError($"[Sword] EffectSpawnPoint가 없습니다.");
     }
     private void Update()
     {
         MouseFollowOffset();
     }
-    public void Attack()
+    /// <summary>
+    /// BaseWeapon.Attack() 호출 시 실행되는 실제 공격 로직
+    /// </summary>
+    protected override void OnAttack()
     {
-        //isAttacking = true;
         myAnim.SetTrigger("isAttack");
-        weaponCollider.gameObject.SetActive(true);
+        weaponColliderGO.gameObject.SetActive(true);
 
-        slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
-        slashAnim.transform.parent = this.transform.parent;
-
-        StartCoroutine(AttackCDRoutine());
-    }
-
-    private IEnumerator AttackCDRoutine()
-    {
-        yield return new WaitForSeconds(swordAttackCD);
-        ActiveWeapon.Instance.ToggleIsAttacking(false);
+        Instantiate(
+            slashAnimPrefab,
+            slashSpawnPoint.position,
+            Quaternion.identity,
+            slashSpawnPoint
+        );
     }
 
     public void DoneAttackingAnimEvent()
     {
-        weaponCollider.gameObject.SetActive(false);
+        weaponColliderGO.gameObject.SetActive(false);
     }
     public void SwingUpFilpAnimEvent()
     {
-        slashAnim.gameObject.transform.rotation = Quaternion.Euler(-180, 0, 0);
+        if (slashAnim == null) return;
+        slashAnim.transform.rotation = Quaternion.Euler(-180, 0, 0);
         if (playerController.FacingLeft)
         {
             slashAnim.GetComponent<SpriteRenderer>().flipX = true;
@@ -62,7 +71,7 @@ public class Sword : MonoBehaviour, IWeapon
     }
     public void SwingDownFilpAnimEvent()
     {
-        slashAnim.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        slashAnim.transform.rotation = Quaternion.Euler(0, 0, 0);
         if (playerController.FacingLeft)
         {
             slashAnim.GetComponent<SpriteRenderer>().flipX = true;
@@ -73,17 +82,17 @@ public class Sword : MonoBehaviour, IWeapon
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(playerController.transform.position);
 
-        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(mousePos.y - playerScreenPoint.y, mousePos.x - playerScreenPoint.x) * Mathf.Rad2Deg;
 
         if (mousePos.x < playerScreenPoint.x)
         {
-            activeWeapon.transform.rotation = Quaternion.Euler(0, -180, angle);
-            weaponCollider.transform.rotation = Quaternion.Euler(0, -180, 0);
+            transform.parent.rotation = Quaternion.Euler(0, -180, angle);
+            weaponColliderGO.transform.rotation = Quaternion.Euler(0, -180, 0);
         }
         else
         {
-            activeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle);
-            weaponCollider.transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.parent.rotation = Quaternion.Euler(0, 0, angle);
+            weaponColliderGO.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 }

@@ -5,11 +5,14 @@ using UnityEngine;
 /// <summary>
 /// 모든 무기의 공통 기능(초기화·쿨다운 관리)을 담당하는 추상 클래스
 /// </summary>
-public abstract class BaseWeapon : MonoBehaviour
+public abstract class BaseWeapon : MonoBehaviour, IWeapon
 {
+    protected GameObject weaponColliderGO;  // ← 여기에 선언
+    protected Transform slashSpawnPoint;
     private float cooldownTime;
     public bool IsOnCooldown { get; private set; }
     private Coroutine cooldownCoroutine;
+    
 
     /// <summary>
     /// Weaponinfo(SO)로부터 설정을 주입합니다.
@@ -25,6 +28,13 @@ public abstract class BaseWeapon : MonoBehaviour
         cooldownTime = info.weaponCooldown;
         //추가 사항, 공격피해, 프리펩 등
     }
+    public void InjectSceneReferences(Transform slashPoint, GameObject colliderGO)
+    {
+        slashSpawnPoint  = slashPoint;
+        weaponColliderGO = colliderGO;
+        weaponColliderGO.SetActive(false);
+    }
+
     /// 외부(WeaponManager 등)에서 호출하는 공격 진입점
     public void Attack()
     {
@@ -39,6 +49,8 @@ public abstract class BaseWeapon : MonoBehaviour
         IsOnCooldown = true;
         yield return new WaitForSeconds(cooldownTime);
         IsOnCooldown = false;
+        // 쿨다운 끝나면 ActiveWeapon에 알려주기
+        ActiveWeapon.Instance.ToggleIsAttacking(false);
     }
     // ——— 안전 장치: 코루틴 정리 ———
     protected virtual void OnDestroy()

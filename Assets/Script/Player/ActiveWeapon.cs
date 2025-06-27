@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActiveWeapon : Singleton<ActiveWeapon>
 {
-    [SerializeField] private MonoBehaviour currentActiveWeapon;
+    private IWeapon currentActiveWeapon;
     private PlayerContorls playerContorls;
     private bool attackButtonDown, isAttacking = false;
 
@@ -17,34 +17,39 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     private void OnEnable()
     {
         playerContorls.Enable();
+        playerContorls.Combat.Attack.started  += _ => attackButtonDown = true;
+        playerContorls.Combat.Attack.canceled += _ => attackButtonDown = false;
     }
-    private void Start()
+
+    private void OnDisable()
     {
-        playerContorls.Combat.Attack.started += _ => StartAttacking();
-        playerContorls.Combat.Attack.canceled += _ => StopAttacking();
+        playerContorls.Combat.Attack.started  -= _ => attackButtonDown = true;
+        playerContorls.Combat.Attack.canceled -= _ => attackButtonDown = false;
+        playerContorls.Disable();
     }
     private void Update()
     {
-        Attack();
+        if (!attackButtonDown || isAttacking || currentActiveWeapon == null)
+            return;
+        isAttacking = true;
+        currentActiveWeapon.Attack();  // → null일 일도, 잘못된 캐스트도 없음
+    }
+    /// <summary>WeaponManager에서 호출</summary>
+    public void NewWeapon(IWeapon weapon)
+    {
+        currentActiveWeapon = weapon;
+        isAttacking = false;
+        attackButtonDown = false;
+    }
+
+    public void WeaponNull()
+    {
+        currentActiveWeapon = null;
+        isAttacking = false;
+        attackButtonDown = false;
     }
     public void ToggleIsAttacking(bool value)
     {
         isAttacking = value;
-    }
-    private void StartAttacking()
-    {
-        attackButtonDown = true;
-    }
-    private void StopAttacking()
-    {
-        attackButtonDown = false;
-    }
-    private void Attack()
-    {
-        if (attackButtonDown && !isAttacking)
-        {
-            isAttacking = true;
-            (currentActiveWeapon as IWeapon).Attack();
-        }
     }
 }

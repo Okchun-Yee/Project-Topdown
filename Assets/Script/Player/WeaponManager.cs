@@ -15,8 +15,10 @@ public class WeaponManager : Singleton<WeaponManager>
     [SerializeField] private Sprite rangedIcon;
     [SerializeField] private Sprite staffIcon;
 
-    [Header("Weapon Mount")]
-    [SerializeField] private Transform weaponMountPoint;  // 무기 인스턴스가 붙을 위치
+    [Header("Scene References")]
+    [SerializeField] private Transform weaponMountPoint;
+    [SerializeField] private Transform effectSpawnPoint;
+    [SerializeField] private GameObject  weaponCollider;
     private BaseWeapon currentWeapon;
 
     /// <summary>
@@ -35,19 +37,18 @@ public class WeaponManager : Singleton<WeaponManager>
         {
             Destroy(currentWeapon.gameObject);
             currentWeapon = null;
+            ActiveWeapon.Instance.WeaponNull();
         }
-
-        // 2) 새 무기 생성 및 초기화
-        GameObject gameObject = Instantiate(info.weaponPrefab, weaponMountPoint);
-        var weapon = gameObject.GetComponent<BaseWeapon>();
-        if (weapon == null)
-        {
-            Debug.LogError("[WeaponManager] WeaponPrefab에 BaseWeapon 컴포넌트가 없습니다.");
-            Destroy(gameObject);
-            return;
-        }
+         // 1) 프리팹 생성
+        var go     = Instantiate(info.weaponPrefab, weaponMountPoint.position, Quaternion.identity, weaponMountPoint);
+        var weapon = go.GetComponent<BaseWeapon>();
+        // 2) Scene 참조 주입
+        weapon.InjectSceneReferences(effectSpawnPoint, weaponCollider);
+        // 3) SO 초기화
         weapon.Initialize(info);
         currentWeapon = weapon;
+        // 4) ActiveWeapon에 IWeapon으로 등록
+        ActiveWeapon.Instance.NewWeapon(weapon);
 
         WeaponCategoryChange(info.category);
     }
