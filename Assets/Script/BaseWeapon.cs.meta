@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 05bc5e14ef7342b40b058a171d6d9a8f
+guid: 916b3013830bb80459a891471d3531bb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - info: {instanceID: 0}
-  - slashAnimPrefab: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

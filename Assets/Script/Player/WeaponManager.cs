@@ -3,56 +3,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+public class WeaponManager : Singleton<WeaponManager>
 {
+    /// <summary>
+    /// 무기 분류가 변경될 때 UI 아이콘(Sprite)을 전달
+    /// </summary>
     public event Action<Sprite> onCategoryIconChanged;
 
     [Header("Weapon Icon")]
     [SerializeField] private Sprite meleeIcon;
     [SerializeField] private Sprite rangedIcon;
     [SerializeField] private Sprite staffIcon;
-    private Transform weaponMountPoint;
-    private GameObject currentWeaponObj;
-    private void Awake()
-    {
-        var pc = GetComponentInParent<PlayerController>();
-        if (pc == null)
-        {
-            Debug.LogError("WeaponManager: 부모에 PlayerController가 없습니다!");
-            return;
-        }
-        weaponMountPoint = pc.GetWeaponCollider();
-        if (weaponMountPoint == null)
-            Debug.LogError("PlayerController.WeaponMountPoint가 할당되지 않았습니다!");
-    }
 
+    [Header("Weapon Mount")]
+    [SerializeField] private Transform weaponMountPoint;  // 무기 인스턴스가 붙을 위치
+    private BaseWeapon currentWeapon;
+
+    /// <summary>
+    /// Weaponinfo를 받아 기존 무기를 해제하고 새 무기를 장착합니다.
+    /// </summary>
     public void EquipWeapon(Weaponinfo info)
     {
-        if (currentWeaponObj != null)
+        if (info == null)
         {
-            Destroy(currentWeaponObj);
+            Debug.LogError("[WeaponManager] Weaponinfo is null");
+            return;
         }
-        // 프리팹 Instantiate 해서 마운트 포인트에 붙이기
-        currentWeaponObj = Instantiate(info.weaponPrefab, weaponMountPoint.position, weaponMountPoint.rotation,
-            weaponMountPoint);
 
-        //UI 갱신
+        // 1) 기존 무기 제거
+        if (currentWeapon != null)
+        {
+            Destroy(currentWeapon.gameObject);
+            currentWeapon = null;
+        }
+
+        // 2) 새 무기 생성 및 초기화
+        GameObject gameObject = Instantiate(info.weaponPrefab, weaponMountPoint);
+        var weapon = gameObject.GetComponent<BaseWeapon>();
+        if (weapon == null)
+        {
+            Debug.LogError("[WeaponManager] WeaponPrefab에 BaseWeapon 컴포넌트가 없습니다.");
+            Destroy(gameObject);
+            return;
+        }
+        weapon.Initialize(info);
+        currentWeapon = weapon;
+
         WeaponCategoryChange(info.category);
-        // Sword 컴포넌트 가져오기
-        var sword = currentWeaponObj.GetComponent<Sword>();
+    }
 
-        // ① 플레이어 콜라이더 참조
-        var collider = PlayerController.Instance.GetWeaponCollider();
-        // ② 이펙트 스폰 포인트 참조
-        var spawnPoint = ActiveWeapon.Instance.transform.Find("EffectSpawnPoint");
-        // ③ Animator 컴포넌트 참조
-        var animator = currentWeaponObj.GetComponentInChildren<Animator>();
-        // 수동으로 주입
-        sword.Initialize(collider, spawnPoint, animator);
-
-        // ActiveWeapon 싱글톤에 새 무기 컴포넌트 알리기
-        var w = currentWeaponObj.GetComponent<WeaponBase>() as MonoBehaviour;
-        ActiveWeapon.Instance.NewWeapon(w);
+    public void UnequipWeapon()
+    {
+        if (currentWeapon != null)
+        {
+            Destroy(currentWeapon.gameObject);
+            currentWeapon = null;
+        }
+        onCategoryIconChanged.Invoke(null);
     }
 
     public void WeaponCategoryChange(WeaponCategory category)

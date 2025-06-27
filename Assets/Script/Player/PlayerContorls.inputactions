@@ -126,7 +126,7 @@
             "id": "5ed9d007-d618-4aee-a5e9-147af9b2fcb0",
             "actions": [
                 {
-                    "name": "Keyboard",
+                    "name": "Pickup",
                     "type": "Value",
                     "id": "8d74fa30-9132-4137-89e7-268963128a38",
                     "expectedControlType": "",
@@ -138,34 +138,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "ab4fc13b-edac-46dd-94f1-14e35c9d22d1",
-                    "path": "<Keyboard>/1",
+                    "id": "04dfffeb-7719-4d5c-a6d3-74eb76920229",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
-                    "processors": "Scale",
+                    "processors": "",
                     "groups": "",
-                    "action": "Keyboard",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "043868c2-c873-4c62-ab13-31f7263ec205",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "Scale(factor=2)",
-                    "groups": "",
-                    "action": "Keyboard",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "00b9e0de-f6a2-4b08-8f5f-853170cd4b18",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "Scale(factor=3)",
-                    "groups": "",
-                    "action": "Keyboard",
+                    "action": "Pickup",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

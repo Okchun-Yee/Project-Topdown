@@ -212,7 +212,7 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
             ""id"": ""5ed9d007-d618-4aee-a5e9-147af9b2fcb0"",
             ""actions"": [
                 {
-                    ""name"": ""Keyboard"",
+                    ""name"": ""Pickup"",
                     ""type"": ""Value"",
                     ""id"": ""8d74fa30-9132-4137-89e7-268963128a38"",
                     ""expectedControlType"": """",
@@ -224,34 +224,12 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""ab4fc13b-edac-46dd-94f1-14e35c9d22d1"",
-                    ""path"": ""<Keyboard>/1"",
+                    ""id"": ""04dfffeb-7719-4d5c-a6d3-74eb76920229"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
-                    ""processors"": ""Scale"",
+                    ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Keyboard"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""043868c2-c873-4c62-ab13-31f7263ec205"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": ""Scale(factor=2)"",
-                    ""groups"": """",
-                    ""action"": ""Keyboard"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""00b9e0de-f6a2-4b08-8f5f-853170cd4b18"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": ""Scale(factor=3)"",
-                    ""groups"": """",
-                    ""action"": ""Keyboard"",
+                    ""action"": ""Pickup"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -269,7 +247,7 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
         m_Combat_Dash = m_Combat.FindAction("Dash", throwIfNotFound: true);
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
-        m_Inventory_Keyboard = m_Inventory.FindAction("Keyboard", throwIfNotFound: true);
+        m_Inventory_Pickup = m_Inventory.FindAction("Pickup", throwIfNotFound: true);
     }
 
     ~@PlayerContorls()
@@ -555,7 +533,7 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
     // Inventory
     private readonly InputActionMap m_Inventory;
     private List<IInventoryActions> m_InventoryActionsCallbackInterfaces = new List<IInventoryActions>();
-    private readonly InputAction m_Inventory_Keyboard;
+    private readonly InputAction m_Inventory_Pickup;
     /// <summary>
     /// Provides access to input actions defined in input action map "Inventory".
     /// </summary>
@@ -568,9 +546,9 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
         /// </summary>
         public InventoryActions(@PlayerContorls wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Inventory/Keyboard".
+        /// Provides access to the underlying input action "Inventory/Pickup".
         /// </summary>
-        public InputAction @Keyboard => m_Wrapper.m_Inventory_Keyboard;
+        public InputAction @Pickup => m_Wrapper.m_Inventory_Pickup;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -597,9 +575,9 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_InventoryActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_InventoryActionsCallbackInterfaces.Add(instance);
-            @Keyboard.started += instance.OnKeyboard;
-            @Keyboard.performed += instance.OnKeyboard;
-            @Keyboard.canceled += instance.OnKeyboard;
+            @Pickup.started += instance.OnPickup;
+            @Pickup.performed += instance.OnPickup;
+            @Pickup.canceled += instance.OnPickup;
         }
 
         /// <summary>
@@ -611,9 +589,9 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
         /// <seealso cref="InventoryActions" />
         private void UnregisterCallbacks(IInventoryActions instance)
         {
-            @Keyboard.started -= instance.OnKeyboard;
-            @Keyboard.performed -= instance.OnKeyboard;
-            @Keyboard.canceled -= instance.OnKeyboard;
+            @Pickup.started -= instance.OnPickup;
+            @Pickup.performed -= instance.OnPickup;
+            @Pickup.canceled -= instance.OnPickup;
         }
 
         /// <summary>
@@ -692,11 +670,11 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
     public interface IInventoryActions
     {
         /// <summary>
-        /// Method invoked when associated input action "Keyboard" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Pickup" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnKeyboard(InputAction.CallbackContext context);
+        void OnPickup(InputAction.CallbackContext context);
     }
 }
