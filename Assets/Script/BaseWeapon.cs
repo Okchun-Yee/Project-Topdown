@@ -7,15 +7,13 @@ using UnityEngine;
 /// </summary>
 public abstract class BaseWeapon : MonoBehaviour, IWeapon
 {
-    protected GameObject weaponColliderGO;  // ← 여기에 선언
-    protected Transform slashSpawnPoint;
-    private float cooldownTime;
-    public bool IsOnCooldown { get; private set; }
-    private Coroutine cooldownCoroutine;
+    private float   weaponCooldown;    // SO에서 주입받는 쿨다운 시간
+    private bool isCooldown;     //무기 쿨타임 검사
+    private Coroutine CooldownCoroutine;
     
 
     /// <summary>
-    /// Weaponinfo(SO)로부터 설정을 주입합니다.
+    /// ScriptableObject(Weaponinfo)로부터 설정을 주입합니다.
     /// </summary>
     public virtual void Initialize(Weaponinfo info)
     {
@@ -25,37 +23,38 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
             return;
         }
 
-        cooldownTime = info.weaponCooldown;
+        weaponCooldown = info.CooldownTime;
         //추가 사항, 공격피해, 프리펩 등
     }
-    public void InjectSceneReferences(Transform slashPoint, GameObject colliderGO)
-    {
-        slashSpawnPoint  = slashPoint;
-        weaponColliderGO = colliderGO;
-        weaponColliderGO.SetActive(false);
-    }
 
-    /// 외부(WeaponManager 등)에서 호출하는 공격 진입점
+    /// <summary>
+    /// 외부에서 호출하는 공격 진입점.
+    /// 쿨다운 중이면 무시하고, 아니면 OnAttack() 및 쿨다운 시작.
+    /// </summary>
     public void Attack()
     {
-        if (IsOnCooldown) return;
-        OnAttack(); //개별 무기의 공격 로직
-        cooldownCoroutine = StartCoroutine(CooldownRoutine());
+        if (isCooldown) { return; }
+        OnAttack();
+        CooldownCoroutine = StartCoroutine(CooldownRoutine());
     }
+    // <summary>
+    /// 구체 무기에서 실제 공격 로직을 구현할 메서드.
+    /// </summary>
     protected abstract void OnAttack();
 
     private IEnumerator CooldownRoutine()
     {
-        IsOnCooldown = true;
-        yield return new WaitForSeconds(cooldownTime);
-        IsOnCooldown = false;
+        isCooldown = true;
+        yield return new WaitForSeconds(weaponCooldown);
+        isCooldown = false;
         // 쿨다운 끝나면 ActiveWeapon에 알려주기
-        ActiveWeapon.Instance.ToggleIsAttacking(false);
     }
-    // ——— 안전 장치: 코루틴 정리 ———
-    protected virtual void OnDestroy()
+     /// <summary>
+    /// 객체가 비활성화될 때 코루틴을 정리해 안전하게 멈춥니다.
+    /// </summary>
+    protected virtual void OnDisable()
     {
-        if (cooldownCoroutine != null)
-            StopCoroutine(CooldownRoutine());
+        if (CooldownCoroutine != null)
+            StopCoroutine(CooldownCoroutine);
     }
 }

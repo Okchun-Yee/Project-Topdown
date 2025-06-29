@@ -6,23 +6,21 @@ using UnityEngine.UI;
 public class ActiveInventory : MonoBehaviour
 {
     [SerializeField] private Image curWeaponImage; // UI 이미지
-    [SerializeField] private WeaponManager weaponManager;
     [SerializeField] private float iconSize;
 
-    private void Start()
+    private void OnEnable()
     {
-        if (weaponManager == null)
-            weaponManager = FindObjectOfType<WeaponManager>();
-
-        weaponManager.onCategoryIconChanged += UpdateIcon;
+        // WeaponManager 이벤트 구독
+        WeaponManager.Instance.onCategoryIconChanged += UpdateIcon;
+    }
+    private void OnDisable()
+    {
+        WeaponManager.Instance.onCategoryIconChanged -= UpdateIcon;
     }
     private void UpdateIcon(Sprite newIcon)
     {
+        // 아이콘 변경 또는 숨김
         curWeaponImage.sprite = newIcon;
-        curWeaponImage.rectTransform.localScale = Vector3.one * iconSize;
-    }
-    private void OnDestroy()
-    {
-        weaponManager.onCategoryIconChanged -= UpdateIcon;
+        curWeaponImage.enabled = newIcon != null;
     }
 }

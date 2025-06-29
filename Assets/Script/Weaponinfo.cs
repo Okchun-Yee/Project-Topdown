@@ -12,7 +12,18 @@ public enum WeaponCategory
 [CreateAssetMenu(menuName = "New Weapon")]
 public class Weaponinfo : ScriptableObject
 {
-    public GameObject weaponPrefab;
-    public WeaponCategory category;
-    public float weaponCooldown;
+    [Header("Prefab")]
+    [SerializeField] private GameObject weaponPrefab;
+    [Header("Common")]
+    [SerializeField] private WeaponCategory category;
+    [SerializeField] private float weaponCooldown;
+
+    /// <summary>인스턴스화할 무기 프리팹</summary>
+    public GameObject WeaponPrefab => weaponPrefab;
+
+    /// <summary>공격 쿨다운 시간(초)</summary>
+    public float CooldownTime => weaponCooldown;
+
+    /// <summary>무기 카테고리 (아이콘 갱신용)</summary>
+    public WeaponCategory Category => category;
 }

@@ -134,11 +134,12 @@ GameObject:
   - component: {fileID: 9238402}
   - component: {fileID: 9238404}
   - component: {fileID: 9238406}
+  - component: {fileID: 9238409}
   - component: {fileID: 9238407}
   - component: {fileID: 9238408}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,6 +210,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1160395245}
+  - {fileID: 1292851418}
   - {fileID: 1529268559}
   - {fileID: 1150503807}
   m_Father: {fileID: 0}
@@ -311,6 +313,22 @@ CapsuleCollider2D:
   m_Offset: {x: -0.009072064, y: -0.23043972}
   m_Size: {x: 0.4338932, y: 0.34316906}
   m_Direction: 1
+--- !u!114 &9238409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9238401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f194e345a97bf848857204761ab4ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeIcon: {fileID: 21300000, guid: f740275ff3be28d469216bcd2886575d, type: 3}
+  rangedIcon: {fileID: 21300000, guid: 0c8b1c294b978d24ab48c523a63e2d47, type: 3}
+  staffIcon: {fileID: 21300000, guid: 19859878c06ccf54e963ae3c3e283e6a, type: 3}
+  weaponMountPoint: {fileID: 1292851418}
 --- !u!1001 &74914267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7865,7 +7883,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1160395245}
   - component: {fileID: 1160395246}
-  - component: {fileID: 1160395247}
   m_Layer: 0
   m_Name: ActiveWeapon
   m_TagString: Untagged
@@ -7901,23 +7918,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274d0be6047001c4690bf7a881fcca04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentActiveWeapon: {fileID: 0}
---- !u!114 &1160395247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1160395244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f194e345a97bf848857204761ab4ebd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meleeIcon: {fileID: 21300000, guid: f740275ff3be28d469216bcd2886575d, type: 3}
-  rangedIcon: {fileID: 21300000, guid: 0c8b1c294b978d24ab48c523a63e2d47, type: 3}
-  staffIcon: {fileID: 21300000, guid: 19859878c06ccf54e963ae3c3e283e6a, type: 3}
-  weaponMountPoint: {fileID: 0}
 --- !u!1 &1236100948
 GameObject:
   m_ObjectHideFlags: 0
@@ -7993,6 +7993,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236100948}
   m_CullTransparentMesh: 1
+--- !u!1 &1292851417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1292851418}
+  m_Layer: 0
+  m_Name: WeaponMountPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1292851418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292851417}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.29, y: -0.134, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9238403}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1345033895 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7606093407274451166, guid: cdeb081a40267ba489edf47e0665d7c3, type: 3}
@@ -10568,7 +10599,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curWeaponImage: {fileID: 1236100950}
-  weaponManager: {fileID: 0}
   iconSize: 0.8
 --- !u!1001 &1626932734
 PrefabInstance:
