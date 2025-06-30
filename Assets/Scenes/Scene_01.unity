@@ -329,6 +329,7 @@ MonoBehaviour:
   rangedIcon: {fileID: 21300000, guid: 0c8b1c294b978d24ab48c523a63e2d47, type: 3}
   staffIcon: {fileID: 21300000, guid: 19859878c06ccf54e963ae3c3e283e6a, type: 3}
   weaponMountPoint: {fileID: 1292851418}
+  weaponCollider: {fileID: 1529268559}
 --- !u!1001 &74914267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3934,7 +3935,7 @@ GameObject:
   m_Component:
   - component: {fileID: 743495378}
   m_Layer: 0
-  m_Name: EffectSpawnPoint
+  m_Name: EffectspawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8018,7 +8019,7 @@ Transform:
   m_GameObject: {fileID: 1292851417}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.29, y: -0.134, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
