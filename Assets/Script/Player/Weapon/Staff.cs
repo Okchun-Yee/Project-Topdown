@@ -10,6 +10,15 @@ public class Staff : BaseWeapon
 {
     private Transform weaponCollider;
     private Animator anim;
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+    private void Start()
+    {
+
+    }
     private void Update()
     {
         MouseFollowWithOffset();
@@ -30,13 +39,11 @@ public class Staff : BaseWeapon
         {
             transform.parent.rotation = Quaternion.Euler(0, -180, angle);
             ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, -180, angle);
-            weaponCollider.transform.rotation = Quaternion.Euler(0, -180, 0);
         }
         else
         {
             transform.parent.rotation = Quaternion.Euler(0, 0, angle);
             ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, angle);
-            weaponCollider.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 }
