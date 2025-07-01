@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 84969479920682980}
   - component: {fileID: 3808585089251295821}
   - component: {fileID: 5950395565473035180}
+  - component: {fileID: 5700160841922767058}
+  - component: {fileID: 6678359238365402892}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -120,3 +122,50 @@ CapsuleCollider2D:
   m_Offset: {x: -0.006457781, y: 0.21279082}
   m_Size: {x: 1.7873197, y: 0.7213389}
   m_Direction: 1
+--- !u!58 &5700160841922767058
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7822039602794712151}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.6595701}
+  serializedVersion: 2
+  m_Radius: 0.84636605
+--- !u!114 &6678359238365402892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7822039602794712151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b87ff2542eaca41bffb078c6a6ff78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -17,6 +17,8 @@ public class Weaponinfo : ScriptableObject
     [Header("Common")]
     [SerializeField] private WeaponCategory category;
     [SerializeField] private float weaponCooldown;
+    public int weaponDamge;
+    public float weaponRange;
 
     /// <summary>인스턴스화할 무기 프리팹</summary>
     public GameObject WeaponPrefab => weaponPrefab;
