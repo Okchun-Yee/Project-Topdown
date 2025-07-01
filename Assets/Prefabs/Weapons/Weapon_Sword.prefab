@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 590126759, guid: 758585df94498284bb94f133629102ac, type: 3}
+  m_Sprite: {fileID: -1657444984, guid: 758585df94498284bb94f133629102ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,3 +120,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slashAnimPrefab: {fileID: 655316301406190869, guid: cc53450770e59754c8ecebeaf2fdcee1, type: 3}
+  slashAnimSpawnPoint: {fileID: 0}

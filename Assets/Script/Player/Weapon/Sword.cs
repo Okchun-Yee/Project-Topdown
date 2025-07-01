@@ -34,6 +34,7 @@ public class Sword : BaseWeapon
         Debug.Log("Sword Attack");
         anim.SetTrigger("isAttack");
         weaponCollider.gameObject.SetActive(true);
+
         slashAnim = Instantiate(slashAnimPrefab,
         slashAnimSpawnPoint.position, Quaternion.identity);
         slashAnim.transform.parent = this.transform.parent;
