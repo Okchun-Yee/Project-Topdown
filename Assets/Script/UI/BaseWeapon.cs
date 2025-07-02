@@ -7,10 +7,10 @@ using UnityEngine;
 /// </summary>
 public abstract class BaseWeapon : MonoBehaviour, IWeapon
 {
-    private float   weaponCooldown;    // SO에서 주입받는 쿨다운 시간
+    private float weaponCooldown;    // SO에서 주입받는 쿨다운 시간
     private bool isCooldown;     //무기 쿨타임 검사
     private Coroutine CooldownCoroutine;
-    
+
 
     /// <summary>
     /// ScriptableObject(Weaponinfo)로부터 설정을 주입합니다.
@@ -25,6 +25,9 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
 
         weaponCooldown = info.CooldownTime;
         //추가 사항, 공격피해, 프리펩 등
+        var ds = GetComponentInChildren<DamageSource>();
+        if (ds != null)
+            ds.DamageAmount = info.weaponDamge;
     }
 
     /// <summary>
@@ -49,7 +52,7 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
         isCooldown = false;
         // 쿨다운 끝나면 ActiveWeapon에 알려주기
     }
-     /// <summary>
+    /// <summary>
     /// 객체가 비활성화될 때 코루틴을 정리해 안전하게 멈춥니다.
     /// </summary>
     protected virtual void OnDisable()

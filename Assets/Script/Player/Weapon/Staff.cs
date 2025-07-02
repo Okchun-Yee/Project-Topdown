@@ -8,8 +8,11 @@ using UnityEngine;
 /// </summary>
 public class Staff : BaseWeapon
 {
-    private Transform weaponCollider;
+    [SerializeField] private Weaponinfo weaponinfo;
+    [SerializeField] private GameObject magicLaser;
+    [SerializeField] private Transform magicLaserSpawnPoint;
     private Animator anim;
+    readonly int ATTACK_HASH = Animator.StringToHash("Attack");
 
     private void Awake()
     {
@@ -27,6 +30,19 @@ public class Staff : BaseWeapon
     protected override void OnAttack()
     {
         Debug.Log("Staff Attack");
+        anim.SetTrigger(ATTACK_HASH);
+        // 애니메이션 이벤트를 통해 SpawnStaffProjectileAnimEvent() 호출
+    }
+
+    public void SpawnStaffProjectileAnimEvent()
+    {
+        // 마법 레이저 생성
+        GameObject newLaser = Instantiate(magicLaser, magicLaserSpawnPoint.position, Quaternion.identity);
+        newLaser.GetComponent<MagicLaser>().UpdateLaserRange(weaponinfo.weaponRange);
+    }
+    public Weaponinfo GetWeaponInfo()
+    {
+        return weaponinfo;
     }
     private void MouseFollowWithOffset()
     {
