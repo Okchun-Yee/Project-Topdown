@@ -2,30 +2,28 @@
 탑뷰/로그라이트/Youtube: darkswear참조/
 
 ## 📚 Table of Contents
----
 장르 : Top Down RougeLike
 프로젝트 설정
 >Unity 버전 : Unity 2022.3.61f1
 
 ## 📦Assets
- ┣ 📂Animations 
- ┣ 📂Materials
- ┣ 📂Prefabs
- ┣ 📂Scenes
- ┣ 📂Script
- ┃ ┣ 📂Enemy (# Enemy 로직: PathFinding, Damage, Health, Attack...)
- ┃ ┣ 📂Management (# 관리 로직: Weapon, Scene, Map, UI .....)
- ┃ ┣ 📂Misc (# 기타 환경 로직: 상화작용, 스테이지 ....)
- ┃ ┣ 📂player
- ┃ ┗ 📂UI
- ┣ 📂ScriptableObjects
- ┣ 📂Settings
- ┣ 📂Sprites
- ┗ 📂TileMap
+ ┣ 📂Animations <br>
+ ┣ 📂Materials <br>
+ ┣ 📂Prefabs  <br>
+ ┣ 📂Scenes  <br>
+ ┣ 📂Script <br>
+ ┃ ┣ 📂Enemy (# Enemy 로직: PathFinding, Damage, Health, Attack...)<br>
+ ┃ ┣ 📂Management (# 관리 로직: Weapon, Scene, Map, UI .....)<br>
+ ┃ ┣ 📂Misc (# 기타 환경 로직: 상호작용, 스테이지 ....)<br>
+ ┃ ┣ 📂player<br>
+ ┃ ┗ 📂UI<br>
+ ┣ 📂ScriptableObjects<br>
+ ┣ 📂Settings<br>
+ ┣ 📂Sprites<br>
+ ┗ 📂TileMap<br>
 
 
 ## Weapon System
----
 > 플레이어는 기본적으로 한번에 한 개의 무기만 을 소지 할수 있습니다.
 > 무기의 종류는 현재 3자리 종류로
 >
@@ -43,8 +41,8 @@
 
 
 
-
-###### Commit
+---
+### Commit
 | Prefix     | 의미                     | Ex                 |
 | ---------- | ---------------------- | -------------------------- |
 | `feat`     | 새로운 기능 추가               | `feat: 무기 시스템 구현`        |
@@ -56,16 +54,13 @@
 | `system`   | 시스템 수정                    | `system: 무기 시스템 구조 수정`   |
 | `revert`   | 이전 커밋 되돌리기             | `revert: 적 움직임 기능 롤백`        |
 
-###### Description
+### Description
+
 🐞 BUG 내용
-  -
   -
 🔧 FIX 내용
   -
-  -
 🎯 다음 작업 목표
   -
-  -
 🐼 코멘트
-  -
   -
