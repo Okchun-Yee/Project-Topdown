@@ -41,6 +41,7 @@
 
 
 
+# Commit Rule
 ---
 ### Commit
 | Prefix     | 의미                     | Ex                 |
