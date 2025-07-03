@@ -15,7 +15,7 @@ public class Bow : BaseWeapon
     private Animator anim;
     private void Awake()
     {
-        anim = GetComponent<Animator>(); 
+        anim = GetComponent<Animator>();
     }
     protected override void OnAttack()
     {
@@ -23,5 +23,9 @@ public class Bow : BaseWeapon
         anim.SetTrigger(FIRE_HASH);
         GameObject newArrow = Instantiate(arrowPrefab, arrowspawnPoint.position, ActiveWeapon.Instance.transform.rotation);
         newArrow.GetComponent<Projectile>().UpdateWeaponInfo(weaponinfo);
+    }
+    public Weaponinfo GetWeaponInfo()
+    {
+        return weaponinfo;
     }
 }

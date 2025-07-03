@@ -16,4 +16,4 @@ MonoBehaviour:
   category: 2
   weaponCooldown: 1.3
   weaponDamge: 2
-  weaponRange: 8
+  weaponRange: 6
