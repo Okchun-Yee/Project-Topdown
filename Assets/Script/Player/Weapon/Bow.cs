@@ -22,7 +22,7 @@ public class Bow : BaseWeapon
         Debug.Log("Bow Attack");
         anim.SetTrigger(FIRE_HASH);
         GameObject newArrow = Instantiate(arrowPrefab, arrowspawnPoint.position, ActiveWeapon.Instance.transform.rotation);
-        newArrow.GetComponent<Projectile>().UpdateWeaponInfo(weaponinfo);
+        newArrow.GetComponent<Projectile>().UpdateProjectilRange(weaponinfo.weaponRange);
     }
     public Weaponinfo GetWeaponInfo()
     {
