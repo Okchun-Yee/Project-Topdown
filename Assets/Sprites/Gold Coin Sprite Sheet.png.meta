@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6c5c9d1b25c57234187a764ccb5e087e
+guid: 2759623259dae6f48bd6a91e3802dc61
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Torche_0
+      name: Gold Coin Sprite Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17ab8cda9af564a43aa461dafe39f49b
-      internalID: -1676584300
+      spriteID: b6d2d2c2c4fdcf143ba01ccd6bfb0f02
+      internalID: 1871885650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Torche_1
+      name: Gold Coin Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45a1630cc1f56c14e852d845e3d4e6b0
+      internalID: -282179008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold Coin Sprite Sheet_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +192,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9316ac455f0009647932a1eab9166aba
-      internalID: 1552906752
+      spriteID: cf2a439828b2ec9429df0bd827e93211
+      internalID: -1626246298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Torche_2
+      name: Gold Coin Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32afe7bb6ccdc6c47a36bdebfcca4c78
+      internalID: -745937299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold Coin Sprite Sheet_4
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +234,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39fe8f255ad9754429c7345f6269596c
-      internalID: 1758675326
+      spriteID: 1cc3bbee37ff79c4e8ddc68226af6931
+      internalID: -836882454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Torche_3
+      name: Gold Coin Sprite Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3be62141b52c2964cbad8cd8509fcf72
+      internalID: 1727779685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold Coin Sprite Sheet_6
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +276,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3a8064d34effae489f8b5b4a3532c21
-      internalID: -1252358939
+      spriteID: c9507a1e0a7b0ae45bce42a09d091267
+      internalID: -2082462708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Torche_4
+      name: Gold Coin Sprite Sheet_7
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,29 +297,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0191349a7bb05d41bac0b6e71615300
-      internalID: -751568254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Torche_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 32d45a1b18d113a4095fbd53a8b28755
-      internalID: 1572071052
+      spriteID: 7312df58e1c62f7419072a0aa343cced
+      internalID: -1776907142
       vertices: []
       indices: 
       edges: []
@@ -272,12 +314,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Torche_0: -1676584300
-      Torche_1: 1552906752
-      Torche_2: 1758675326
-      Torche_3: -1252358939
-      Torche_4: -751568254
-      Torche_5: 1572071052
+      Gold Coin Sprite Sheet_0: 1871885650
+      Gold Coin Sprite Sheet_1: -282179008
+      Gold Coin Sprite Sheet_2: -1626246298
+      Gold Coin Sprite Sheet_3: -745937299
+      Gold Coin Sprite Sheet_4: -836882454
+      Gold Coin Sprite Sheet_5: 1727779685
+      Gold Coin Sprite Sheet_6: -2082462708
+      Gold Coin Sprite Sheet_7: -1776907142
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

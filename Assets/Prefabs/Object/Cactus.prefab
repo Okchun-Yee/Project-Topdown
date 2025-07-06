@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6329858786636521464}
   - component: {fileID: 6009283097580889000}
   - component: {fileID: 2059696529844208057}
+  - component: {fileID: -2382541473464755658}
   m_Layer: 0
   m_Name: Cactus
   m_TagString: Untagged
@@ -134,3 +135,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyVFX: {fileID: 2192043356856645571, guid: 2704cb1af8774dc4aa76cf045b4c0727, type: 3}
+--- !u!114 &-2382541473464755658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2460787061457111742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051cebb53c82694498a2339a5289ebff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goidCoinPrefab: {fileID: 5993449351923245095, guid: e90f40bd7648dc24ab238f3de85995fa, type: 3}
