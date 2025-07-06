@@ -11,11 +11,13 @@ public class ActiveInventory : MonoBehaviour
     private void OnEnable()
     {
         // WeaponManager 이벤트 구독
-        WeaponManager.Instance.onCategoryIconChanged += UpdateIcon;
+        if (WeaponManager.Instance != null){ WeaponManager.Instance.onCategoryIconChanged += UpdateIcon; }
+        
     }
     private void OnDisable()
     {
-        WeaponManager.Instance.onCategoryIconChanged -= UpdateIcon;
+        if (WeaponManager.Instance != null){ WeaponManager.Instance.onCategoryIconChanged -= UpdateIcon; }
+        
     }
     private void UpdateIcon(Sprite newIcon)
     {

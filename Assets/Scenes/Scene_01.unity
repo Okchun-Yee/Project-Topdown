@@ -8489,10 +8489,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TempEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 7009346640564647843, guid: cdeb081a40267ba489edf47e0665d7c3, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7606093407274451166, guid: cdeb081a40267ba489edf47e0665d7c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.4
@@ -13790,6 +13786,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 593908468927565947, guid: 91f8452ecf6d22844b18eb30289ef33e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.9999998
+      objectReference: {fileID: 0}
     - target: {fileID: 1122390518439212668, guid: 91f8452ecf6d22844b18eb30289ef33e, type: 3}
       propertyPath: m_Follow
       value: 
@@ -13837,6 +13837,10 @@ PrefabInstance:
     - target: {fileID: 1963459771908515373, guid: 91f8452ecf6d22844b18eb30289ef33e, type: 3}
       propertyPath: m_ChildCameras.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6063841713511613006, guid: 91f8452ecf6d22844b18eb30289ef33e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8578356037172333171, guid: 91f8452ecf6d22844b18eb30289ef33e, type: 3}
       propertyPath: m_Name
