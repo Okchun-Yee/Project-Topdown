@@ -44,7 +44,7 @@ public class MagicLaser : MonoBehaviour
 
             //collider
             capsuleCollider2D.size = new Vector2(Mathf.Lerp(1f, laserRange, linaerT), capsuleCollider2D.size.y);
-            capsuleCollider2D.offset = new Vector2((Mathf.Lerp(1f, laserRange, linaerT)) / 2, capsuleCollider2D.offset.y);
+            capsuleCollider2D.offset = new Vector2(Mathf.Lerp(1f, laserRange, linaerT) / 2, capsuleCollider2D.offset.y);
 
             yield return null;
         }
