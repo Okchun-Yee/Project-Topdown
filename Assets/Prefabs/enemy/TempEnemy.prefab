@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2567465923816974520}
   - component: {fileID: 4279864575890650240}
   - component: {fileID: 6697220915607257086}
+  - component: {fileID: -7252886553488152473}
   m_Layer: 0
   m_Name: TempEnemy
   m_TagString: Untagged
@@ -247,3 +248,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteFlashMat: {fileID: 2100000, guid: 978b214c36181d54a8ba568bea9fd507, type: 2}
   restoreDefaultMatTime: 0.2
+--- !u!114 &-7252886553488152473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5592072063393469953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051cebb53c82694498a2339a5289ebff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goidCoin: {fileID: 5993449351923245095, guid: e90f40bd7648dc24ab238f3de85995fa, type: 3}
+  heathGlobe: {fileID: 5993449351923245095, guid: 09199c00e9ccbdb4082e8ef5946fc2ba, type: 3}
+  staminaGlobe: {fileID: 8665781099918525453, guid: cdae7fe8668de2c4e917c19d028c0ea8, type: 3}

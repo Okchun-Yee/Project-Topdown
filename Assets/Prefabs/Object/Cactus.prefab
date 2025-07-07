@@ -149,4 +149,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goidCoin: {fileID: 5993449351923245095, guid: e90f40bd7648dc24ab238f3de85995fa, type: 3}
   heathGlobe: {fileID: 5993449351923245095, guid: 09199c00e9ccbdb4082e8ef5946fc2ba, type: 3}
-  staminaGlobe: {fileID: 5993449351923245095, guid: cdae7fe8668de2c4e917c19d028c0ea8, type: 3}
+  staminaGlobe: {fileID: 8665781099918525453, guid: cdae7fe8668de2c4e917c19d028c0ea8, type: 3}

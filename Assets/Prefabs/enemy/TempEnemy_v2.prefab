@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 985946164166295632}
   - component: {fileID: 2431187747336807293}
   - component: {fileID: 7043906239944792187}
+  - component: {fileID: 965666193443720391}
   - component: {fileID: 433023948175917143}
   m_Layer: 0
   m_Name: TempEnemy_v2
@@ -255,8 +256,28 @@ MonoBehaviour:
   bulletPrefab: {fileID: 825707573823667030, guid: b9cba01af9aea2342b9b72f3d2fdae01, type: 3}
   bulletMoveSpeed: 6
   burstCount: 5
+  projectilesPerBurst: 1
+  angleSpread: 0
+  startingDistance: 0.1
   timeBetweenBursts: 0.3
   restTime: 0.5
+  stagger: 0
+  oscillate: 0
+--- !u!114 &965666193443720391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037457196367732558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051cebb53c82694498a2339a5289ebff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goidCoin: {fileID: 5993449351923245095, guid: e90f40bd7648dc24ab238f3de85995fa, type: 3}
+  heathGlobe: {fileID: 5993449351923245095, guid: 09199c00e9ccbdb4082e8ef5946fc2ba, type: 3}
+  staminaGlobe: {fileID: 8665781099918525453, guid: cdae7fe8668de2c4e917c19d028c0ea8, type: 3}
 --- !u!210 &433023948175917143
 SortingGroup:
   m_ObjectHideFlags: 0
