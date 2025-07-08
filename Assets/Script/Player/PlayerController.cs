@@ -39,6 +39,10 @@ public class PlayerController : Singleton<PlayerController>
     {
         playerControls.Enable();
     }
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
     void Update()
     {
         PlayerInput();
@@ -57,7 +61,7 @@ public class PlayerController : Singleton<PlayerController>
     }
     void Move()
     {
-        if(knockback.GettingKnockback) { return; }
+        if(knockback.GettingKnockback || PlayerHealth.Instance.isDead) { return; }
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }
     void AdjustPlayerDirection()

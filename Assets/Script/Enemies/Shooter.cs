@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour, IEnemy
@@ -14,6 +15,7 @@ public class Shooter : MonoBehaviour, IEnemy
     [SerializeField] private float timeBetweenBursts;
     [SerializeField] private float restTime = 1f;
     [SerializeField] private bool stagger;
+    [Tooltip("Oscillate가 제대로 작동하려면 Stagger가 활성화되어야 합니다.")]
     [SerializeField] private bool oscillate;
 
     private bool isShooting = false;
