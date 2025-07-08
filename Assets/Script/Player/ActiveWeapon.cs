@@ -17,6 +17,10 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
 
     private void OnEnable()
     {
+        // 중복된 인스턴스는 초기화를 건너뜁니다. -> Sceen 이동시 ActiveWeapon이 여러개 생기는 것을 방지
+        // Singleton 패턴을 사용하고 있으므로, Instance가 null이 아니면 초기화를 건너뜁니다.
+        if (this != Instance) return;
+
         playerContorls.Enable();
         playerContorls.Combat.Attack.started +=  OnAttackStarted;
         playerContorls.Combat.Attack.canceled += OnAttackCanceled;
@@ -24,6 +28,10 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
 
     private void OnDisable()
     {
+        // 중복된 인스턴스는 초기화를 건너뜁니다. -> Sceen 이동시 ActiveWeapon이 여러개 생기는 것을 방지
+        // Singleton 패턴을 사용하고 있으므로, Instance가 null이 아니면 초기화를 건너뜁니다.
+        if (this != Instance) return;
+        
         playerContorls.Combat.Attack.started -= OnAttackStarted;
         playerContorls.Combat.Attack.canceled -= OnAttackCanceled;
         playerContorls.Disable();

@@ -23,11 +23,11 @@ public class EnemyPathfanding : MonoBehaviour
         rb.MovePosition(rb.position + moveDir * (moveSpeed * Time.fixedDeltaTime));
         if (moveDir.x < 0)
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
         else if (moveDir.x > 0)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
     }
     public void MoveTo(Vector2 targetPosition)

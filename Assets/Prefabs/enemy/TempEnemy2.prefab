@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6328746159163591938}
   - component: {fileID: 5332568401627379345}
   - component: {fileID: 3571938993470349563}
+  - component: {fileID: 8425350480369510344}
   - component: {fileID: 3701031823716909137}
   - component: {fileID: 1314975251577633986}
   - component: {fileID: 6960907913120160279}
@@ -22,7 +23,7 @@ GameObject:
   - component: {fileID: 965666193443720391}
   - component: {fileID: 433023948175917143}
   m_Layer: 0
-  m_Name: TempEnemy_v2
+  m_Name: TempEnemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,6 +158,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!95 &8425350480369510344
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037457196367732558}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7d7b75761d611b049affa072a1a8d41a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &3701031823716909137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roamChangeDirFloat: 2
-  attackRange: 5
+  attackRange: 6
   enemyType: {fileID: 7043906239944792187}
   attackCooldown: 2
   stopMovingWhileAttacking: 1
@@ -255,14 +277,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 825707573823667030, guid: b9cba01af9aea2342b9b72f3d2fdae01, type: 3}
   bulletMoveSpeed: 6
-  burstCount: 5
-  projectilesPerBurst: 1
-  angleSpread: 0
-  startingDistance: 0.1
-  timeBetweenBursts: 0.3
+  burstCount: 12
+  projectilesPerBurst: 14
+  angleSpread: 160
+  startingDistance: 0.3
+  timeBetweenBursts: 1
   restTime: 0.5
-  stagger: 0
-  oscillate: 0
+  stagger: 1
+  oscillate: 1
 --- !u!114 &965666193443720391
 MonoBehaviour:
   m_ObjectHideFlags: 0

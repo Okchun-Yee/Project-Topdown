@@ -149,6 +149,8 @@ GameObject:
   - component: {fileID: 5486422484084175190}
   - component: {fileID: 5075669148671988820}
   - component: {fileID: 1005337609469868755}
+  - component: {fileID: 389078398743805798}
+  - component: {fileID: 9080821937659599467}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -383,6 +385,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockBackTime: 0.2
+--- !u!114 &389078398743805798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4166520646837504741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1933d92d8d0f0b40b7005b66ced17a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9080821937659599467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4166520646837504741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2c8ac3d76c28b44a875085ddf7e066c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullStaminaIcon: {fileID: 21300000, guid: 98c4b63fb9714124b93ce047eef18a93, type: 3}
+  emptyStaminaIcon: {fileID: 21300000, guid: b4ff8038d085a6145a4c2e7e347f34e8, type: 3}
+  timeBetweenStaminaRefresh: 3
 --- !u!1 &8005155600142010242
 GameObject:
   m_ObjectHideFlags: 0

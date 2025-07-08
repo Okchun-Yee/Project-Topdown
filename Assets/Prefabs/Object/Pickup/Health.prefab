@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupType: 1
-  pickUpDistance: 2
+  pickUpDistance: 12
   accelartionRate: 0.4
   moveSpeed: 24
   animCurve:
