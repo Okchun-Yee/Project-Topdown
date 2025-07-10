@@ -3,17 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EliteEnemyProjectile : MonoBehaviour
+public class Enemy3Projectile : MonoBehaviour
 {
     [SerializeField] private float duration = 1f;
     [SerializeField] private AnimationCurve animCurve;
     [SerializeField] private float heightY = 3f;
-    [SerializeField] private GameObject EliteEnemyProjectileShadow;
+    [SerializeField] private GameObject Enemy3ProjectileShadow;
     [SerializeField] private GameObject splatterPrefab;
     private void Start()
     {
         GameObject projectileShadow =
-        Instantiate(EliteEnemyProjectileShadow, transform.position + new Vector3(0, -0.3f, 0), Quaternion.identity);
+        Instantiate(Enemy3ProjectileShadow, transform.position + new Vector3(0, -0.3f, 0), Quaternion.identity);
 
         Vector3 playerPos = PlayerController.Instance.transform.position;
         Vector3 shadowStartPos = projectileShadow.transform.position;

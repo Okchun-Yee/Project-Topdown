@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EliteEnemy : MonoBehaviour, IEnemy
+public class Enemy3 : MonoBehaviour, IEnemy
 {
-    [SerializeField] private GameObject EliteEnemyPeojectilePrefab;
+    [SerializeField] private GameObject Enemy3PeojectilePrefab;
 
     private Animator anim;
     private SpriteRenderer spriteRenderer;
@@ -29,6 +29,6 @@ public class EliteEnemy : MonoBehaviour, IEnemy
     }
     public void SpawnProjectileAnimEvent()
     {
-        Instantiate(EliteEnemyPeojectilePrefab, transform.position, Quaternion.identity);
+        Instantiate(Enemy3PeojectilePrefab, transform.position, Quaternion.identity);
     }
 }

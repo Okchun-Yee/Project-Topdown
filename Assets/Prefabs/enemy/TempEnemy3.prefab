@@ -276,4 +276,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519eb828fb4b69f47b485223224278cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EliteEnemyPeojectilePrefab: {fileID: 825707573823667030, guid: 3d935a788796a664cbe256a39f9f340a, type: 3}
+  Enemy3PeojectilePrefab: {fileID: 825707573823667030, guid: 3d935a788796a664cbe256a39f9f340a, type: 3}

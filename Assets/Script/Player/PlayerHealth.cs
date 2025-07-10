@@ -7,19 +7,22 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Singleton<PlayerHealth>
 {
-    public bool isDead { get;  private set; }
+    public bool isDead { get; private set; }
 
     [SerializeField] private int maxHealth = 3;
     [SerializeField] private float knockBackThrustAmount = 10f;
     [SerializeField] private float damageRecoveryTime = 1f;
+    [SerializeField] private Sprite fullHealthIcon, emptyHealthIcon;
 
     private Slider healthSlider;
     private int currentHealth;
     private bool canTakeDamage = true;
     private Knockback knockback;
     private Flash flash;
+    private Transform healthIcon;
 
     const string HEALTH_SLIDER_TEXT = "Health Slider";
+    const string HEALTH_ICON_TEXT = "Heart Container";
     const string TOWN_TEXT = "Scene_01";
     readonly int DEATH_HASH = Animator.StringToHash("Death");
     protected override void Awake()
@@ -32,7 +35,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     {
         isDead = false;
         currentHealth = maxHealth;
-        UpdateHealthSlider();
+        UpdateHealthSlider(); UpdateHealthIcon();
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -48,7 +51,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         if (currentHealth < maxHealth)
         {
             currentHealth++;
-            UpdateHealthSlider();
+            UpdateHealthSlider(); UpdateHealthIcon();
         }
     }
     public void TakeDamage(int damageAmount, Transform hitTransform)
@@ -62,7 +65,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         currentHealth -= damageAmount;
         StartCoroutine(DamageRecoveryRoutine());
 
-        UpdateHealthSlider();
+        UpdateHealthSlider(); UpdateHealthIcon();
         CheckIfPlayerDeath();
     }
 
@@ -97,5 +100,21 @@ public class PlayerHealth : Singleton<PlayerHealth>
         }
         healthSlider.maxValue = maxHealth;
         healthSlider.value = currentHealth;
+    }
+
+    private void UpdateHealthIcon()
+    {
+        for(int i = 0; i < maxHealth; i++)
+        {
+            healthIcon = GameObject.Find(HEALTH_ICON_TEXT).transform.GetChild(i);
+            if (i < currentHealth)
+            {
+                healthIcon.GetComponent<Image>().sprite = fullHealthIcon;
+            }
+            else
+            {
+                healthIcon.GetComponent<Image>().sprite = emptyHealthIcon;
+            }
+        }
     }
 }
