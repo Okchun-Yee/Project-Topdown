@@ -95,6 +95,8 @@ public class EnemyAI : MonoBehaviour
     }
     private Vector2 GetRoamingPosition()
     {
+        timeRoaming = 0f;
+        // Generate a random direction and normalize it to get a unit vector
         return new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
     }
 }
