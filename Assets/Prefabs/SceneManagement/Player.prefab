@@ -358,6 +358,8 @@ MonoBehaviour:
   maxHealth: 3
   knockBackThrustAmount: 10
   damageRecoveryTime: 1
+  fullHealthIcon: {fileID: 21300000, guid: f8124d6fbba58cb4b84d4aeebdb6f54b, type: 3}
+  emptyHealthIcon: {fileID: 21300000, guid: 249372cfe9b817648929b8441b8fe43e, type: 3}
 --- !u!114 &5075669148671988820
 MonoBehaviour:
   m_ObjectHideFlags: 0

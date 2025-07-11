@@ -5376,14 +5376,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5486422484084175190, guid: 3e54c23af28a9494ca7ab3ea6cf69e11, type: 3}
-      propertyPath: fullHealthIcon
-      value: 
-      objectReference: {fileID: 21300000, guid: f8124d6fbba58cb4b84d4aeebdb6f54b, type: 3}
-    - target: {fileID: 5486422484084175190, guid: 3e54c23af28a9494ca7ab3ea6cf69e11, type: 3}
-      propertyPath: emptyHealthIcon
-      value: 
-      objectReference: {fileID: 21300000, guid: 249372cfe9b817648929b8441b8fe43e, type: 3}
     - target: {fileID: 8280489374375623823, guid: 3e54c23af28a9494ca7ab3ea6cf69e11, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -25667,14 +25659,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1684218915676336011, guid: 49029f790d34c8e40b2b08333c9f0f74, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 415
-      objectReference: {fileID: 0}
-    - target: {fileID: 1684218915676336011, guid: 49029f790d34c8e40b2b08333c9f0f74, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -80
-      objectReference: {fileID: 0}
     - target: {fileID: 1884856179641970144, guid: 49029f790d34c8e40b2b08333c9f0f74, type: 3}
       propertyPath: m_Name
       value: UICanvas
@@ -25726,14 +25710,6 @@ PrefabInstance:
     - target: {fileID: 3056932766621968047, guid: 49029f790d34c8e40b2b08333c9f0f74, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020909488154006215, guid: 49029f790d34c8e40b2b08333c9f0f74, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020909488154006215, guid: 49029f790d34c8e40b2b08333c9f0f74, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -140
       objectReference: {fileID: 0}
     - target: {fileID: 4679493492569807587, guid: 49029f790d34c8e40b2b08333c9f0f74, type: 3}
       propertyPath: m_AnchorMax.y
@@ -26193,7 +26169,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2, y: 0.2}
+  m_Offset: {x: -0.37381804, y: 0.118885815}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -26204,7 +26180,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 1.152364, y: 2.403852}
   m_EdgeRadius: 0
 --- !u!198 &5987958319835874099
 ParticleSystem:
@@ -31011,10 +30987,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 593908468927565947, guid: 91f8452ecf6d22844b18eb30289ef33e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.9999998
-      objectReference: {fileID: 0}
     - target: {fileID: 1230456961513372078, guid: 91f8452ecf6d22844b18eb30289ef33e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2
@@ -31059,9 +31031,9 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 2136576589}
-    - target: {fileID: 6063841713511613006, guid: 91f8452ecf6d22844b18eb30289ef33e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2
+    - target: {fileID: 1963459771908515373, guid: 91f8452ecf6d22844b18eb30289ef33e, type: 3}
+      propertyPath: m_ChildCameras.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8578356037172333171, guid: 91f8452ecf6d22844b18eb30289ef33e, type: 3}
       propertyPath: m_Name
@@ -31099,7 +31071,7 @@ Transform:
   m_GameObject: {fileID: 6664819366947283153}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.02, y: -0.36, z: -10}
+  m_LocalPosition: {x: -21, y: -0.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

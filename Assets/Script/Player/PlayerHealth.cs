@@ -84,6 +84,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     private IEnumerator DeathLoadSceneRoutine()
     {
         yield return new WaitForSeconds(2f);
+        Debug.Log("[PlayerHealth] Player has died. Loading town scene.");
         Destroy(gameObject);
         SceneManager.LoadScene(TOWN_TEXT);
     }
