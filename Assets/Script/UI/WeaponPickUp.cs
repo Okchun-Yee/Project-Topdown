@@ -51,7 +51,7 @@ public class WeaponPickup : MonoBehaviour
         WeaponManager.Instance.EquipWeapon(weaponinfo);
 
         // 2) 획득 효과 재생 (사운드, 파티클)
-
+        
         // 3) 즉시 제거하여 리소스 최소화
         Destroy(gameObject);
     }
