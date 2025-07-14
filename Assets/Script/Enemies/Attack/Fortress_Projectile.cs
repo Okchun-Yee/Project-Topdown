@@ -8,12 +8,12 @@ public class Enemy3Projectile : MonoBehaviour
     [SerializeField] private float duration = 1f;
     [SerializeField] private AnimationCurve animCurve;
     [SerializeField] private float heightY = 3f;
-    [SerializeField] private GameObject Enemy3ProjectileShadow;
+    [SerializeField] private GameObject fortressProjectileShadow;
     [SerializeField] private GameObject splatterPrefab;
     private void Start()
     {
         GameObject projectileShadow =
-        Instantiate(Enemy3ProjectileShadow, transform.position + new Vector3(0, -0.3f, 0), Quaternion.identity);
+        Instantiate(fortressProjectileShadow, transform.position + new Vector3(0, -0.3f, 0), Quaternion.identity);
 
         Vector3 playerPos = PlayerController.Instance.transform.position;
         Vector3 shadowStartPos = projectileShadow.transform.position;

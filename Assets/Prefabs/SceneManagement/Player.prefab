@@ -31,106 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4376427116129294368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2072825035555103392
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6771687581546950761}
-  - component: {fileID: 127639785187232847}
-  - component: {fileID: 4958425058030303577}
-  m_Layer: 0
-  m_Name: Weapon Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &6771687581546950761
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072825035555103392}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8280489374375623823}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &127639785187232847
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072825035555103392}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.8163646, y: 0.9534854}
-      - {x: 0.26436102, y: 1.0259994}
-      - {x: 0.3412916, y: 0.1179305}
-      - {x: 0.14098924, y: -0.5079272}
-      - {x: 0.79488593, y: -0.53374505}
-      - {x: 1.0710623, y: -0.34045455}
-      - {x: 1.3148316, y: 0.045549005}
-      - {x: 1.301768, y: 0.49726045}
-      - {x: 1.1292586, y: 0.78441495}
-  m_UseDelaunayMesh: 0
---- !u!114 &4958425058030303577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072825035555103392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f32d33744936d24a908a4a31d11c00a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 1
 --- !u!1 &4166520646837504741
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +72,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4376427116129294368}
-  - {fileID: 6771687581546950761}
   - {fileID: 6102072109033198077}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -342,7 +241,7 @@ MonoBehaviour:
   rangedIcon: {fileID: 1904845849, guid: 677ef62525269f941bdd11f542dd5158, type: 3}
   staffIcon: {fileID: -1939333021, guid: 677ef62525269f941bdd11f542dd5158, type: 3}
   weaponMountPoint: {fileID: 4376427116129294368}
-  weaponCollider: {fileID: 6771687581546950761}
+  weaponCollider: {fileID: 0}
 --- !u!114 &5486422484084175190
 MonoBehaviour:
   m_ObjectHideFlags: 0

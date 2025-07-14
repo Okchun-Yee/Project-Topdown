@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7986262083650478282}
   - component: {fileID: 6039740286906919514}
   - component: {fileID: 5302594722821869062}
-  - component: {fileID: 117038469211035277}
+  - component: {fileID: 5074383142196795268}
   m_Layer: 0
-  m_Name: Enemy2Bullet
+  m_Name: FortressBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7fd11d2c18f4cc6408d6aab3e7d52087, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 07d15ca1a0d807045b815f27b0d0c6aa, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.85048676, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -149,7 +149,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3233708
---- !u!114 &117038469211035277
+--- !u!114 &5074383142196795268
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,10 +158,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 825707573823667030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 435790308f4051f46a16c036fb61809e, type: 3}
+  m_Script: {fileID: 11500000, guid: b6b0ad7d4ce77c84684afff053a64836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
-  particleOnHitPrefabVFX: {fileID: 988950910461005932, guid: cff2f9bf9c3337148ab5b9947cc18df4, type: 3}
-  isEnemyProjectile: 1
-  projectileRange: 10
+  duration: 2
+  animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1.1000061
+      value: 0
+      inSlope: -0.81208986
+      outSlope: -0.81208986
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.087126225
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  heightY: 5.5
+  fortressProjectileShadow: {fileID: 8164905308344141478, guid: 9277c331f91295544a13952b13c67a85, type: 3}
+  splatterPrefab: {fileID: 6986754662026502157, guid: 23202422fac4048428178cdffc386e9b, type: 3}

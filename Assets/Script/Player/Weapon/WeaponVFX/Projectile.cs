@@ -60,4 +60,11 @@ public class Projectile : MonoBehaviour
     {
         transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
     }
+    public void DeleteProjectile()
+    {
+        if(isEnemyProjectile)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

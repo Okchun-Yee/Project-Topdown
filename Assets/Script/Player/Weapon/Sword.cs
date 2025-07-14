@@ -13,7 +13,7 @@ public class Sword : BaseWeapon
 {
     [SerializeField] private GameObject slashAnimPrefab;
     [SerializeField] private Transform slashAnimSpawnPoint;
-    private Transform weaponCollider;
+    [SerializeField] private Transform weaponCollider;
     private Animator anim;
     private GameObject slashAnim;
     private void Awake()
@@ -22,7 +22,6 @@ public class Sword : BaseWeapon
     }
     private void Start()
     {
-        weaponCollider = WeaponManager.Instance.GetweaponCollider();
         slashAnimSpawnPoint = GameObject.Find("EffectspawnPoint").transform;
     }
     private void Update()

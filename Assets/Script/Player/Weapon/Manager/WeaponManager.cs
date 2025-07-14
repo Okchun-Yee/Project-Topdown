@@ -12,7 +12,6 @@ public class WeaponManager : Singleton<WeaponManager>
 
     [Header("Weapon")]
     [SerializeField] private Transform weaponMountPoint;
-    [SerializeField] private Transform weaponCollider;
     private BaseWeapon currentWeapon;
     public event Action<Sprite> onCategoryIconChanged;
     protected override void Awake()
@@ -20,12 +19,6 @@ public class WeaponManager : Singleton<WeaponManager>
         base.Awake();
         Debug.Log($"[WeaponManager] Awake called (InstanceID: {GetInstanceID()})");
     }
-
-    public Transform GetweaponCollider()
-    {
-        return weaponCollider;
-    }
-
     public void EquipWeapon(Weaponinfo info)
     {
         Debug.Log($"[WeaponManager] EquipWeapon called (InstanceID: {GetInstanceID()})");

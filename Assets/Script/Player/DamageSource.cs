@@ -15,5 +15,9 @@ public class DamageSource : MonoBehaviour
     {
         EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
         enemyHealth?.TakeDamage(damageAmount);
+        if (collision.gameObject.GetComponent<Projectile>())
+        {
+            collision.gameObject.GetComponent<Projectile>().DeleteProjectile();
+        } 
     }
 }

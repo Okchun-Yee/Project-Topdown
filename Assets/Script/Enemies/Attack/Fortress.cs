@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy3 : MonoBehaviour, IEnemy
+public class Fortress : MonoBehaviour, IEnemy
 {
-    [SerializeField] private GameObject Enemy3PeojectilePrefab;
+    [SerializeField] private GameObject fortressPeojectilePrefab;
 
     private Animator anim;
     private SpriteRenderer spriteRenderer;
@@ -29,6 +29,6 @@ public class Enemy3 : MonoBehaviour, IEnemy
     }
     public void SpawnProjectileAnimEvent()
     {
-        Instantiate(Enemy3PeojectilePrefab, transform.position, Quaternion.identity);
+        Instantiate(fortressPeojectilePrefab, transform.position, Quaternion.identity);
     }
 }
