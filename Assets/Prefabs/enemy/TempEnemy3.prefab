@@ -172,7 +172,7 @@ MonoBehaviour:
   attackRange: 4
   enemyType: {fileID: 9067051050128898072}
   attackCooldown: 2
-  stopMovingWhileAttacking: 0
+  stopMovingWhileAttacking: 1
 --- !u!114 &1292628631333159371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,4 +276,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519eb828fb4b69f47b485223224278cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy3PeojectilePrefab: {fileID: 825707573823667030, guid: 3d935a788796a664cbe256a39f9f340a, type: 3}
+  fortressPeojectilePrefab: {fileID: 825707573823667030, guid: 3d935a788796a664cbe256a39f9f340a, type: 3}
