@@ -12,8 +12,9 @@ using UnityEngine;
 public class Sword : BaseWeapon
 {
     [SerializeField] private GameObject slashAnimPrefab;
-    [SerializeField] private Transform slashAnimSpawnPoint;
     [SerializeField] private Transform weaponCollider;
+    private Transform slashAnimSpawnPoint;
+
     private Animator anim;
     private GameObject slashAnim;
     private void Awake()
@@ -22,7 +23,7 @@ public class Sword : BaseWeapon
     }
     private void Start()
     {
-        slashAnimSpawnPoint = GameObject.Find("EffectspawnPoint").transform;
+        slashAnimSpawnPoint = GameObject.Find("Slash SpawnPoint").transform;
     }
     private void Update()
     {
@@ -34,8 +35,7 @@ public class Sword : BaseWeapon
         anim.SetTrigger("isAttack");
         weaponCollider.gameObject.SetActive(true);
 
-        slashAnim = Instantiate(slashAnimPrefab,
-        slashAnimSpawnPoint.position, Quaternion.identity);
+        slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
         slashAnim.transform.parent = this.transform.parent;
     }
     public void DoneAttackingAnimEvent()

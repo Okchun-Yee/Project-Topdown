@@ -17,11 +17,11 @@ public class WeaponManager : Singleton<WeaponManager>
     protected override void Awake()
     {
         base.Awake();
-        Debug.Log($"[WeaponManager] Awake called (InstanceID: {GetInstanceID()})");
+        //Debug.Log($"[WeaponManager] Awake called (InstanceID: {GetInstanceID()})");
     }
     public void EquipWeapon(Weaponinfo info)
     {
-        Debug.Log($"[WeaponManager] EquipWeapon called (InstanceID: {GetInstanceID()})");
+        //Debug.Log($"[WeaponManager] EquipWeapon called (InstanceID: {GetInstanceID()})");
         if (info == null)
         {
             Debug.LogError("[WeaponManager] Weaponinfo is null");
