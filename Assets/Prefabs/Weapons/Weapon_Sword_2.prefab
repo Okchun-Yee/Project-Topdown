@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4405329959767897130}
   - component: {fileID: 316696644030092221}
+  - component: {fileID: 3930728007750622129}
   m_Layer: 0
-  m_Name: Weapon Collider (1)
+  m_Name: Weapon Collider_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +62,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -83,6 +84,19 @@ PolygonCollider2D:
       - {x: 1.1553054, y: -0.18978336}
       - {x: 1.5420766, y: 0.5314442}
   m_UseDelaunayMesh: 0
+--- !u!114 &3930728007750622129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775632356667247449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f32d33744936d24a908a4a31d11c00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
 --- !u!1 &4215336444260907637
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,8 +107,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6263439819670976258}
   - component: {fileID: 8551673722245011203}
+  - component: {fileID: 8340774138958058009}
   m_Layer: 0
-  m_Name: Weapon Collider
+  m_Name: Weapon Collider_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,7 +159,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -166,6 +181,19 @@ PolygonCollider2D:
       - {x: 0.7740021, y: 0.0072234944}
       - {x: 0.47442675, y: 0.69032073}
   m_UseDelaunayMesh: 0
+--- !u!114 &8340774138958058009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215336444260907637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f32d33744936d24a908a4a31d11c00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
 --- !u!1 &4651361025697121399
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +207,7 @@ GameObject:
   - component: {fileID: 4178615016387071932}
   - component: {fileID: 5553617554874939356}
   m_Layer: 0
-  m_Name: Weapon_Halberd
+  m_Name: Weapon_Sword_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 4651361025697121399}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.23, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -244,7 +272,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1392038262, guid: 758585df94498284bb94f133629102ac, type: 3}
+  m_Sprite: {fileID: 770195071, guid: 758585df94498284bb94f133629102ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -292,7 +320,7 @@ MonoBehaviour:
   - {fileID: 6263439819670976258}
   - {fileID: 4405329959767897130}
   - {fileID: 4217721841102557820}
-  comboMaxDelay: 0.8
+  comboMaxDelay: 1.2
   slashAnimPrefab:
   - {fileID: 655316301406190869, guid: 75923f3e05b96ff468b5de606f0ffd87, type: 3}
   - {fileID: 655316301406190869, guid: adaac30534e78454796bdf99d73ab968, type: 3}
@@ -307,8 +335,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4217721841102557820}
   - component: {fileID: 5045030395208751024}
+  - component: {fileID: 7104480636209735151}
   m_Layer: 0
-  m_Name: Weapon Collider (2)
+  m_Name: Weapon Collider_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -358,7 +387,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -380,3 +409,16 @@ PolygonCollider2D:
       - {x: 1.403153, y: 0.5728239}
       - {x: 0.81124496, y: 0.8619074}
   m_UseDelaunayMesh: 0
+--- !u!114 &7104480636209735151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5940824121705188048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f32d33744936d24a908a4a31d11c00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
