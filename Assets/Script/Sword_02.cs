@@ -17,7 +17,7 @@ public class Sword_02 : BaseWeapon
     [Header("VFX Settings")]
     [SerializeField] private GameObject[] slashAnimPrefab;    // 콤보 슬래시 애니메이션 프리팹
     private Transform slashAnimSpawnPoint; // 슬래시 애니메이션 생성 위치
-    
+
     private Animator anim;              // 무기 프리팹에 붙은 Animator
     private static readonly string[] comboTriggers = new[] {
         "Attack1", "Attack2", "Attack3"
@@ -26,6 +26,7 @@ public class Sword_02 : BaseWeapon
     private int activeColliderIndex = 0;   // 현재 활성화된 콜라이더 인덱스
     private bool isAttacking = false;        // 공격 중 플래그
     private Coroutine comboResetCoroutine;   // 콤보 초기화 코루틴 참조
+    private GameObject slashAnim; // 현재 활성화된 슬래시 애니메이션 인스턴스
 
     private void Awake()
     {
@@ -51,18 +52,17 @@ public class Sword_02 : BaseWeapon
 
         Debug.Log("Halberd Attack");
         int idx = currentComboIndex % comboTriggers.Length;
-        Debug.Log($"animation {comboTriggers[idx]} index {idx} Cur Index {currentComboIndex}");
+        // 애니메이션 트리거 설정
         anim.SetTrigger(comboTriggers[idx]);
 
         ActivateCollider(idx);
 
         // 콤보별 슬래시 애니메이션 프리팹 생성
-    if (slashAnimPrefab != null && idx < slashAnimPrefab.Length && slashAnimSpawnPoint != null)
-    {
-        /*콤보별 슬래시 애니메이션 생성 위치는 slashAnimSpawnPoint로 설정*/
-        Instantiate(slashAnimPrefab[idx], slashAnimSpawnPoint.position, slashAnimSpawnPoint.rotation);
-        // Debug.Log($"Slash VFX spawned for combo {idx}");
-    }
+        if (slashAnimPrefab != null && idx < slashAnimPrefab.Length && slashAnimSpawnPoint != null)
+        {
+            slashAnim = Instantiate(slashAnimPrefab[idx], slashAnimSpawnPoint.position, Quaternion.identity);
+            slashAnim.transform.parent = this.transform.parent;
+        }
 
         // 기존 콤보 리셋 코루틴이 있으면 중단
         if (comboResetCoroutine != null)
@@ -111,6 +111,30 @@ public class Sword_02 : BaseWeapon
         // 타이밍에 맞춰 데미지 처리, 이펙트 재생 등
         isAttacking = false;       // 공격 완료 상태로 변경
         Debug.Log("Combo hit registered");
+    }
+    // 애니메이션 이벤트: 콤보 공격 애니메이션에서 호출
+    //상단 휘두를 때 슬래시 방향 회전
+    public void ComboSwingUpFlipAnimEvent()
+    {
+        if (slashAnim == null) return;
+        slashAnim.transform.rotation = Quaternion.Euler(-180, 0, 0);
+        if (PlayerController.Instance.FacingLeft)
+        {
+            var sr = slashAnim.GetComponent<SpriteRenderer>();
+            if (sr != null) sr.flipX = true;
+        }
+    }
+    // 애니메이션 이벤트: 콤보 공격 애니메이션에서 호출
+    //하단 휘두를 때 슬래시 방향 회전
+    public void ComboSwingDownFlipAnimEvent()
+    {
+        if (slashAnim == null) return;
+        slashAnim.transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (PlayerController.Instance.FacingLeft)
+        {
+            var sr = slashAnim.GetComponent<SpriteRenderer>();
+            if (sr != null) sr.flipX = true;
+        }
     }
     /// <summary>
     /// 마우스 위치에 따라 무기 방향 조정
