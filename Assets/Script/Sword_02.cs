@@ -54,7 +54,6 @@ public class Sword_02 : BaseWeapon
         int idx = currentComboIndex % comboTriggers.Length;
         // 애니메이션 트리거 설정
         anim.SetTrigger(comboTriggers[idx]);
-
         ActivateCollider(idx);
 
         // 콤보별 슬래시 애니메이션 프리팹 생성
@@ -72,7 +71,7 @@ public class Sword_02 : BaseWeapon
 
         currentComboIndex++; // 콤보 인덱스 증가
 
-        isAttacking = false; // 실제 게임에서는 애니메이션 이벤트에서 해제
+        //isAttacking = false; // 실제 게임에서는 애니메이션 이벤트에서 해제
     }
 
     private void ActivateCollider(int index)
