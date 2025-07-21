@@ -19,6 +19,17 @@ public class PlayerController : Singleton<PlayerController>
 
     private bool facingLeft = false;
     private bool isDashing = false;
+
+    // SwordDash 대시 상태를 참조할 변수 선언
+    public bool SwordDashIsDashing
+    {
+        get
+        {
+            // SwordDash 컴포넌트가 있다면 IsDashing 반환, 없으면 false
+            var swordDash = GetComponentInChildren<SwordDash>();
+            return swordDash != null && swordDash.IsDashing;
+        }
+    }
     protected override void Awake()
     {
         base.Awake();
@@ -61,7 +72,7 @@ public class PlayerController : Singleton<PlayerController>
     }
     void Move()
     {
-        if(knockback.GettingKnockback || PlayerHealth.Instance.isDead) { return; }
+        if(knockback.GettingKnockback || PlayerHealth.Instance.isDead || SwordDashIsDashing) { return; }
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }
     void AdjustPlayerDirection()

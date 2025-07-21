@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class SwordDash : MonoBehaviour, ISkill
+{
+    [SerializeField] private float dashForce = 10f;
+    private Rigidbody2D rb;
+    private Camera mainCamera;
+    public bool IsDashing { get; private set; } // 대시 중인지 여부를 나타내는 프로퍼티
+
+    private void Awake()
+    {
+        rb = GetComponentInParent<Rigidbody2D>();
+        mainCamera = Camera.main;
+    }
+    public void ActivateSkill()
+    {
+        if (rb == null || mainCamera == null)
+        {
+            Debug.LogError("Rigidbody2D or Camera not found!");
+            return;
+        }
+
+        StartCoroutine(PerformDash());
+    }
+
+    private IEnumerator PerformDash()
+    {
+        IsDashing = true;
+        Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector2 dir = ((Vector2)mouseWorldPos - rb.position).normalized;
+        rb.velocity = Vector2.zero; // 기존 속도 초기화
+        rb.AddForce(dir * dashForce, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(0.15f); // 대시 지속 시간
+
+        rb.velocity = Vector2.zero; // 대시 종료 후 속도 초기화
+        IsDashing = false;
+    }
+}

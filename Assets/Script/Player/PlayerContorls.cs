@@ -180,6 +180,33 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skill1"",
+                    ""type"": ""Button"",
+                    ""id"": ""9da2348a-87ff-430b-a236-255440ae6c92"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skill2"",
+                    ""type"": ""Button"",
+                    ""id"": ""ecaa2eb4-5cac-4a49-9d03-2a9def680ead"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skill3"",
+                    ""type"": ""Button"",
+                    ""id"": ""f9297d53-c8f7-464c-92f6-87f142031978"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -202,6 +229,39 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c52cd2f1-3860-488c-b794-01b5fa267f4a"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26dd6c08-fb1f-4626-ba71-c6061b580c15"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""299ad46b-b550-41c8-9162-b963ee1a3021"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -245,6 +305,9 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
         m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
         m_Combat_Attack = m_Combat.FindAction("Attack", throwIfNotFound: true);
         m_Combat_Dash = m_Combat.FindAction("Dash", throwIfNotFound: true);
+        m_Combat_Skill1 = m_Combat.FindAction("Skill1", throwIfNotFound: true);
+        m_Combat_Skill2 = m_Combat.FindAction("Skill2", throwIfNotFound: true);
+        m_Combat_Skill3 = m_Combat.FindAction("Skill3", throwIfNotFound: true);
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_Pickup = m_Inventory.FindAction("Pickup", throwIfNotFound: true);
@@ -428,6 +491,9 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
     private List<ICombatActions> m_CombatActionsCallbackInterfaces = new List<ICombatActions>();
     private readonly InputAction m_Combat_Attack;
     private readonly InputAction m_Combat_Dash;
+    private readonly InputAction m_Combat_Skill1;
+    private readonly InputAction m_Combat_Skill2;
+    private readonly InputAction m_Combat_Skill3;
     /// <summary>
     /// Provides access to input actions defined in input action map "Combat".
     /// </summary>
@@ -447,6 +513,18 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Combat/Dash".
         /// </summary>
         public InputAction @Dash => m_Wrapper.m_Combat_Dash;
+        /// <summary>
+        /// Provides access to the underlying input action "Combat/Skill1".
+        /// </summary>
+        public InputAction @Skill1 => m_Wrapper.m_Combat_Skill1;
+        /// <summary>
+        /// Provides access to the underlying input action "Combat/Skill2".
+        /// </summary>
+        public InputAction @Skill2 => m_Wrapper.m_Combat_Skill2;
+        /// <summary>
+        /// Provides access to the underlying input action "Combat/Skill3".
+        /// </summary>
+        public InputAction @Skill3 => m_Wrapper.m_Combat_Skill3;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -479,6 +557,15 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @Skill1.started += instance.OnSkill1;
+            @Skill1.performed += instance.OnSkill1;
+            @Skill1.canceled += instance.OnSkill1;
+            @Skill2.started += instance.OnSkill2;
+            @Skill2.performed += instance.OnSkill2;
+            @Skill2.canceled += instance.OnSkill2;
+            @Skill3.started += instance.OnSkill3;
+            @Skill3.performed += instance.OnSkill3;
+            @Skill3.canceled += instance.OnSkill3;
         }
 
         /// <summary>
@@ -496,6 +583,15 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @Skill1.started -= instance.OnSkill1;
+            @Skill1.performed -= instance.OnSkill1;
+            @Skill1.canceled -= instance.OnSkill1;
+            @Skill2.started -= instance.OnSkill2;
+            @Skill2.performed -= instance.OnSkill2;
+            @Skill2.canceled -= instance.OnSkill2;
+            @Skill3.started -= instance.OnSkill3;
+            @Skill3.performed -= instance.OnSkill3;
+            @Skill3.canceled -= instance.OnSkill3;
         }
 
         /// <summary>
@@ -661,6 +757,27 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDash(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Skill1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSkill1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Skill2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSkill2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Skill3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSkill3(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Inventory" which allows adding and removing callbacks.

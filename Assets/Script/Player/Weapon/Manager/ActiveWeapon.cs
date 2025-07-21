@@ -22,8 +22,13 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
         if (this != Instance) return;
 
         playerContorls.Enable();
-        playerContorls.Combat.Attack.started +=  OnAttackStarted;
+        playerContorls.Combat.Attack.started += OnAttackStarted;
         playerContorls.Combat.Attack.canceled += OnAttackCanceled;
+
+        //skill 이벤트 바인딩
+        playerContorls.Combat.Skill1.performed += ctx => currentActiveWeapon?.UseSkill(0);
+        playerContorls.Combat.Skill2.performed += ctx => currentActiveWeapon?.UseSkill(1);
+        playerContorls.Combat.Skill3.performed += ctx => currentActiveWeapon?.UseSkill(2);
     }
 
     private void OnDisable()
