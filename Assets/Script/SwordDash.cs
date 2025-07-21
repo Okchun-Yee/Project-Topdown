@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class SwordDash : MonoBehaviour, ISkill
 {
     [SerializeField] private float dashForce = 10f;
+    [SerializeField] private Transform dashCollider;
     private Rigidbody2D rb;
     private Camera mainCamera;
     public bool IsDashing { get; private set; } // 대시 중인지 여부를 나타내는 프로퍼티
@@ -22,13 +23,14 @@ public class SwordDash : MonoBehaviour, ISkill
             Debug.LogError("Rigidbody2D or Camera not found!");
             return;
         }
-
+        dashCollider.gameObject.SetActive(true);
         StartCoroutine(PerformDash());
     }
 
     private IEnumerator PerformDash()
     {
         IsDashing = true;
+        PlayerHealth.Instance.DamageRecoveryTime(); // 대시 중에는 피해를 입지 않도록 설정
         Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 dir = ((Vector2)mouseWorldPos - rb.position).normalized;
         rb.velocity = Vector2.zero; // 기존 속도 초기화
@@ -38,5 +40,6 @@ public class SwordDash : MonoBehaviour, ISkill
 
         rb.velocity = Vector2.zero; // 대시 종료 후 속도 초기화
         IsDashing = false;
+        dashCollider.gameObject.SetActive(false);
     }
 }

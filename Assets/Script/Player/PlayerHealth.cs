@@ -61,12 +61,16 @@ public class PlayerHealth : Singleton<PlayerHealth>
         ScreenShakeManager.Instance.ShakeScreen();
         knockback.GetKnockedBack(hitTransform, knockBackThrustAmount);
         StartCoroutine(flash.FlashRoutine());
-        canTakeDamage = false;
         currentHealth -= damageAmount;
-        StartCoroutine(DamageRecoveryRoutine());
+        DamageRecoveryTime();
 
         UpdateHealthSlider(); UpdateHealthIcon();
         CheckIfPlayerDeath();
+    }
+    public void DamageRecoveryTime()
+    {
+        canTakeDamage = false;
+        StartCoroutine(DamageRecoveryRoutine());
     }
 
     private void CheckIfPlayerDeath()
