@@ -17,22 +17,31 @@ public class SkillSlotUI : MonoBehaviour
         iconImage.sprite = sprite;
         cooldownTime = cooldown;
         remainingCooldown = 0f;
+        Debug.Log($"[SkillSlotUI] SetSkill: sprite={sprite?.name}, cooldown={cooldown}");
     }
 
     public void TriggerCooldown()
     {
         isOnCooldown = true;
         remainingCooldown = cooldownTime;
+
+        cooldownOverlay.gameObject.SetActive(true); // 쿨다운 시작 → 활성화
+        cooldownOverlay.fillAmount = 1f; // 쿨다운 오버레이 초기화
+        Debug.Log($"[SkillSlotUI] TriggerCooldown: cooldownTime={cooldownTime}");
     }
     private void Update()
     {
         if (!isOnCooldown) { return; }
+
         remainingCooldown -= Time.deltaTime;
-        cooldownOverlay.fillAmount = remainingCooldown / cooldownTime;
+        float ratio = remainingCooldown / cooldownTime;
+        cooldownOverlay.fillAmount = ratio;
+
         if (remainingCooldown <= 0f)
         {
             isOnCooldown = false;
-            cooldownOverlay.fillAmount = 0f;
+            cooldownOverlay.gameObject.SetActive(false); // 쿨다운 끝 → 숨김
+            Debug.Log("[SkillSlotUI] Cooldown Ended");
         }
     }
 }

@@ -28,6 +28,7 @@ public class SwordDash : BaseSkill
             return;
         }
         dashCollider.gameObject.SetActive(true);
+        SkillUIManager.Instance.OnSkillUsed(skillIndex); // 스킬 사용 UI 업데이트
         StartCoroutine(PerformDash());
     }
 

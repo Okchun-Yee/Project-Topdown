@@ -26,6 +26,15 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
 
         weaponCooldown = info.CooldownTime;
         skills = GetComponents<ISkill>();
+        for (int i = 0; i < skills.Length; i++)
+        {
+            if (skills.Length != info.Skills.Length)
+            {
+                Debug.LogWarning($"[BaseWeapon] SkillInfo length ({info.Skills.Length}) != ISkill components ({skills.Length}) on {name}");
+            }
+            skills[i].Initialize(info.Skills[i]);
+        }
+        SkillUIManager.Instance.Initialized(info.Skills); // 스킬 UI 초기화
         //추가 사항, 공격피해, 프리펩 등
         var ds = GetComponentInChildren<DamageSource>();
         if (ds != null)

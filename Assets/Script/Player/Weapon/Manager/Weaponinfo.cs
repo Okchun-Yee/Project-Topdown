@@ -17,6 +17,7 @@ public class Weaponinfo : ScriptableObject
     [Header("Common")]
     [SerializeField] private WeaponCategory category;
     [SerializeField] private float weaponCooldown;
+    public SkillInfo[] Skills;  // 스킬 정보 배열
     public int weaponDamge;
     public float weaponRange;
 
