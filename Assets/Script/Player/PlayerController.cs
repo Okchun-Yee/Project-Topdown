@@ -19,6 +19,10 @@ public class PlayerController : Singleton<PlayerController>
 
     private bool facingLeft = false;
     private bool isDashing = false;
+
+    //스킬에 전달 하기 위한 Public 프로퍼티
+    public float MoveSpeed => moveSpeed;
+    public TrailRenderer MyTrailRenderer => myTrailRenderer;
     protected override void Awake()
     {
         base.Awake();
@@ -61,7 +65,7 @@ public class PlayerController : Singleton<PlayerController>
     }
     void Move()
     {
-        if(knockback.GettingKnockback || PlayerHealth.Instance.isDead) { return; }
+        if (knockback.GettingKnockback || PlayerHealth.Instance.isDead) { return; }
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }
     void AdjustPlayerDirection()
