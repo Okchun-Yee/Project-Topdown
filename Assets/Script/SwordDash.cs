@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SwordDash : MonoBehaviour, ISkill
+public class SwordDash : BaseSkill
 {
     [SerializeField] private float dashForce = 10f;
-    [SerializeField] private Transform dashCollider;
+    private Transform dashCollider;
     private Rigidbody2D rb;
     private Camera mainCamera;
     public bool IsDashing { get; private set; } // 대시 중인지 여부를 나타내는 프로퍼티
@@ -14,9 +14,13 @@ public class SwordDash : MonoBehaviour, ISkill
     private void Awake()
     {
         rb = GetComponentInParent<Rigidbody2D>();
+        if (transform.parent != null)
+        {
+            dashCollider = transform.root.Find("DashCollider");
+        }
         mainCamera = Camera.main;
     }
-    public void ActivateSkill()
+    protected override void OnSkillActivated()
     {
         if (rb == null || mainCamera == null)
         {

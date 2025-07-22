@@ -65,6 +65,6 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
     public void UseSkill(int index)
     {
         if (index < 0 || index >= skills.Length) { return; }
-        skills[index].ActivateSkill();
+        skills[index]?.ActivateSkill();
     }
 }

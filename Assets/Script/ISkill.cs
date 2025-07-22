@@ -1,4 +1,5 @@
 public interface ISkill
 {
-    void ActivateSkill();
+    public void Initialize(SkillInfo info);
+    public void ActivateSkill();
 }
