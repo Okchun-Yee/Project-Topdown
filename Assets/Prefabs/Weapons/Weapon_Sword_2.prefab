@@ -278,7 +278,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -322,10 +322,7 @@ MonoBehaviour:
   - {fileID: 4405329959767897130}
   - {fileID: 4217721841102557820}
   comboMaxDelay: 1
-  slashAnimPrefab:
-  - {fileID: 655316301406190869, guid: cc53450770e59754c8ecebeaf2fdcee1, type: 3}
-  - {fileID: 655316301406190869, guid: 75923f3e05b96ff468b5de606f0ffd87, type: 3}
-  - {fileID: 655316301406190869, guid: 09fb5e201f8bd6b48ba115461be3eeb7, type: 3}
+  slashAnimPrefab: []
 --- !u!114 &5691387321233727981
 MonoBehaviour:
   m_ObjectHideFlags: 0
