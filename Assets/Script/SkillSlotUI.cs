@@ -5,19 +5,27 @@ using UnityEngine.UI;
 
 public class SkillSlotUI : MonoBehaviour
 {
-    [SerializeField] private Image iconImage;
     [SerializeField] private Image cooldownOverlay;
-
+    private Image iconImage;
     private float cooldownTime;
     private float remainingCooldown;
     private bool isOnCooldown;
 
-    public void SetSkill(Sprite sprite, float cooldown)
+    private void Awake()
     {
-        iconImage.sprite = sprite;
-        cooldownTime = cooldown;
+        var iconTransform = transform.Find("IconImage");
+        if (iconTransform != null)
+        {
+            iconImage = iconTransform.GetComponent<Image>();
+        }
+    }
+
+    public void SetSkill(SkillInfo skillInfo)
+    {
+        iconImage.sprite = skillInfo.Icon;
+        cooldownTime = skillInfo.CooldownTime;
         remainingCooldown = 0f;
-        Debug.Log($"[SkillSlotUI] SetSkill: sprite={sprite?.name}, cooldown={cooldown}");
+        Debug.Log($"[SkillSlotUI] SetSkill: sprite={skillInfo.Icon?.name}, cooldown={cooldownTime}");
     }
 
     public void TriggerCooldown()

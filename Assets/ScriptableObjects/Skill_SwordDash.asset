@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillCooldown: 3
   skillDamage: 3
-  icon: {fileID: -854991365, guid: 38a14778aec7e274f99a0f71b7d660fe, type: 3}
+  icon: {fileID: -854991365, guid: 0d03ea89a8591894cb5c89519871039f, type: 3}

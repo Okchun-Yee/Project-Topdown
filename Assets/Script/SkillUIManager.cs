@@ -14,7 +14,7 @@ public class SkillUIManager : Singleton<SkillUIManager>
     {
         for (int i = 0; i < skillInfos.Length; i++)
         {
-            skillSlots[i].SetSkill(skillInfos[i].Icon, skillInfos[i].CooldownTime);
+            skillSlots[i].SetSkill(skillInfos[i]);
         }
     }
     public void OnSkillUsed(int skillIndex)
