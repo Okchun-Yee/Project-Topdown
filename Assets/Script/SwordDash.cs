@@ -9,6 +9,7 @@ public class SwordDash : BaseSkill
     private Transform dashCollider;
     private Rigidbody2D rb;
     private Camera mainCamera;
+    private Animator anim;
     public bool IsDashing { get; private set; } // 대시 중인지 여부를 나타내는 프로퍼티
 
     private void Awake()
@@ -18,6 +19,7 @@ public class SwordDash : BaseSkill
         {
             dashCollider = transform.root.Find("DashCollider");
         }
+        anim = GetComponentInParent<Animator>();
         mainCamera = Camera.main;
     }
     protected override void OnSkillActivated()
@@ -27,6 +29,7 @@ public class SwordDash : BaseSkill
             Debug.LogError("Rigidbody2D or Camera not found!");
             return;
         }
+        anim.SetTrigger("SwordDash"); // 대시 애니메이션 트리거 설정
         dashCollider.gameObject.SetActive(true);
         SkillUIManager.Instance.OnSkillUsed(skillIndex); // 스킬 사용 UI 업데이트
         StartCoroutine(PerformDash());

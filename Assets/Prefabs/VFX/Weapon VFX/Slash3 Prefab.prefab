@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2053078523903707519}
   - component: {fileID: 3177796391673193540}
   m_Layer: 0
-  m_Name: Slash1 Prefab
+  m_Name: Slash3 Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,15 +75,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1129689052, guid: 520fde0069fd2794481f44bfdd27f92a, type: 3}
+  m_Sprite: {fileID: -658320989, guid: c080906bb6f65cd4eb51c57ff061a9e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &2053078523903707519
@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 655316301406190869}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ede683e8111e7244688693f86b87c29d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 22ab65de44aec7f4381b6255a7ba123c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
