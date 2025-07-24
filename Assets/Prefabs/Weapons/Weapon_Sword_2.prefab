@@ -322,7 +322,10 @@ MonoBehaviour:
   - {fileID: 4405329959767897130}
   - {fileID: 4217721841102557820}
   comboMaxDelay: 1
-  slashAnimPrefab: []
+  slashAnimPrefab:
+  - {fileID: 655316301406190869, guid: cc53450770e59754c8ecebeaf2fdcee1, type: 3}
+  - {fileID: 655316301406190869, guid: 88c35793cdb30de428a0b059c47dfccd, type: 3}
+  - {fileID: 655316301406190869, guid: cc53450770e59754c8ecebeaf2fdcee1, type: 3}
 --- !u!114 &5691387321233727981
 MonoBehaviour:
   m_ObjectHideFlags: 0

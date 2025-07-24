@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 520fde0069fd2794481f44bfdd27f92a
+guid: c080906bb6f65cd4eb51c57ff061a9e2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Slash Effect_0
+      name: Slash Effect_2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7c6051f4d5a01e45b30fbbafe6e9d5f
-      internalID: 1129689052
+      spriteID: ac1cfb50f6cabcd4ba179d149546c400
+      internalID: -658320989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slash Effect_1
+      name: Slash Effect_2_1
       rect:
         serializedVersion: 2
         x: 64
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a7819c57b8bee644bb0e596b322dfe6
-      internalID: 202501337
+      spriteID: 4f662f0f6251c6d4f9fc92f1998551c8
+      internalID: -578782952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slash Effect_2
+      name: Slash Effect_2_2
       rect:
         serializedVersion: 2
         x: 128
@@ -192,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b940ab8cc45dd42458a7c3eb93b778f9
-      internalID: 64875635
+      spriteID: 14dad3de85f1e63428ac39f9cd6762b8
+      internalID: 338301995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slash Effect_3
+      name: Slash Effect_2_3
       rect:
         serializedVersion: 2
         x: 192
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 072306083e293f9499b3e71ecf5c7d09
-      internalID: 1072766122
+      spriteID: f9e30bd92f442fd4fbe0676a4a9574ae
+      internalID: -1968694258
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slash Effect_4
+      name: Slash Effect_2_4
       rect:
         serializedVersion: 2
         x: 256
@@ -234,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 471bbdca1727a134cb41f60b260de09b
-      internalID: 1862929707
+      spriteID: d065d967ecffe094e918ed6da6457cb2
+      internalID: 239100299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slash Effect_5
+      name: Slash Effect_2_5
       rect:
         serializedVersion: 2
         x: 320
@@ -255,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 306f259fbbd8ec841873a41f6f557fbd
-      internalID: -938598017
+      spriteID: d51cb5056ea065846a30e6e447f97284
+      internalID: -169947387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slash Effect_6
+      name: Slash Effect_2_6
       rect:
         serializedVersion: 2
         x: 384
@@ -276,14 +276,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c0b9045ed8c55645b017806d62e4a5f
-      internalID: -1737998263
+      spriteID: bbf1da9e7ae8a3244936094c02c5964e
+      internalID: 2088234716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slash Effect_7
+      name: Slash Effect_2_7
       rect:
         serializedVersion: 2
         x: 448
@@ -297,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f628bd3ac7bf464493511d9d945d28e
-      internalID: -845172200
+      spriteID: eb231383509fff34d89fba2af93f051b
+      internalID: -1096849059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slash Effect_8
+      name: Slash Effect_2_8
       rect:
         serializedVersion: 2
         x: 512
@@ -318,8 +318,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b131e094904d9a74cae60275435c411b
-      internalID: 51689726
+      spriteID: 3ecfc2a4c179c3e419c3b7efc16fa17f
+      internalID: 611748586
       vertices: []
       indices: 
       edges: []
@@ -335,15 +335,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Slash Effect_0: 1129689052
-      Slash Effect_1: 202501337
-      Slash Effect_2: 64875635
-      Slash Effect_3: 1072766122
-      Slash Effect_4: 1862929707
-      Slash Effect_5: -938598017
-      Slash Effect_6: -1737998263
-      Slash Effect_7: -845172200
-      Slash Effect_8: 51689726
+      Slash Effect_2_0: -658320989
+      Slash Effect_2_1: -578782952
+      Slash Effect_2_2: 338301995
+      Slash Effect_2_3: -1968694258
+      Slash Effect_2_4: 239100299
+      Slash Effect_2_5: -169947387
+      Slash Effect_2_6: 2088234716
+      Slash Effect_2_7: -1096849059
+      Slash Effect_2_8: 611748586
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
