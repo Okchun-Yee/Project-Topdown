@@ -19,7 +19,8 @@ public class SwordDash : BaseSkill
         {
             dashCollider = transform.root.Find("DashCollider");
         }
-        anim = GetComponentInParent<Animator>();
+        anim = PlayerController.Instance.GetComponent<Animator>();
+
         mainCamera = Camera.main;
     }
     protected override void OnSkillActivated()
