@@ -356,6 +356,7 @@ MonoBehaviour:
         m_CallState: 2
   skillIndex: 0
   dashForce: 30
+  dashAnimPrefab: {fileID: 3401198425847193656, guid: a2a3fc7ff8822cc45a937ee4bb5bdfc6, type: 3}
 --- !u!1 &5940824121705188048
 GameObject:
   m_ObjectHideFlags: 0

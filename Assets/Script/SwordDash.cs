@@ -6,10 +6,15 @@ using UnityEngine.InputSystem;
 public class SwordDash : BaseSkill
 {
     [SerializeField] private float dashForce = 10f;
+    [SerializeField] private GameObject dashAnimPrefab; // 대시 애니메이션 프리팹
+
     private Transform dashCollider;
+    private Transform dashSpawnPoint; // 대시 애니메이션 생성 위치
+    
     private Rigidbody2D rb;
     private Camera mainCamera;
-    private Animator anim;
+    private GameObject dashAnim; // 현재 활성화된 대시 애니메이션 인스턴스
+
     public bool IsDashing { get; private set; } // 대시 중인지 여부를 나타내는 프로퍼티
 
     private void Awake()
@@ -18,10 +23,16 @@ public class SwordDash : BaseSkill
         if (transform.parent != null)
         {
             dashCollider = transform.root.Find("DashCollider");
+            if (dashCollider == null)
+            {
+                Debug.LogError("DashCollider not found!");
+            }
         }
-        anim = PlayerController.Instance.GetComponent<Animator>();
-
         mainCamera = Camera.main;
+    }
+    private void Start()
+    {
+        dashSpawnPoint = GameObject.Find("DashSpawnPoint").transform;
     }
     protected override void OnSkillActivated()
     {
@@ -30,7 +41,8 @@ public class SwordDash : BaseSkill
             Debug.LogError("Rigidbody2D or Camera not found!");
             return;
         }
-        anim.SetTrigger("SwordDash"); // 대시 애니메이션 트리거 설정
+        
+        // SwordDash 충돌 및 UI 시동 로직
         dashCollider.gameObject.SetActive(true);
         SkillUIManager.Instance.OnSkillUsed(skillIndex); // 스킬 사용 UI 업데이트
         StartCoroutine(PerformDash());
@@ -39,15 +51,25 @@ public class SwordDash : BaseSkill
     private IEnumerator PerformDash()
     {
         IsDashing = true;
-        PlayerHealth.Instance.DamageRecoveryTime(); // 대시 중에는 피해를 입지 않도록 설정
+        PlayerHealth.Instance.DamageRecoveryTime();
+
+        //마우스 위치를 월드 좌표로 변환 => 참격 애니메이션 프리팹 생성, 대쉬 애니메이션 생성 방향 결정에 사용
         Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 dir = ((Vector2)mouseWorldPos - rb.position).normalized;
-        rb.velocity = Vector2.zero; // 기존 속도 초기화
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Quaternion dashRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        //참격 애니메이션 프리펩 생성
+        dashAnim = Instantiate(dashAnimPrefab, dashSpawnPoint.position, dashRotation);
+        dashAnim.transform.SetParent(dashSpawnPoint);
+
+        // 대시 위치 설정
+        rb.velocity = Vector2.zero;
         rb.AddForce(dir * dashForce, ForceMode2D.Impulse);
 
-        yield return new WaitForSeconds(0.15f); // 대시 지속 시간
+        yield return new WaitForSeconds(0.15f);
 
-        rb.velocity = Vector2.zero; // 대시 종료 후 속도 초기화
+        rb.velocity = Vector2.zero;
         IsDashing = false;
         dashCollider.gameObject.SetActive(false);
     }
