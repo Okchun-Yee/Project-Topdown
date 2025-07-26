@@ -10,7 +10,7 @@ public class SwordDash : BaseSkill
 
     private Transform dashCollider;
     private Transform dashSpawnPoint; // 대시 애니메이션 생성 위치
-    
+
     private Rigidbody2D rb;
     private Camera mainCamera;
     private GameObject dashAnim; // 현재 활성화된 대시 애니메이션 인스턴스
@@ -20,13 +20,10 @@ public class SwordDash : BaseSkill
     private void Awake()
     {
         rb = GetComponentInParent<Rigidbody2D>();
-        if (transform.parent != null)
+        dashCollider = transform.root.Find("DashCollider");
+        if (dashCollider == null)
         {
-            dashCollider = transform.root.Find("DashCollider");
-            if (dashCollider == null)
-            {
-                Debug.LogError("DashCollider not found!");
-            }
+            Debug.LogError("DashCollider not found!");
         }
         mainCamera = Camera.main;
     }
@@ -41,10 +38,10 @@ public class SwordDash : BaseSkill
             Debug.LogError("Rigidbody2D or Camera not found!");
             return;
         }
-        
+
         // SwordDash 충돌 및 UI 시동 로직
         dashCollider.gameObject.SetActive(true);
-        SkillUIManager.Instance.OnSkillUsed(skillIndex); // 스킬 사용 UI 업데이트
+        SkillUIManager.Instance.OnSkillUsed(0); // 스킬 사용 UI 업데이트
         StartCoroutine(PerformDash());
     }
 
@@ -61,7 +58,7 @@ public class SwordDash : BaseSkill
 
         //참격 애니메이션 프리펩 생성
         dashAnim = Instantiate(dashAnimPrefab, dashSpawnPoint.position, dashRotation);
-        dashAnim.transform.SetParent(dashSpawnPoint);
+        dashAnim.transform.parent = null; // 대시 애니메이션을 월드 공간에 생성
 
         // 대시 위치 설정
         rb.velocity = Vector2.zero;
