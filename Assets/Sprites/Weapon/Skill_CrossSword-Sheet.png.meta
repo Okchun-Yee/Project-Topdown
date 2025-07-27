@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: be79cd8a98673c942adc5819e563c11f
+guid: b4b0632058583144ea017c78d5fb366e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skill_CrossSword_0
+      name: Skill_CrossSword-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a06d7a8de4ae00f40ae2a2ff55919365
-      internalID: -1955532135
+      spriteID: 67ab515cc7bc08847b11c6a0aff086ce
+      internalID: 781294899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skill_CrossSword_1
+      name: Skill_CrossSword-Sheet_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 0
-        width: 64
-        height: 64
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,41 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce9c1e1579aacaf42972ba5d9608edea
-      internalID: 162587568
+      spriteID: bd18f2aea4b258f45a85e138a41d4abf
+      internalID: 1888753198
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skill_CrossSword_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 46e025738239fd140b2c94dab7f8ce3f
-      internalID: 1998494711
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skill_CrossSword_3
+      name: Skill_CrossSword-Sheet_2
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 64
-        height: 64
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fb2ac613e2ed774b9d972b3127af60f
-      internalID: 1725882774
+      spriteID: 8059b0757f168d54c8f84a263e3d6a10
+      internalID: -1737241872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skill_CrossSword_4
+      name: Skill_CrossSword-Sheet_3
       rect:
         serializedVersion: 2
-        x: 256
+        x: 288
         y: 0
-        width: 64
-        height: 64
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,41 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9465c95ac1c793348b438bcc9839aca1
-      internalID: -1076548544
+      spriteID: bfc18f174121685499b1997a1553a657
+      internalID: -609466129
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skill_CrossSword_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91d2a55b940702442a591c1ce3706a1b
-      internalID: -2058597224
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skill_CrossSword_6
+      name: Skill_CrossSword-Sheet_4
       rect:
         serializedVersion: 2
         x: 384
         y: 0
-        width: 64
-        height: 64
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89c8b37883d97bd4d9575ec82ada2fde
-      internalID: 154998875
+      spriteID: 6ce3785c7e5211d47ae0cb54614b8d75
+      internalID: -340147620
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skill_CrossSword_7
+      name: Skill_CrossSword-Sheet_5
       rect:
         serializedVersion: 2
-        x: 448
+        x: 480
         y: 0
-        width: 64
-        height: 64
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,8 +255,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a3a5b593fbebbe46bdf799b96500982
-      internalID: 1028261070
+      spriteID: 78bac7e8c2ae213419c46b231fbc79e7
+      internalID: 1320603043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_CrossSword-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e72bcca6ea8e65e4091d108912d0fbc3
+      internalID: 1019061881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_CrossSword-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92a90f3c8f5acc544ba1a92a06e723ef
+      internalID: -752816519
       vertices: []
       indices: 
       edges: []
@@ -314,14 +314,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skill_CrossSword_0: -1955532135
-      Skill_CrossSword_1: 162587568
-      Skill_CrossSword_2: 1998494711
-      Skill_CrossSword_3: 1725882774
-      Skill_CrossSword_4: -1076548544
-      Skill_CrossSword_5: -2058597224
-      Skill_CrossSword_6: 154998875
-      Skill_CrossSword_7: 1028261070
+      Skill_CrossSword-Sheet_0: 781294899
+      Skill_CrossSword-Sheet_1: 1888753198
+      Skill_CrossSword-Sheet_2: -1737241872
+      Skill_CrossSword-Sheet_3: -609466129
+      Skill_CrossSword-Sheet_4: -340147620
+      Skill_CrossSword-Sheet_5: 1320603043
+      Skill_CrossSword-Sheet_6: 1019061881
+      Skill_CrossSword-Sheet_7: -752816519
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
