@@ -10,13 +10,15 @@ public class SwordCross : BaseSkill
     private Transform skill2_SpawnPoint; // 참격 애니메이션 생성 위치
     private Animator anim; // 무기 프리팹에 붙은 Animator
     private GameObject skill2_Anim; // 현재 활성화된 참격 애니메이션 인스턴스
+
+    readonly int SKILL2_HASH = Animator.StringToHash("Skill_CrossSword");
     private void Awake()
     {
         anim = GetComponent<Animator>();
     }
     private void Start()
     {
-        skill2_SpawnPoint = GameObject.Find("Skill2_SpawnPoint").transform;
+        skill2_SpawnPoint = GameObject.Find("Skill_SpawnPoint").transform;
         if (skill2_SpawnPoint == null)
         {
             Debug.LogError("Skill2 SpawnPoint not found!");
@@ -28,7 +30,7 @@ public class SwordCross : BaseSkill
         // 스킬 활성화 로직
         Debug.Log("SwordCross Activated");
 
-        anim.SetTrigger("Skill_CrossSword"); // 애니메이션 트리거 설정
+        anim.SetTrigger(SKILL2_HASH); // 애니메이션 트리거 설정
         SkillUIManager.Instance.OnSkillUsed(1); // 스킬 사용 UI 업데이트
         StartCoroutine(PerformSkill());
     }

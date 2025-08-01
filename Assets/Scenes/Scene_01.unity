@@ -5291,6 +5291,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6806499296902069470, guid: 3e54c23af28a9494ca7ab3ea6cf69e11, type: 3}
+      propertyPath: m_Name
+      value: Skill_SpawnPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 8280489374375623823, guid: 3e54c23af28a9494ca7ab3ea6cf69e11, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.63
