@@ -30,6 +30,10 @@ public class PlayerController : Singleton<PlayerController>
             return swordDash != null && swordDash.IsDashing;
         }
     }
+    //스킬에 전달 하기 위한 Public 프로퍼티
+    public float MoveSpeed => moveSpeed;
+    public TrailRenderer MyTrailRenderer => myTrailRenderer;
+    
     protected override void Awake()
     {
         base.Awake();
