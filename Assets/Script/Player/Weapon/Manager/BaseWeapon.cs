@@ -10,6 +10,7 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
     private float weaponCooldown;    // SO에서 주입받는 쿨다운 시간
     private bool isCooldown;     //무기 쿨타임 검사
     private Coroutine CooldownCoroutine;
+    protected ISkill[] skills; // 무기에 적용된 스킬들
 
 
     /// <summary>
@@ -24,6 +25,16 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
         }
 
         weaponCooldown = info.CooldownTime;
+        skills = GetComponents<ISkill>();
+        for (int i = 0; i < skills.Length; i++)
+        {
+            if (skills.Length != info.Skills.Length)
+            {
+                Debug.LogWarning($"[BaseWeapon] SkillInfo length ({info.Skills.Length}) != ISkill components ({skills.Length}) on {name}");
+            }
+            skills[i].Initialize(info.Skills[i]);
+        }
+        SkillUIManager.Instance.Initialized(info.Skills); // 스킬 UI 초기화
         //추가 사항, 공격피해, 프리펩 등
         var ds = GetComponentInChildren<DamageSource>();
         if (ds != null)
@@ -59,5 +70,10 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
     {
         if (CooldownCoroutine != null)
             StopCoroutine(CooldownCoroutine);
+    }
+    public void UseSkill(int index)
+    {
+        if (index < 0 || index >= skills.Length) { return; }
+        skills[index]?.ActivateSkill();
     }
 }
