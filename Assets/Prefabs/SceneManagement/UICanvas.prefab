@@ -944,7 +944,7 @@ GameObject:
   - component: {fileID: 2478535724171945400}
   - component: {fileID: 4601366315453703747}
   - component: {fileID: 7224892302213582800}
-  - component: {fileID: 7559697909175197842}
+  - component: {fileID: 6905841702332381240}
   m_Layer: 5
   m_Name: SkillSlot3
   m_TagString: Untagged
@@ -1011,7 +1011,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7559697909175197842
+--- !u!114 &6905841702332381240
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1297,7 +1297,7 @@ GameObject:
   - component: {fileID: 1923476145836711718}
   - component: {fileID: 9207128212219728976}
   - component: {fileID: 5478667638381585528}
-  - component: {fileID: 5904484629178583046}
+  - component: {fileID: 8037027764889008109}
   m_Layer: 5
   m_Name: SkillSlot1
   m_TagString: Untagged
@@ -1364,7 +1364,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5904484629178583046
+--- !u!114 &8037027764889008109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1647,8 +1647,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9081320614438400172}
-  - component: {fileID: 4964645428302917339}
   - component: {fileID: 3675845180261184178}
+  - component: {fileID: 5078062954798483451}
   m_Layer: 5
   m_Name: SkillSlot
   m_TagString: Untagged
@@ -1678,22 +1678,6 @@ RectTransform:
   m_AnchoredPosition: {x: 20, y: 20}
   m_SizeDelta: {x: 290, y: 100}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &4964645428302917339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6561613452761733078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a508db2c06ddd4bb61c55440cad521, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillSlots:
-  - {fileID: 5904484629178583046}
-  - {fileID: 7369690341036827325}
-  - {fileID: 7559697909175197842}
 --- !u!114 &3675845180261184178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1718,6 +1702,22 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &5078062954798483451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561613452761733078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a508db2c06ddd4bb61c55440cad521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillSlots:
+  - {fileID: 8037027764889008109}
+  - {fileID: 1290932779565704988}
+  - {fileID: 6905841702332381240}
 --- !u!1 &6765421566363285670
 GameObject:
   m_ObjectHideFlags: 0
@@ -2118,7 +2118,7 @@ GameObject:
   - component: {fileID: 917838012154030792}
   - component: {fileID: 2779569953126226510}
   - component: {fileID: 3359826780395070289}
-  - component: {fileID: 7369690341036827325}
+  - component: {fileID: 1290932779565704988}
   m_Layer: 5
   m_Name: SkillSlot2
   m_TagString: Untagged
@@ -2185,7 +2185,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7369690341036827325
+--- !u!114 &1290932779565704988
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
