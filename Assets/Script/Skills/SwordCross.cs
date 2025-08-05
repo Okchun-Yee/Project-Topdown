@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwordCross : BaseSkill
 {
-    [SerializeField] private int slashcount;
+    [SerializeField] private int slashcount;    // 참격 횟수 (예: 2회 연속 참격)
     [SerializeField] private GameObject skill2_AnimPrefab; // 참격 애니메이션 프리팹
     [SerializeField] private Transform weaponCollider; // 참격 콜라이더
     private Transform skill2_SpawnPoint; // 참격 애니메이션 생성 위치
