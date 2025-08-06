@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ExplosiveVFX : MonoBehaviour
 {
-    [SerializeField] private float explosionRadius = 2f;
+    [SerializeField] private float explosionRadius = 1f;
     [SerializeField] private int damageAmount = 1;
 
     private void Start()
@@ -30,7 +30,6 @@ public class ExplosiveVFX : MonoBehaviour
             // 필요시 다른 Tag도 추가
         }
         // 폭발 이펙트 후 오브젝트 제거
-        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()

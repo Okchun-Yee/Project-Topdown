@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 1717599530538809258}
   - component: {fileID: 1514692935763925504}
   - component: {fileID: -8544023754826031734}
+  - component: {fileID: 3378948067223669917}
   m_Layer: 0
-  m_Name: ExplosiveArrow
+  m_Name: HomingArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 4857811718956911251}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.42, y: 1, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -194,7 +195,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Time: 0.12
+  m_Time: 0.8
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -289,8 +290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 435790308f4051f46a16c036fb61809e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 22
-  particleOnHitPrefabVFX: {fileID: 988950910461005932, guid: 0f9dabce5e9f43643a5512bd9e7e710f, type: 3}
+  moveSpeed: 8
+  particleOnHitPrefabVFX: {fileID: 988950910461005932, guid: cff2f9bf9c3337148ab5b9947cc18df4, type: 3}
   isEnemyProjectile: 0
   projectileRange: 10
 --- !u!114 &-8544023754826031734
@@ -306,3 +307,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
+--- !u!114 &3378948067223669917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4857811718956911251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fcdca7d6a087074ab26f18f16bc461b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 400
