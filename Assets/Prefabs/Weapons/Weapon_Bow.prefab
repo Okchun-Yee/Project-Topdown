@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 7334086567752169495}
   - component: {fileID: 4312379639539580513}
   - component: {fileID: 5662414677125102649}
+  - component: {fileID: 8975213496775177202}
   m_Layer: 0
   m_Name: Weapon_Bow
   m_TagString: Untagged
@@ -233,10 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ac4515a736c0049aa7466b5815b26d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillInfo: {fileID: 0}
-  onSkillUsed:
-    m_PersistentCalls:
-      m_Calls: []
+  SkillInfo: {fileID: 11400000, guid: 346e042e49aeedd49801404d169e2121, type: 2}
   skillIndex: 0
   arrowPrefab: {fileID: 4857811718956911251, guid: 3387ca73446858f4c9bba44e67c575fa, type: 3}
   arrowspawnPoint: {fileID: 5272566007514519742}
@@ -253,10 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18bc0fe96e1a3084d9b84c7d29097638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillInfo: {fileID: 0}
-  onSkillUsed:
-    m_PersistentCalls:
-      m_Calls: []
+  SkillInfo: {fileID: 11400000, guid: b36ab29aa9b994f429fdbeea9ce41ff8, type: 2}
   skillIndex: 0
   arrowPrefab: {fileID: 4857811718956911251, guid: b13e48e7d263de148835d8f07c3646b0, type: 3}
   arrowSpawnPoints:
@@ -264,6 +259,21 @@ MonoBehaviour:
   - {fileID: 4308918199567108399}
   - {fileID: 7883922246204040538}
   projectileRange: 10
+--- !u!114 &8975213496775177202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6710122420541066395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cecd97043b391a149a33b3e2c6ea33b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillInfo: {fileID: 11400000, guid: 2b17b25f6bf05d2408273a4f428d2294, type: 2}
+  skillIndex: 0
+  arrowPrefab: {fileID: 825707573823667030, guid: 5796631259d744143ad2079e2f3aea40, type: 3}
 --- !u!1 &8237481455242937276
 GameObject:
   m_ObjectHideFlags: 0
