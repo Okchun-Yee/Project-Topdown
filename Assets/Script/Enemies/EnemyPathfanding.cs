@@ -32,7 +32,8 @@ public class EnemyPathfanding : MonoBehaviour
     }
     public void MoveTo(Vector2 targetPosition)
     {
-        moveDir = targetPosition;
+        Vector2 dir = (targetPosition - rb.position).normalized;
+        moveDir = dir;
     }
     public void StopMoving()
     {

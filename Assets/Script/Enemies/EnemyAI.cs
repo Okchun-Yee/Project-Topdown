@@ -59,17 +59,12 @@ public class EnemyAI : MonoBehaviour
     {
         timeRoaming += Time.deltaTime;
         enemyPathfanding.MoveTo(roamPosition);
-
-        // 플레이어가 공격 범위 안에 들어오면 공격
-        if (Vector2.Distance(transform.position, PlayerController.Instance.transform.position) < attackRange)
-        {
-            state = State.Attacking;
-        }
         // 플레이어가 추적 범위 안에 들어오면 추적 상태로 전환
-        else if (Vector2.Distance(transform.position, PlayerController.Instance.transform.position) < trackingRange)
+        if (Vector2.Distance(transform.position, PlayerController.Instance.transform.position) < trackingRange)
         {
             state = State.Tracking;
         }
+        // 일정 시간마다 새로운 위치로 이동
         if (timeRoaming > roamChangeDirFloat)
         {
             roamPosition = GetRoamingPosition();
@@ -77,9 +72,10 @@ public class EnemyAI : MonoBehaviour
     }
     private void Attacking()
     {
+        // 플레이어가 공격 범위 밖으로 나가면 추적 상태로 전환
         if (Vector2.Distance(transform.position, PlayerController.Instance.transform.position) > attackRange)
         {
-            state = State.Roaming;
+            state = State.Tracking;
         }
 
         if (attackRange != 0 && canAttack)
