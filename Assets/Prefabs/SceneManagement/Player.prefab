@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5299656546542101355}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slash SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 1005337609469868755}
   - component: {fileID: 389078398743805798}
   - component: {fileID: 9080821937659599467}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -239,8 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeIcon: {fileID: -1398308403, guid: 677ef62525269f941bdd11f542dd5158, type: 3}
-  rangedIcon: {fileID: 1323169839, guid: 677ef62525269f941bdd11f542dd5158, type: 3}
-  staffIcon: {fileID: 761858135, guid: 677ef62525269f941bdd11f542dd5158, type: 3}
+  rangedIcon: {fileID: 761858135, guid: 677ef62525269f941bdd11f542dd5158, type: 3}
+  staffIcon: {fileID: 1323169839, guid: 677ef62525269f941bdd11f542dd5158, type: 3}
   weaponMountPoint: {fileID: 4376427116129294368}
 --- !u!114 &5486422484084175190
 MonoBehaviour:
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 6652582078264452752}
   - component: {fileID: 7796249174346448196}
   - component: {fileID: 1152963045659947262}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DashCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3367348839187641675}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DashSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,8 +449,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 559343426520363000}
-  m_Layer: 0
-  m_Name: Skill2_SpawnPoint
+  m_Layer: 6
+  m_Name: Skill_SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -481,7 +481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6102072109033198077}
   - component: {fileID: 7763628679503180868}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TrailRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: 4376427116129294368}
   - component: {fileID: 6689513875125385099}
   - component: {fileID: 1985533352431817817}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ActiveWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] private float roamChangeDirFloat = 2f;
     [SerializeField] private float attackRange = 0f;
+    [SerializeField] private float trackingRange = 8f; // 추적 시작 범위
     [SerializeField] private MonoBehaviour enemyType;
     [SerializeField] private float attackCooldown = 2f;
     [SerializeField] private bool stopMovingWhileAttacking = false;
@@ -16,7 +17,8 @@ public class EnemyAI : MonoBehaviour
     private enum State
     {
         Roaming,
-        Attacking
+        Attacking,
+        Tracking
     }
     private Vector2 roamPosition;
     private float timeRoaming = 0f;
@@ -48,6 +50,9 @@ public class EnemyAI : MonoBehaviour
             case State.Attacking:
                 Attacking();
                 break;
+            case State.Tracking:
+                Tracking();
+                break;
         }
     }
     private void Roaming()
@@ -55,9 +60,15 @@ public class EnemyAI : MonoBehaviour
         timeRoaming += Time.deltaTime;
         enemyPathfanding.MoveTo(roamPosition);
 
+        // 플레이어가 공격 범위 안에 들어오면 공격
         if (Vector2.Distance(transform.position, PlayerController.Instance.transform.position) < attackRange)
         {
             state = State.Attacking;
+        }
+        // 플레이어가 추적 범위 안에 들어오면 추적 상태로 전환
+        else if (Vector2.Distance(transform.position, PlayerController.Instance.transform.position) < trackingRange)
+        {
+            state = State.Tracking;
         }
         if (timeRoaming > roamChangeDirFloat)
         {
@@ -86,6 +97,23 @@ public class EnemyAI : MonoBehaviour
             }
             StartCoroutine(AttackCooldownRoutine());
         }
+    }
+    private void Tracking()
+    {
+        // 플레이어가 추적 범위 밖으로 나가면 다시 Roaming
+        if (Vector2.Distance(transform.position, PlayerController.Instance.transform.position) > trackingRange)
+        {
+            state = State.Roaming;
+            return;
+        }
+        // 플레이어가 공격 범위 안에 들어오면 공격
+        if (Vector2.Distance(transform.position, PlayerController.Instance.transform.position) < attackRange)
+        {
+            state = State.Attacking;
+            return;
+        }
+        // 플레이어를 따라 이동
+        enemyPathfanding.MoveTo(PlayerController.Instance.transform.position);
     }
 
     private IEnumerator AttackCooldownRoutine()

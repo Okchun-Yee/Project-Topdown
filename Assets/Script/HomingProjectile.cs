@@ -5,6 +5,7 @@ using UnityEngine;
 public class HomingProjectile : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 100f;
+    [SerializeField] private float searchRadius = 10f;
 
     private Rigidbody2D rb;
     private Transform target;
@@ -29,12 +30,12 @@ public class HomingProjectile : MonoBehaviour
 
     private Transform FindClosestEnemy()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, searchRadius, LayerMask.GetMask("Enemy"));
         Transform closest = null;
         float minDist = Mathf.Infinity;
         Vector3 currentPos = transform.position;
 
-        foreach (GameObject enemy in enemies)
+        foreach (Collider2D enemy in enemies)
         {
             float dist = Vector3.Distance(enemy.transform.position, currentPos);
             if (dist < minDist)

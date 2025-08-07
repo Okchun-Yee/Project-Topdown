@@ -48,29 +48,4 @@ public class SwordCross : BaseSkill
         weaponCollider.gameObject.SetActive(false);
         Destroy(skill2_Anim);
     }
-
-    // 애니메이션 이벤트: 콤보 공격 애니메이션에서 호출
-    //상단 휘두를 때 슬래시 방향 회전
-    public void SkillUpFlipAnimEvent()
-    {
-        if (skill2_Anim == null) return;
-        skill2_Anim.transform.rotation = Quaternion.Euler(-180, 0, 0);
-        if (PlayerController.Instance.FacingLeft)
-        {
-            var sr = skill2_Anim.GetComponent<SpriteRenderer>();
-            if (sr != null) sr.flipX = true;
-        }
-    }
-    // 애니메이션 이벤트: 콤보 공격 애니메이션에서 호출
-    //하단 휘두를 때 슬래시 방향 회전
-    public void SkillDownFlipAnimEvent()
-    {
-        if (skill2_Anim == null) return;
-        skill2_Anim.transform.rotation = Quaternion.Euler(0, 0, 0);
-        if (PlayerController.Instance.FacingLeft)
-        {
-            var sr = skill2_Anim.GetComponent<SpriteRenderer>();
-            if (sr != null) sr.flipX = true;
-        }
-    }
 }

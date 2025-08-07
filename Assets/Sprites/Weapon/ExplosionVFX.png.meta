@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6749b696f625a914d8170513855b3b5d
+guid: 79c4eb12776aec34793f8b7c1c260d7d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,169 +136,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Default_Weapons_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
-      alignment: 9
-      pivot: {x: 0.23, y: 0.15}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 11e9380093454634e8651e5c0264c99f
-      internalID: 311335000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Default_Weapons_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
-      alignment: 9
-      pivot: {x: 0.16, y: 0.14}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ccee339bcad66a4429e20ca2d80b0c9c
-      internalID: 1720842054
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Default_Weapons_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 16
-        width: 16
-        height: 16
-      alignment: 9
-      pivot: {x: 0.75, y: 0.7}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98db44cf1b5aa65489defd6f0552f495
-      internalID: -348335039
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Default_Weapons_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 16
-        width: 16
-        height: 16
-      alignment: 9
-      pivot: {x: 0.75, y: 0.7}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd5d6769d296d2c418bc6efa24ea3659
-      internalID: -970679537
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Default_Weapons_4
+      name: ExplosionVFX_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
-      alignment: 9
-      pivot: {x: 0.3, y: 0.27}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7752191120baae498579c68bba33d3d
-      internalID: 176270210
+      spriteID: 6f00163e558e60c49bfd2df07c5293c9
+      internalID: -452256807
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Default_Weapons_5
+      name: ExplosionVFX_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 64
         y: 0
-        width: 16
-        height: 16
-      alignment: 9
-      pivot: {x: 0.3, y: 0.27}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f504378b76b3308428075aa3832d75b9
-      internalID: 178049222
+      spriteID: 273ef2278205da34dbe04c3f22d2997e
+      internalID: 306803385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Default_Weapons_6
+      name: ExplosionVFX_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 128
         y: 0
-        width: 16
-        height: 16
-      alignment: 9
-      pivot: {x: 0.3, y: 0.27}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ce7f81073e3711449d4ed59483e86f6
-      internalID: -522734891
+      spriteID: e38f033c47b32cf47845783a016b3c28
+      internalID: 336306265
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Default_Weapons_7
+      name: ExplosionVFX_3
       rect:
         serializedVersion: 2
-        x: 48
+        x: 192
         y: 0
-        width: 16
-        height: 16
-      alignment: 9
-      pivot: {x: 0.3, y: 0.27}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afa35a6065062a646aa542c6bfb7daf2
-      internalID: 482469528
+      spriteID: c51d424db66d56a408eab836982071ee
+      internalID: -726601130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosionVFX_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c16121931d97ea4884214f86034f08a
+      internalID: -1677374598
       vertices: []
       indices: 
       edges: []
@@ -314,14 +251,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Default_Weapons_0: 311335000
-      Default_Weapons_1: 1720842054
-      Default_Weapons_2: -348335039
-      Default_Weapons_3: -970679537
-      Default_Weapons_4: 176270210
-      Default_Weapons_5: 178049222
-      Default_Weapons_6: -522734891
-      Default_Weapons_7: 482469528
+      ExplosionVFX_0: -452256807
+      ExplosionVFX_1: 306803385
+      ExplosionVFX_2: 336306265
+      ExplosionVFX_3: -726601130
+      ExplosionVFX_4: -1677374598
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

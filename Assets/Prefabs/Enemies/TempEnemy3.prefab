@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 9122968475911202034}
   - component: {fileID: 4051701546007708183}
   - component: {fileID: 9067051050128898072}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TempEnemy3
   m_TagString: Enemy
   m_Icon: {fileID: 0}

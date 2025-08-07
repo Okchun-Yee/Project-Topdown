@@ -313,7 +313,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -376,7 +376,19 @@ MonoBehaviour:
   SkillInfo: {fileID: 11400000, guid: 458917f8c5c4e5f4fa492d5ff09f1e4e, type: 2}
   onSkillUsed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 8a3ef3c1887785f48bf139260e436988, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
   skillIndex: 0
   dashForce: 30
   dashAnimPrefab: {fileID: 3401198425847193656, guid: a2a3fc7ff8822cc45a937ee4bb5bdfc6, type: 3}
