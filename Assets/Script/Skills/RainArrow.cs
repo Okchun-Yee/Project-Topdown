@@ -16,6 +16,6 @@ public class RainArrow : BaseSkill
         Debug.Log("RainArrow Activated");
         anim.SetTrigger(RAIN_ARROW_HASH); // 애니메이션 트리거 설정
         SkillUIManager.Instance.OnSkillUsed(2); // 스킬 사용 UI 업데이트
-        Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+        Instantiate(arrowPrefab, transform.position, ActiveWeapon.Instance.transform.rotation);
     }
 }

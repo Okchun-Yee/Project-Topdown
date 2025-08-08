@@ -6,7 +6,8 @@ public class LaningProjectile : MonoBehaviour
 {
     [SerializeField] float totalDuration = 5.2f;
     [SerializeField] float initialDuration = 0.2f; // 첫 0.2초 동안 5의 데미지
-    private SpriteFade spriteFader;
+    private SpriteFade spriteFader; 
+    // private CapsuleCollider2D capsuleCollider;
     private float _spawnTime;
     private void Awake()
     {
