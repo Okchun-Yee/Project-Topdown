@@ -24,7 +24,6 @@ public class Sword_02 : BaseWeapon
     };
     private int currentComboIndex = 0;       // 0~4 인덱스
     private int activeColliderIndex = 0;   // 현재 활성화된 콜라이더 인덱스
-    private bool isAttacking = false;        // 공격 중 플래그
     private Coroutine comboResetCoroutine;   // 콤보 초기화 코루틴 참조
     private GameObject slashAnim; // 현재 활성화된 슬래시 애니메이션 인스턴스
 
@@ -47,8 +46,8 @@ public class Sword_02 : BaseWeapon
     protected override void OnAttack()
     {
         // 공격 중이면 입력 무시
-        if (isAttacking) return;
-        isAttacking = true;
+        if (BaseWeapon.IsAttacking) return;
+        BaseWeapon.IsAttacking = true;
 
         Debug.Log("Halberd Attack");
         int idx = currentComboIndex % comboTriggers.Length;
@@ -100,7 +99,7 @@ public class Sword_02 : BaseWeapon
         // 모든 콜라이더 비활성화
         foreach (var col in comboColliders)
             col.gameObject.SetActive(false);
-        isAttacking = false;
+        BaseWeapon.IsAttacking = false;
     }
 
     // 애니메이션 이벤트에서 호출 예시
@@ -108,7 +107,7 @@ public class Sword_02 : BaseWeapon
     public void OnComboHit()
     {
         // 타이밍에 맞춰 데미지 처리, 이펙트 재생 등
-        isAttacking = false;       // 공격 완료 상태로 변경
+        BaseWeapon.IsAttacking = false;       // 공격 완료 상태로 변경
         Debug.Log("Combo hit registered");
     }
     // 애니메이션 이벤트: 콤보 공격 애니메이션에서 호출
@@ -140,6 +139,7 @@ public class Sword_02 : BaseWeapon
     /// </summary>
     private void MouseFollowWithOffset()
     {
+        if (BaseSkill.IsCasting || BaseWeapon.IsAttacking) { return; }
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position);
 

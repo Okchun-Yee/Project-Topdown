@@ -6,7 +6,7 @@ public class RainArrow : BaseSkill
 {
     [SerializeField] private GameObject arrowPrefab;
     private Animator anim;
-    private readonly int RAIN_ARROW_HASH = Animator.StringToHash("Skill_RainArrow");
+    private readonly int RAIN_ARROW_HASH = Animator.StringToHash("Fire");
     private void Awake()
     {
         anim = GetComponent<Animator>();

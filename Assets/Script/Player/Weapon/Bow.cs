@@ -20,9 +20,12 @@ public class Bow : BaseWeapon
     protected override void OnAttack()
     {
         Debug.Log("Bow Attack");
+        BaseWeapon.IsAttacking = true;
         anim.SetTrigger(FIRE_HASH);
         GameObject newArrow = Instantiate(arrowPrefab, arrowspawnPoint.position, ActiveWeapon.Instance.transform.rotation);
         newArrow.GetComponent<Projectile>().UpdateProjectilRange(weaponinfo.weaponRange);
+
+        BaseWeapon.IsAttacking = false; // 공격 완료 상태 설정
     }
     public Weaponinfo GetWeaponInfo()
     {

@@ -32,6 +32,7 @@ public class Sword : BaseWeapon
     protected override void OnAttack()
     {
         Debug.Log("Sword Attack");
+        BaseWeapon.IsAttacking = true; // 공격 중 상태 설정
         anim.SetTrigger("isAttack");
         weaponCollider.gameObject.SetActive(true);
 
@@ -41,6 +42,7 @@ public class Sword : BaseWeapon
     public void DoneAttackingAnimEvent()
     {
         weaponCollider.gameObject.SetActive(false);
+        BaseWeapon.IsAttacking = false; // 공격 완료 상태로 변경
     }
     /// <summary>
     /// 애니메이션 이벤트: 위로 휘두를 때 슬래시 방향 회전
@@ -65,6 +67,8 @@ public class Sword : BaseWeapon
     }
     private void MouseFollowWithOffset()
     {
+        if (BaseSkill.IsCasting || BaseWeapon.IsAttacking) { return; }
+
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position);
 

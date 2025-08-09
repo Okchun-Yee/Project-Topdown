@@ -30,6 +30,7 @@ public class Staff : BaseWeapon
     protected override void OnAttack()
     {
         Debug.Log("Staff Attack");
+        BaseWeapon.IsAttacking = true; // 공격 중 상태 설정
         anim.SetTrigger(ATTACK_HASH);
         // 애니메이션 이벤트를 통해 SpawnStaffProjectileAnimEvent() 호출
     }
@@ -40,12 +41,17 @@ public class Staff : BaseWeapon
         GameObject newLaser = Instantiate(magicLaser, magicLaserSpawnPoint.position, Quaternion.identity);
         newLaser.GetComponent<MagicLaser>().UpdateLaserRange(weaponinfo.weaponRange);
     }
+    public void ResetAttackState()
+    {
+        BaseWeapon.IsAttacking = false; // 공격 완료 상태로 변경
+    }
     public Weaponinfo GetWeaponInfo()
     {
         return weaponinfo;
     }
     private void MouseFollowWithOffset()
     {
+        if (BaseSkill.IsCasting || BaseWeapon.IsAttacking) return; // 스킬 사용 중이거나 공격 중이면 마우스 따라가기 중지
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position);
 

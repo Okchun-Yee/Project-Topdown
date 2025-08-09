@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public abstract class BaseWeapon : MonoBehaviour, IWeapon
 {
+    public static bool IsAttacking = false; // 공격 중 상태를 전역으로 관리
     private float weaponCooldown;    // SO에서 주입받는 쿨다운 시간
     private bool isCooldown;     //무기 쿨타임 검사
     private Coroutine CooldownCoroutine;

@@ -20,16 +20,6 @@ public class PlayerController : Singleton<PlayerController>
     private bool facingLeft = false;
     private bool isDashing = false;
 
-    // SwordDash 대시 상태를 참조할 변수 선언
-    public bool SwordDashIsDashing
-    {
-        get
-        {
-            // SwordDash 컴포넌트가 있다면 IsDashing 반환, 없으면 false
-            var swordDash = GetComponentInChildren<SwordDash>();
-            return swordDash != null && swordDash.IsDashing;
-        }
-    }
     //스킬에 전달 하기 위한 Public 프로퍼티
     public float MoveSpeed => moveSpeed;
     public TrailRenderer MyTrailRenderer => myTrailRenderer;
@@ -76,11 +66,13 @@ public class PlayerController : Singleton<PlayerController>
     }
     void Move()
     {
-        if(knockback.GettingKnockback || PlayerHealth.Instance.isDead || SwordDashIsDashing) { return; }
+        if(knockback.GettingKnockback || PlayerHealth.Instance.isDead || BaseSkill.IsCasting) { return; }
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }
     void AdjustPlayerDirection()
     {
+        if(BaseSkill.IsCasting || PlayerHealth.Instance.isDead || BaseWeapon.IsAttacking) { return; }
+
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(transform.position);
         if (mousePos.x < playerScreenPoint.x)
@@ -96,7 +88,7 @@ public class PlayerController : Singleton<PlayerController>
     }
     private void Dash()
     {
-        if (!isDashing && Stamina.Instance.CurrentStamina > 0)
+        if (!isDashing && Stamina.Instance.CurrentStamina > 0 && !BaseSkill.IsCasting)
         {
             Stamina.Instance.UseStamina();
             

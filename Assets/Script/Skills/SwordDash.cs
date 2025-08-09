@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class SwordDash : BaseSkill
 {
-    [SerializeField] private float dashForce = 10f;
+    [SerializeField] private float dashForce;
     [SerializeField] private GameObject dashAnimPrefab; // 대시 애니메이션 프리팹
 
     private Transform dashCollider;
@@ -14,8 +14,7 @@ public class SwordDash : BaseSkill
     private Rigidbody2D rb;
     private Camera mainCamera;
     private GameObject dashAnim; // 현재 활성화된 대시 애니메이션 인스턴스
-
-    public bool IsDashing { get; private set; } // 대시 중인지 여부를 나타내는 프로퍼티
+    private DashMove dashMove; // 대시 이동 컴포넌트
 
     private void Awake()
     {
@@ -26,6 +25,7 @@ public class SwordDash : BaseSkill
             Debug.LogError("DashCollider not found!");
         }
         mainCamera = Camera.main;
+        dashMove = GetComponentInParent<DashMove>();
     }
     private void Start()
     {
@@ -47,7 +47,7 @@ public class SwordDash : BaseSkill
 
     private IEnumerator PerformDash()
     {
-        IsDashing = true;
+        BaseSkill.IsCasting = true; // 스킬 사용 중 상태 설정
         PlayerHealth.Instance.DamageRecoveryTime();
 
         //마우스 위치를 월드 좌표로 변환 => 참격 애니메이션 프리팹 생성, 대쉬 애니메이션 생성 방향 결정에 사용
@@ -60,14 +60,11 @@ public class SwordDash : BaseSkill
         dashAnim = Instantiate(dashAnimPrefab, dashSpawnPoint.position, dashRotation);
         dashAnim.transform.parent = null; // 대시 애니메이션을 월드 공간에 생성
 
-        // 대시 위치 설정
-        rb.velocity = Vector2.zero;
-        rb.AddForce(dir * dashForce, ForceMode2D.Impulse);
+        // 대시 설정
+        dashMove.Dash(dir, dashForce, 0.15f);
 
         yield return new WaitForSeconds(0.15f);
-
-        rb.velocity = Vector2.zero;
-        IsDashing = false;
         dashCollider.gameObject.SetActive(false);
+        BaseSkill.IsCasting = false; // 스킬 사용 완료 상태 설정
     }
 }
