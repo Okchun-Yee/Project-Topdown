@@ -139,7 +139,7 @@ public class Sword_02 : BaseWeapon
     /// </summary>
     private void MouseFollowWithOffset()
     {
-        if (BaseSkill.IsCasting || BaseWeapon.IsAttacking) { return; }
+        if (BaseSkill.IsCasting) { return; }
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position);
 

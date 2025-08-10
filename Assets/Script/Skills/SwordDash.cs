@@ -20,10 +20,6 @@ public class SwordDash : BaseSkill
     {
         rb = GetComponentInParent<Rigidbody2D>();
         dashCollider = transform.root.Find("DashCollider");
-        if (dashCollider == null)
-        {
-            Debug.LogError("DashCollider not found!");
-        }
         mainCamera = Camera.main;
         dashMove = GetComponentInParent<DashMove>();
     }
@@ -33,11 +29,7 @@ public class SwordDash : BaseSkill
     }
     protected override void OnSkillActivated()
     {
-        if (rb == null || mainCamera == null)
-        {
-            Debug.LogError("Rigidbody2D or Camera not found!");
-            return;
-        }
+        Debug.Log("SwordDash Activated");
 
         // SwordDash 충돌 및 UI 시동 로직
         dashCollider.gameObject.SetActive(true);

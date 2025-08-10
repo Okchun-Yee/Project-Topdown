@@ -51,7 +51,8 @@ public class Staff : BaseWeapon
     }
     private void MouseFollowWithOffset()
     {
-        if (BaseSkill.IsCasting || BaseWeapon.IsAttacking) return; // 스킬 사용 중이거나 공격 중이면 마우스 따라가기 중지
+        if (BaseSkill.IsCasting) return; // 스킬 사용 중이거나 공격 중이면 마우스 따라가기 중지
+
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position);
 

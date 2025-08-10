@@ -15,5 +15,7 @@ MonoBehaviour:
   weaponPrefab: {fileID: 7431873782600916916, guid: d10e0f77d8fa3d649b274afb8896d55f, type: 3}
   category: 2
   weaponCooldown: 1.3
+  Skills:
+  - {fileID: 11400000, guid: 00b02156d2cc4d9409c0b1fc50d74999, type: 2}
   weaponDamge: 2
   weaponRange: 6

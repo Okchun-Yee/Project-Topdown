@@ -5317,6 +5317,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7265855336747265331, guid: 3e54c23af28a9494ca7ab3ea6cf69e11, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8280489374375623823, guid: 3e54c23af28a9494ca7ab3ea6cf69e11, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -31248,6 +31252,6 @@ SceneRoots:
   - {fileID: 1431493652}
   - {fileID: 512462011}
   - {fileID: 1294983825}
+  - {fileID: 1317339319}
   - {fileID: 223954315}
   - {fileID: 1127572852}
-  - {fileID: 1317339319}

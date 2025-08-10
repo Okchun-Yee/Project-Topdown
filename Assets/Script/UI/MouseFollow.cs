@@ -10,7 +10,7 @@ public class MouseFollow : MonoBehaviour
     }
     private void FaceMouse()
     {
-        if (BaseSkill.IsCasting || BaseWeapon.IsAttacking) { return;}
+        if (BaseSkill.IsCasting) { return; }
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         Vector2 direction = transform.position - mousePosition;

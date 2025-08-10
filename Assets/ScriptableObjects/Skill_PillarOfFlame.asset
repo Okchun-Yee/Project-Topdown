@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36195582f57a248488acfcd0f4d5fe79, type: 3}
-  m_Name: Skill_RainArrow
+  m_Name: Skill_PillarOfFlame
   m_EditorClassIdentifier: 
-  skillCooldown: 2
-  skillDamage: 1
-  icon: {fileID: -99096488, guid: 758585df94498284bb94f133629102ac, type: 3}
+  skillCooldown: 5
+  skillDamage: 5
+  icon: {fileID: 590126759, guid: 758585df94498284bb94f133629102ac, type: 3}
