@@ -8,6 +8,8 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     private IWeapon currentActiveWeapon;
     private PlayerContorls playerContorls;
     private bool attackButtonDown = false;
+    private bool isCharging = false;
+    private float chargeTimer = 0f;
 
     protected override void Awake()
     {
@@ -22,13 +24,21 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
         if (this != Instance) return;
 
         playerContorls.Enable();
+        //마우스 클릭 이벤트 구독 (기본 공격)
         playerContorls.Combat.Attack.started += OnAttackStarted;
         playerContorls.Combat.Attack.canceled += OnAttackCanceled;
 
-        //skill 이벤트 바인딩
-        playerContorls.Combat.Skill1.performed += ctx => currentActiveWeapon?.UseSkill(0);
-        playerContorls.Combat.Skill2.performed += ctx => currentActiveWeapon?.UseSkill(1);
-        playerContorls.Combat.Skill3.performed += ctx => currentActiveWeapon?.UseSkill(2);
+        //스킬 사용 이벤트 구독 Skill1
+        playerContorls.Combat.Skill1.performed += ctx => OnSkillStarted(0);
+        playerContorls.Combat.Skill1.canceled += ctx => OnSkillCanceled(0);
+
+        //스킬 사용 이벤트 구독 Skill2
+        playerContorls.Combat.Skill2.performed += ctx => OnSkillStarted(1);
+        playerContorls.Combat.Skill2.canceled += ctx => OnSkillCanceled(1);
+
+        //스킬 사용 이벤트 구독 Skill3
+        playerContorls.Combat.Skill3.performed += ctx => OnSkillStarted(2);
+        playerContorls.Combat.Skill3.canceled += ctx => OnSkillCanceled(2);
     }
 
     private void OnDisable()
@@ -36,7 +46,7 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
         // 중복된 인스턴스는 초기화를 건너뜁니다. -> Sceen 이동시 ActiveWeapon이 여러개 생기는 것을 방지
         // Singleton 패턴을 사용하고 있으므로, Instance가 null이 아니면 초기화를 건너뜁니다.
         if (this != Instance) return;
-        
+
         playerContorls.Combat.Attack.started -= OnAttackStarted;
         playerContorls.Combat.Attack.canceled -= OnAttackCanceled;
         playerContorls.Disable();
@@ -48,7 +58,9 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
             currentActiveWeapon.Attack();  // → null일 일도, 잘못된 캐스트도 없음
             attackButtonDown = false;
         }
-        
+
+        Timer();    // 타이머 업데이트
+
     }
     /// <summary>
     /// WeaponManager에서 새 무기를 생성한 직후 호출해주세요.
@@ -75,5 +87,30 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     private void OnAttackCanceled(InputAction.CallbackContext ctx)
     {
         attackButtonDown = false;
+    }
+
+    private void OnSkillStarted(int skillIndex)
+    {
+        // skillIndex에 따라 타이머/플래그 관리
+        isCharging = true;
+    }
+
+    private void OnSkillCanceled(int skillIndex)
+    {
+        // skillIndex에 따라 차징/즉시 발동 분기
+        if (chargeTimer < 1f)
+        {
+            currentActiveWeapon.UseSkill(skillIndex);
+        }
+        else
+        {
+            Debug.Log($"Skill {skillIndex} Charged");
+        }
+        isCharging = false;
+    }
+    private void Timer()
+    {
+        if (isCharging) { chargeTimer += Time.deltaTime; }
+        else { chargeTimer = 0f; }
     }
 }
