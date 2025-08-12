@@ -79,6 +79,13 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
     /// <summary>
     /// 객체가 비활성화될 때 코루틴을 정리해 안전하게 멈춥니다.
     /// </summary>
+    
+    protected virtual void OnEnable()
+    {
+        ChargingManager.Instance.OnChargingCompleted += OnChargingCompleted;
+        ChargingManager.Instance.OnChargingCanceled += OnChargingCanceled;
+    }
+
     protected virtual void OnDisable()
     {
         if (CooldownCoroutine != null)
@@ -91,13 +98,6 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
             ChargingManager.Instance.OnChargingCanceled -= OnChargingCanceled;
         }
     }
-
-    protected virtual void OnEnable()
-    {
-        ChargingManager.Instance.OnChargingCompleted += OnChargingCompleted;
-        ChargingManager.Instance.OnChargingCanceled += OnChargingCanceled;
-    }
-
     public void UseSkill(int index)
     {
         if (index < 0 || index >= skills.Length) { return; }

@@ -96,5 +96,6 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     private void OnSkillCanceled(int skillIndex)
     {
         isCharging = false;
+        ChargingManager.Instance.EndCharging();
     }
 }

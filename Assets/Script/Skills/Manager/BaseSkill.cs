@@ -33,4 +33,22 @@ public abstract class BaseSkill : MonoBehaviour, ISkill
         isOnCooldown = false;
     }
     protected abstract void OnSkillActivated();
+
+    // 차징 완료 시 호출
+    protected virtual void OnChargingCompleted()
+    {
+        if (isOnCooldown) return;   // 쿨다운 중 이면 무시
+    }
+
+    // 차징 취소 시 호출
+    protected virtual void OnChargingCanceled()
+    {
+        if (isOnCooldown) return;   // 쿨다운 중 이면 무시
+    }
+
+    protected virtual void OnChargingProgress(float elapsed, float duration)
+    { 
+        if (isOnCooldown) return;   // 쿨다운 중 이면 무시
+
+    }
 }

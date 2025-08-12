@@ -29,8 +29,6 @@ public class ChargingManager : Singleton<ChargingManager>
         // Start charging logic
         chargingSkill = ChargingRoutine();
         StartCoroutine(chargingSkill);
-
-        CastingUIManager.Instance.ShowSlider(chargeTime);
     }
 
     public void EndCharging()

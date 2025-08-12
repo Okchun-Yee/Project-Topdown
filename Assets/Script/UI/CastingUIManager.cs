@@ -16,20 +16,11 @@ public class CastingUIManager : Singleton<CastingUIManager>
 
     private void Start()
     {
-        TrySubscribeEvents();
-    }
-
-    private void TrySubscribeEvents()
-    {
         if (ChargingManager.Instance != null)
         {
             ChargingManager.Instance.OnChargingProgress += UpdateSlider;
             ChargingManager.Instance.OnChargingCompleted += HideSlider;
             ChargingManager.Instance.OnChargingCanceled += HideSlider;
-        }
-        else
-        {
-            Debug.LogWarning("CastingUIManager: ChargingManager.Instance가 null입니다! 구독 재시도 필요.");
         }
     }
     public void ShowSlider(float duration)
@@ -42,7 +33,6 @@ public class CastingUIManager : Singleton<CastingUIManager>
 
     private void UpdateSlider(float elapsed, float duration)
     {
-        Debug.Log($"[CastingUIManager] UpdateSlider: {elapsed}/{duration}");
         if (castingSlider == null) return;
         castingSlider.value = Mathf.Clamp(elapsed, 0, duration);
     }
