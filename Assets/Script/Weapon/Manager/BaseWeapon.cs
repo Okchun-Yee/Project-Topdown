@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,11 +9,18 @@ using UnityEngine;
 public abstract class BaseWeapon : MonoBehaviour, IWeapon
 {
     public static bool IsAttacking = false; // 공격 중 상태를 전역으로 관리
-    private float weaponCooldown;    // SO에서 주입받는 쿨다운 시간
-    private bool isCooldown;     //무기 쿨타임 검사
-    private Coroutine CooldownCoroutine;
+    private Coroutine CooldownCoroutine; //무기 공격 쿨다운 코루틴
     protected ISkill[] skills; // 무기에 적용된 스킬들
 
+    /// <summary>
+    /// 무기 및 스킬 사용 변수
+    /// </summary>
+    private float weaponCooldown;    // SO에서 주입받는 쿨다운 시간
+    private bool isCooldown;     //무기 쿨타임 검사
+    private float skillCooldown; // 스킬 쿨타임
+    private float[] skillCastingTime; // 스킬 시전 시간
+
+    private int chargingSkillIndex = -1;
 
     /// <summary>
     /// ScriptableObject(Weaponinfo)로부터 설정을 주입합니다.
@@ -27,6 +35,9 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
 
         weaponCooldown = info.CooldownTime;
         skills = GetComponents<ISkill>();
+        // 배열 크기 초기화 추가
+        skillCastingTime = new float[skills.Length];
+        
         for (int i = 0; i < skills.Length; i++)
         {
             if (skills.Length != info.Skills.Length)
@@ -34,6 +45,7 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
                 Debug.LogWarning($"[BaseWeapon] SkillInfo length ({info.Skills.Length}) != ISkill components ({skills.Length}) on {name}");
             }
             skills[i].Initialize(info.Skills[i]);
+            skillCastingTime[i] = info.Skills[i].CastingTime;
         }
         SkillUIManager.Instance.Initialized(info.Skills); // 스킬 UI 초기화
         //추가 사항, 공격피해, 프리펩 등
@@ -71,10 +83,47 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
     {
         if (CooldownCoroutine != null)
             StopCoroutine(CooldownCoroutine);
+
+        // 이벤트 해제
+        if (ChargingManager.Instance != null)
+        {
+            ChargingManager.Instance.OnChargingCompleted -= OnChargingCompleted;
+            ChargingManager.Instance.OnChargingCanceled -= OnChargingCanceled;
+        }
     }
+
+    protected virtual void OnEnable()
+    {
+        ChargingManager.Instance.OnChargingCompleted += OnChargingCompleted;
+        ChargingManager.Instance.OnChargingCanceled += OnChargingCanceled;
+    }
+
     public void UseSkill(int index)
     {
         if (index < 0 || index >= skills.Length) { return; }
-        skills[index]?.ActivateSkill();
+        if (skills[index].SkillInfo.skillCategory == SkillCategory.Charging)
+        {
+            chargingSkillIndex = index; // 어떤 스킬을 차징하는지 저장
+            ChargingManager.Instance.StartCharging(skillCastingTime[index]);
+        }
+        else if (skills[index].SkillInfo.skillCategory == SkillCategory.Performed)
+        {
+            skills[index]?.ActivateSkill();
+        }
+    }
+
+    private void OnChargingCompleted()
+    {
+        if (chargingSkillIndex >= 0 && chargingSkillIndex < skills.Length)
+        {
+            skills[chargingSkillIndex]?.ActivateSkill();
+            chargingSkillIndex = -1;
+        }
+    }
+
+    private void OnChargingCanceled()
+    {
+        chargingSkillIndex = -1;
+        // 필요하다면 차징 취소 시 처리
     }
 }

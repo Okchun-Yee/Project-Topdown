@@ -7,7 +7,7 @@ public abstract class BaseSkill : MonoBehaviour, ISkill
 {
     public static bool IsCasting = false; // 대시 중 상태를 전역으로 관리
     protected bool isOnCooldown = false;
-    public SkillInfo SkillInfo;
+    public SkillInfo SkillInfo { get; private set; }
     // UI 연동용 스킬 인덱스 (예: Skill1 → 0, Skill2 → 1)
     [HideInInspector]
     public int skillIndex;

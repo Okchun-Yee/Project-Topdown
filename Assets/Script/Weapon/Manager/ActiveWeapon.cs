@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,15 +30,15 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
         playerContorls.Combat.Attack.canceled += OnAttackCanceled;
 
         //스킬 사용 이벤트 구독 Skill1
-        playerContorls.Combat.Skill1.performed += ctx => OnSkillStarted(0);
+        playerContorls.Combat.Skill1.started += ctx => OnSkillStarted(0);
         playerContorls.Combat.Skill1.canceled += ctx => OnSkillCanceled(0);
 
         //스킬 사용 이벤트 구독 Skill2
-        playerContorls.Combat.Skill2.performed += ctx => OnSkillStarted(1);
+        playerContorls.Combat.Skill2.started += ctx => OnSkillStarted(1);
         playerContorls.Combat.Skill2.canceled += ctx => OnSkillCanceled(1);
 
         //스킬 사용 이벤트 구독 Skill3
-        playerContorls.Combat.Skill3.performed += ctx => OnSkillStarted(2);
+        playerContorls.Combat.Skill3.started += ctx => OnSkillStarted(2);
         playerContorls.Combat.Skill3.canceled += ctx => OnSkillCanceled(2);
     }
 
@@ -59,10 +60,7 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
             attackButtonDown = false;
         }
 
-        Timer();    // 타이머 업데이트
-
-    }
-    /// <summary>
+    }/// <summary>
     /// WeaponManager에서 새 무기를 생성한 직후 호출해주세요.
     /// </summary>
     public void NewWeapon(IWeapon weapon)
@@ -70,7 +68,6 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
         currentActiveWeapon = weapon;
         attackButtonDown = false;
     }
-
     /// <summary>
     /// 무기를 해제할 때 호출
     /// </summary>
@@ -93,24 +90,11 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     {
         // skillIndex에 따라 타이머/플래그 관리
         isCharging = true;
+        currentActiveWeapon?.UseSkill(skillIndex);
     }
 
     private void OnSkillCanceled(int skillIndex)
     {
-        // skillIndex에 따라 차징/즉시 발동 분기
-        if (chargeTimer < 1f)
-        {
-            currentActiveWeapon.UseSkill(skillIndex);
-        }
-        else
-        {
-            Debug.Log($"Skill {skillIndex} Charged");
-        }
         isCharging = false;
-    }
-    private void Timer()
-    {
-        if (isCharging) { chargeTimer += Time.deltaTime; }
-        else { chargeTimer = 0f; }
     }
 }

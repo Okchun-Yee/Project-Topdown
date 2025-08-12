@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Skill_CrossSword
   m_EditorClassIdentifier: 
   skillCooldown: 2
+  CastingTime: 0
+  skillCategory: 1
   skillDamage: 1
   icon: {fileID: 393771624, guid: 758585df94498284bb94f133629102ac, type: 3}

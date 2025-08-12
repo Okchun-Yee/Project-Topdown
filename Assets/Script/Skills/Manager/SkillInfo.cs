@@ -1,11 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public enum SkillCategory
+{
+    Charging,
+    Performed,
+    Holding
+}
+
 [CreateAssetMenu(menuName = "New Skill")]
 public class SkillInfo : ScriptableObject
 {
     [Header("Common")]
     [SerializeField] private float skillCooldown;
+    public float CastingTime; // 스킬 시전 시간
+    public SkillCategory skillCategory; // 스킬 카테고리
     public int skillDamage;
     [Header("연출")]
     [SerializeField] private Sprite icon;               // UI용 아이콘
