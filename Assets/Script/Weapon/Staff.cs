@@ -18,10 +18,6 @@ public class Staff : BaseWeapon
     {
         anim = GetComponent<Animator>();
     }
-    private void Start()
-    {
-
-    }
     private void Update()
     {
         MouseFollowWithOffset();

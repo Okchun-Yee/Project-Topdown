@@ -100,7 +100,8 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
     public void UseSkill(int index)
     {
         if (index < 0 || index >= skills.Length) { return; }
-        if (skills[index].SkillInfo.skillCategory == SkillCategory.Charging)
+        if (skills[index].SkillInfo.skillCategory == SkillCategory.Charging ||
+        skills[index].SkillInfo.skillCategory == SkillCategory.Holding)
         {
             chargingSkillIndex = index; // 어떤 스킬을 차징하는지 저장
             ChargingManager.Instance.StartCharging(skillCastingTime[index]);

@@ -5,11 +5,13 @@ using UnityEngine.Rendering;
 
 public class PillarOfFlame : BaseSkill
 {
+    [SerializeField] private GameObject magicCirclePrefab;   //마법진 애니메이션 프리팹
     [SerializeField] private GameObject pillarPrefab;   //불기둥 애니메이션 프리팹
     [SerializeField] private float maxRange = 7f; // 최대 범위
     [SerializeField] private float minRange = 3f; // 최소 범위
-    private GameObject pillarInstance; // 생성된 불기둥 인스턴스
+    private GameObject magicCircleInstance; // 생성된 마법진 인스턴스
     private Animator anim;
+    private Vector3 spawnPos = Vector3.zero; //프리펩 생성 위치
     private readonly int PILLAR_HASH = Animator.StringToHash("Fire");
     private bool sliderShown = false;
 
@@ -34,11 +36,12 @@ public class PillarOfFlame : BaseSkill
         anim.SetBool(PILLAR_HASH, false); // 애니메이션 트리거 설정
         sliderShown = false;
         // 차징 취소 시 프리팹 삭제
-        if (pillarInstance != null)
+        if (magicCircleInstance != null)
         {
-            Destroy(pillarInstance);
-            pillarInstance = null;
+            Destroy(magicCircleInstance);
+            magicCircleInstance = null;
         }
+        Instantiate(pillarPrefab, spawnPos, Quaternion.identity); // 불기둥 생성
     }
     protected override void OnChargingCanceled()
     {
@@ -46,10 +49,10 @@ public class PillarOfFlame : BaseSkill
         anim.SetBool(PILLAR_HASH, false); // 애니메이션 트리거 설정
         sliderShown = false;
         // 차징 취소 시 프리팹 삭제
-        if (pillarInstance != null)
+        if (magicCircleInstance != null)
         {
-            Destroy(pillarInstance);
-            pillarInstance = null;
+            Destroy(magicCircleInstance);
+            magicCircleInstance = null;
         }
     }
     // 차징 중(프로그레스) 이벤트에서 프리팹 최초 1회 생성
@@ -65,10 +68,10 @@ public class PillarOfFlame : BaseSkill
             sliderShown = true;
         }
 
-        if (pillarInstance == null)
+        if (magicCircleInstance == null)
         {
-            Vector3 spawnPos = GetMouseWorldPosition();
-            pillarInstance = Instantiate(pillarPrefab, spawnPos, Quaternion.identity);
+            spawnPos = GetMouseWorldPosition();
+            magicCircleInstance = Instantiate(magicCirclePrefab, spawnPos, Quaternion.identity);
         }
     }
     protected override void OnSkillActivated()

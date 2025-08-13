@@ -4917,7 +4917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionRadius: 1.5
-  damageAmount: 1
+  damageAmount: 3
 --- !u!95 &2254499648670408971
 Animator:
   serializedVersion: 5
