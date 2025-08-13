@@ -9,16 +9,11 @@ public class ChargingManager : Singleton<ChargingManager>
     private float chargeTime = 0f; // 충전 시간
     private float chargeTimeElapsed = 0f;
 
-    [HideInInspector]
-    public bool isChargingSuccessful = false; // 차징 성공 여부
 
     //차징 완료 or 취소 이벤트
     public event System.Action OnChargingCompleted;
     public event System.Action OnChargingCanceled;
     public event System.Action<float, float> OnChargingProgress; // (elapsed, duration)
-
-    //프로퍼티
-    public float ChargeTimeElapsed => chargeTimeElapsed;
 
     public void StartCharging(float skillChargeTime)
     {
@@ -26,6 +21,8 @@ public class ChargingManager : Singleton<ChargingManager>
             EndCharging(); // 중복 차징 방지
 
         chargeTime = skillChargeTime;
+        chargeTimeElapsed = 0f; // 차징 시작 시 초기화
+
         // Start charging logic
         chargingSkill = ChargingRoutine();
         StartCoroutine(chargingSkill);
@@ -38,24 +35,22 @@ public class ChargingManager : Singleton<ChargingManager>
         {
             StopCoroutine(chargingSkill);
             chargingSkill = null;
-
-            isChargingSuccessful = false;
-            OnChargingCanceled?.Invoke();
         }
+        chargeTimeElapsed = 0f; // 차징 취소 시 초기화
+        OnChargingCanceled?.Invoke();
     }
     private IEnumerator ChargingRoutine()
     {
         chargeTimeElapsed = 0f;
-        isChargingSuccessful = false;
 
         while (chargeTimeElapsed < chargeTime)
         {
             chargeTimeElapsed += Time.deltaTime;
-            OnChargingProgress?.Invoke(chargeTimeElapsed, chargeTime);
+            OnChargingProgress?.Invoke(Mathf.Clamp(chargeTimeElapsed, 0, chargeTime), chargeTime);
             yield return null; // Wait for the next frame
         }
-        isChargingSuccessful = true;
         chargingSkill = null;
+        chargeTimeElapsed = 0f; // 차징 완료 시 초기화
 
         OnChargingCompleted?.Invoke();
     }

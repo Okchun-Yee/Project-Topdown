@@ -14,21 +14,30 @@ public class CastingUIManager : Singleton<CastingUIManager>
             castingSlider.gameObject.SetActive(false);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        if (ChargingManager.Instance != null)
-        {
-            ChargingManager.Instance.OnChargingProgress += UpdateSlider;
-            ChargingManager.Instance.OnChargingCompleted += HideSlider;
-            ChargingManager.Instance.OnChargingCanceled += HideSlider;
-        }
+        Debug.Log("CastingUIManager: Subscribing to ChargingManager events");
+        ChargingManager.Instance.OnChargingProgress += UpdateSlider;
+        ChargingManager.Instance.OnChargingCompleted += HideSlider;
+        ChargingManager.Instance.OnChargingCanceled += HideSlider;
     }
+
+    private void OnDisable()
+    {
+        Debug.Log("CastingUIManager: Unsubscribing from ChargingManager events");
+        ChargingManager.Instance.OnChargingProgress -= UpdateSlider;
+        ChargingManager.Instance.OnChargingCompleted -= HideSlider;
+        ChargingManager.Instance.OnChargingCanceled -= HideSlider;
+    }   
+
     public void ShowSlider(float duration)
     {
         if (castingSlider == null) return;
+        castingSlider.gameObject.SetActive(true);
+
         castingSlider.maxValue = duration;
         castingSlider.value = 0;
-        castingSlider.gameObject.SetActive(true);
+
     }
 
     private void UpdateSlider(float elapsed, float duration)

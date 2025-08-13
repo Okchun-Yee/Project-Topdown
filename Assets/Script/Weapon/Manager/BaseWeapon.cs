@@ -17,7 +17,6 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
     /// </summary>
     private float weaponCooldown;    // SO에서 주입받는 쿨다운 시간
     private bool isCooldown;     //무기 쿨타임 검사
-    private float skillCooldown; // 스킬 쿨타임
     private float[] skillCastingTime; // 스킬 시전 시간
 
     private int chargingSkillIndex = -1;
@@ -37,7 +36,7 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
         skills = GetComponents<ISkill>();
         // 배열 크기 초기화 추가
         skillCastingTime = new float[skills.Length];
-        
+
         for (int i = 0; i < skills.Length; i++)
         {
             if (skills.Length != info.Skills.Length)
@@ -79,7 +78,7 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
     /// <summary>
     /// 객체가 비활성화될 때 코루틴을 정리해 안전하게 멈춥니다.
     /// </summary>
-    
+
     protected virtual void OnEnable()
     {
         ChargingManager.Instance.OnChargingCompleted += OnChargingCompleted;

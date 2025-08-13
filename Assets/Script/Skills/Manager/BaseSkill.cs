@@ -32,23 +32,21 @@ public abstract class BaseSkill : MonoBehaviour, ISkill
         yield return new WaitForSeconds(SkillInfo.CooldownTime);
         isOnCooldown = false;
     }
+    public void StartCasting()
+    {
+        BaseSkill.IsCasting = true; // 스킬 사용 중 상태 설정
+    }
+    public void EndCasting()
+    {
+        BaseSkill.IsCasting = false; // 스킬 사용 완료 상태로 변경
+    }
     protected abstract void OnSkillActivated();
 
     // 차징 완료 시 호출
-    protected virtual void OnChargingCompleted()
-    {
-        if (isOnCooldown) return;   // 쿨다운 중 이면 무시
-    }
+    protected virtual void OnChargingCompleted() { }
 
     // 차징 취소 시 호출
-    protected virtual void OnChargingCanceled()
-    {
-        if (isOnCooldown) return;   // 쿨다운 중 이면 무시
-    }
+    protected virtual void OnChargingCanceled() { }
 
-    protected virtual void OnChargingProgress(float elapsed, float duration)
-    { 
-        if (isOnCooldown) return;   // 쿨다운 중 이면 무시
-
-    }
+    protected virtual void OnChargingProgress(float elapsed, float duration) { }
 }

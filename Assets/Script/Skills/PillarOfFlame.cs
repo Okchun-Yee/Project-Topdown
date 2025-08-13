@@ -11,6 +11,7 @@ public class PillarOfFlame : BaseSkill
     private GameObject pillarInstance; // 생성된 불기둥 인스턴스
     private Animator anim;
     private readonly int PILLAR_HASH = Animator.StringToHash("Fire");
+    private bool sliderShown = false;
 
     private void Awake()
     {
@@ -30,30 +31,40 @@ public class PillarOfFlame : BaseSkill
     }
     protected override void OnChargingCompleted()
     {
-        Debug.Log("PillarOfFlame charging completed");
-        IsCasting = false; // 스킬 사용 완료 상태로 변경 
-        // 차징 완료 시 추가 동작 필요시 작성
-    }
-    protected override void OnChargingCanceled()
-    {
-        Debug.Log("PillarOfFlame charging canceled");
         anim.SetBool(PILLAR_HASH, false); // 애니메이션 트리거 설정
+        sliderShown = false;
         // 차징 취소 시 프리팹 삭제
         if (pillarInstance != null)
         {
             Destroy(pillarInstance);
             pillarInstance = null;
         }
-
-        IsCasting = false; // 스킬 사용 완료 상태로 변경 
+    }
+    protected override void OnChargingCanceled()
+    {
+        BaseSkill.IsCasting = false; // 스킬 사용 완료 상태로 변경
+        anim.SetBool(PILLAR_HASH, false); // 애니메이션 트리거 설정
+        sliderShown = false;
+        // 차징 취소 시 프리팹 삭제
+        if (pillarInstance != null)
+        {
+            Destroy(pillarInstance);
+            pillarInstance = null;
+        }
     }
     // 차징 중(프로그레스) 이벤트에서 프리팹 최초 1회 생성
     protected override void OnChargingProgress(float elapsed, float duration)
     {
-        IsCasting = true; // 스킬 사용 중 상태 설정
-        CastingUIManager.Instance.ShowSlider(SkillInfo.CastingTime);
+        if (isOnCooldown) return;
 
-        anim.SetBool(PILLAR_HASH, true); // 애니메이션 트리거 설정
+        anim.SetBool(PILLAR_HASH, true);
+
+        if (!sliderShown)
+        {
+            CastingUIManager.Instance.ShowSlider(SkillInfo.CastingTime);
+            sliderShown = true;
+        }
+
         if (pillarInstance == null)
         {
             Vector3 spawnPos = GetMouseWorldPosition();
@@ -65,7 +76,6 @@ public class PillarOfFlame : BaseSkill
         Debug.Log("PillarOfFlame Activated");
         // 스킬 사용 UI 업데이트
         SkillUIManager.Instance.OnSkillUsed(0); // 예시로 0번 스킬로 업데이트
-        IsCasting = false; // 스킬 사용 완료 상태로 변경 
     }
 
     // 마우스 위치를 기준으로 프리팹 생성 위치를 반환하는 함수
@@ -77,6 +87,7 @@ public class PillarOfFlame : BaseSkill
         Vector3 dir = (mouseWorldPos - playerPos).normalized;
         float dist = Vector3.Distance(playerPos, mouseWorldPos);
         float clampedDist = Mathf.Clamp(dist, minRange, maxRange);
+
         return playerPos + dir * clampedDist;
     }
 }

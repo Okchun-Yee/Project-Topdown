@@ -9,8 +9,6 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     private IWeapon currentActiveWeapon;
     private PlayerContorls playerContorls;
     private bool attackButtonDown = false;
-    private bool isCharging = false;
-    private float chargeTimer = 0f;
 
     protected override void Awake()
     {
@@ -89,13 +87,11 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     private void OnSkillStarted(int skillIndex)
     {
         // skillIndex에 따라 타이머/플래그 관리
-        isCharging = true;
         currentActiveWeapon?.UseSkill(skillIndex);
     }
 
     private void OnSkillCanceled(int skillIndex)
     {
-        isCharging = false;
         ChargingManager.Instance.EndCharging();
     }
 }
