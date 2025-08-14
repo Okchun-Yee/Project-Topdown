@@ -188,7 +188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillIndex: 0
-  laserPrefab: {fileID: 5185998158627336787, guid: d80f93ae69cac464fb89135e1bedc082, type: 3}
+  laserPrefab: {fileID: 5185998158627336787, guid: f11670251926a9c4eb8053fc2765d21c, type: 3}
+  laserSpawnPoint: {fileID: 4149301015987597233}
   maxRange: 10
 --- !u!1 &7480248620317035101
 GameObject:

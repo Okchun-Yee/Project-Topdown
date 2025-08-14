@@ -18,6 +18,8 @@ public abstract class BaseSkill : MonoBehaviour, ISkill
     }
     public virtual void ActivateSkill()
     {
+        if (isOnCooldown) return; // 쿨타임 중이면 아예 홀딩 시작 안 함
+        
         if (SkillInfo.skillCategory == SkillCategory.Charging)
         {
             SubscribeSkillEvents();
@@ -69,7 +71,7 @@ public abstract class BaseSkill : MonoBehaviour, ISkill
 
     // <홀딩용>
     // 홀딩 시작 시 호출
-    protected virtual void OnHoldingStarted() { }
+    protected virtual void OnHoldingStarted(float maxDuration) { }
     // 홀딩 종료 시 호출
     protected virtual void OnHoldingEnded() { }
     // 홀딩 중

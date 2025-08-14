@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36195582f57a248488acfcd0f4d5fe79, type: 3}
   m_Name: Skill_LaserBeam
   m_EditorClassIdentifier: 
-  skillCooldown: 3
-  CastingTime: 3
+  skillCooldown: 8
+  CastingTime: 6
   skillCategory: 2
   skillDamage: 3
   icon: {fileID: -1218223236, guid: 758585df94498284bb94f133629102ac, type: 3}

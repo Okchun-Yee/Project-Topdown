@@ -65,8 +65,6 @@ public class PillarOfFlame : BaseSkill
     // 차징 중(프로그레스) 이벤트에서 프리팹 최초 1회 생성
     protected override void OnChargingProgress(float elapsed, float duration)
     {
-        if (isOnCooldown) return;
-
         anim.SetBool(PILLAR_HASH, true);
 
         if (!sliderShown)

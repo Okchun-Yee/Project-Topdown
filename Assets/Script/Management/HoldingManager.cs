@@ -8,7 +8,7 @@ public class HoldingManager : Singleton<HoldingManager>
     private float holdDuration = 0f; // 홀딩 지속 시간
 
     // 홀딩 이벤트
-    public event System.Action OnHoldingStarted;
+    public event System.Action<float> OnHoldingStarted;
     public event System.Action OnHoldingEnded;
     public event System.Action<float, float> OnHoldingProgress; // (elapsed, duration)
     public event System.Action OnHoldingCanceled; // 추가: 홀딩 취소 이벤트
@@ -31,8 +31,8 @@ public class HoldingManager : Singleton<HoldingManager>
         
         holdingMaxTime = maxDuration;
         holdingTimeElapsed = 0f;
-        
-        OnHoldingStarted?.Invoke();
+
+        OnHoldingStarted?.Invoke(maxDuration);
         holdingSkill = StartCoroutine(HoldingRoutine());
     }
 
@@ -41,7 +41,6 @@ public class HoldingManager : Singleton<HoldingManager>
         if (!isHolding) return; // 홀딩 중이 아니면 무시
 
         isHolding = false;
-        Debug.Log($"[HoldingManager] 홀딩 종료 (지속시간: {holdDuration:F2}초)");
         
         OnHoldingEnded?.Invoke();
         holdDuration = 0f;

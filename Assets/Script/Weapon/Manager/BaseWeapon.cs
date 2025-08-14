@@ -19,8 +19,6 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
     private bool isCooldown;     //무기 쿨타임 검사
     private float[] skillCastingTime; // 스킬 시전 시간
 
-    private int chargingSkillIndex = -1;
-
     /// <summary>
     /// ScriptableObject(Weaponinfo)로부터 설정을 주입합니다.
     /// </summary>

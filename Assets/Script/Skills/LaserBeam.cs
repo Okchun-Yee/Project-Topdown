@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaserBeam : BaseSkill
 {
     [SerializeField] private GameObject laserPrefab;   // 레이저 애니메이션 프리팹
+    [SerializeField] private Transform laserSpawnPoint; // 레이저 생성 위치
     [SerializeField] private float maxRange = 10f; // 최대 범위
     private GameObject laserInstance; // 생성된 레이저 인스턴스
     private Animator anim;
@@ -16,13 +17,16 @@ public class LaserBeam : BaseSkill
         anim = GetComponent<Animator>();
     }
     // 홀딩 시작
-    protected override void OnHoldingStarted()
+    protected override void OnHoldingStarted(float maxDuration)
     {
         if (!isHolding)
         {
             Debug.Log("LaserBeam holding started");
             isHolding = true;
             anim.SetBool(LASER_HASH, true);
+
+            laserInstance = Instantiate(laserPrefab, laserSpawnPoint.position, Quaternion.identity);
+            laserInstance.GetComponent<HoldingProjectile>().UpdateLaserRange(maxRange);
             OnSkill();
         }
     }
@@ -43,6 +47,7 @@ public class LaserBeam : BaseSkill
             Debug.Log("LaserBeam holding ended");
             BaseSkill.IsCasting = isHolding = false;
             anim.SetBool(LASER_HASH, false);
+            laserInstance.GetComponent<HoldingProjectile>().SetHoldingState(false); // 레이저 종료 처리
 
             // 레이저 프리팹 삭제
             if (laserInstance != null)

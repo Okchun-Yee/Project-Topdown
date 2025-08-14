@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CastingUIManager : Singleton<CastingUIManager>   
 {
     [SerializeField] private Slider castingSlider;
+    private Coroutine subscribeCoroutine;
 
     protected override void Awake()
     {
@@ -16,23 +17,43 @@ public class CastingUIManager : Singleton<CastingUIManager>
 
     private void OnEnable()
     {
-        Debug.Log("CastingUIManager: Subscribing to ChargingManager and HoldingManager events");
+        subscribeCoroutine = StartCoroutine(SubscribeWhenReady());
+    }
+
+    private void OnDisable()
+    {
+        if (subscribeCoroutine != null)
+        {
+            StopCoroutine(subscribeCoroutine);
+            subscribeCoroutine = null;
+        }
+
+        UnsubscribeEvents();
+    }
+
+    private IEnumerator SubscribeWhenReady()
+    {
+        // Manager들이 생성될 때까지 대기
+        while (ChargingManager.Instance == null || HoldingManager.Instance == null)
+        {
+            yield return null;
+        }
+
+        Debug.Log("CastingUIManager: Subscribing to events");
         
         // 차징 이벤트 구독
         ChargingManager.Instance.OnChargingProgress += UpdateSlider;
         ChargingManager.Instance.OnChargingCompleted += HideSlider;
         ChargingManager.Instance.OnChargingCanceled += HideSlider;
         
-        // 홀딩 이벤트 구독 (동일한 UpdateSlider 사용)
+        // 홀딩 이벤트 구독
         HoldingManager.Instance.OnHoldingStarted += ShowHoldingSlider;
-        HoldingManager.Instance.OnHoldingProgress += UpdateSlider; // 통일!
+        HoldingManager.Instance.OnHoldingProgress += UpdateSlider;
         HoldingManager.Instance.OnHoldingEnded += HideSlider;
     }
 
-    private void OnDisable()
+    private void UnsubscribeEvents()
     {
-        Debug.Log("CastingUIManager: Unsubscribing from ChargingManager and HoldingManager events");
-        
         // 차징 이벤트 해제
         if (ChargingManager.Instance != null)
         {
@@ -45,32 +66,28 @@ public class CastingUIManager : Singleton<CastingUIManager>
         if (HoldingManager.Instance != null)
         {
             HoldingManager.Instance.OnHoldingStarted -= ShowHoldingSlider;
-            HoldingManager.Instance.OnHoldingProgress -= UpdateSlider; // 통일!
+            HoldingManager.Instance.OnHoldingProgress -= UpdateSlider;
             HoldingManager.Instance.OnHoldingEnded -= HideSlider;
         }
-    }   
+    }
 
     public void ShowSlider(float duration)
     {
         if (castingSlider == null) return;
         castingSlider.gameObject.SetActive(true);
-
         castingSlider.maxValue = duration;
         castingSlider.value = 0;
     }
 
-    // 홀딩 시작 시 슬라이더 표시 (최대 시간 설정)
-    private void ShowHoldingSlider()
+    public void ShowHoldingSlider(float maxDuration)
     {
         if (castingSlider == null) return;
         castingSlider.gameObject.SetActive(true);
-        // HoldingManager에서 maxDuration을 전달받거나, 
-        // 홀딩 스킬의 최대 시간을 설정
-        castingSlider.maxValue = 5f; // 예: 최대 5초 홀딩
+        castingSlider.maxValue = maxDuration; // 고정값이 아닌 전달받은 값 사용
         castingSlider.value = 0f;
+        Debug.Log($"ShowHoldingSlider - maxDuration: {maxDuration}");
     }
 
-    // 차징/홀딩 공통 슬라이더 업데이트
     private void UpdateSlider(float elapsed, float duration)
     {
         if (castingSlider == null) return;
