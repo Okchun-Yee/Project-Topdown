@@ -15,37 +15,20 @@ public class LaserBeam : BaseSkill
     {
         anim = GetComponent<Animator>();
     }
-
-    private void OnEnable()
-    {
-        HoldingManager.Instance.OnHoldingStarted += OnHoldingStarted;
-        HoldingManager.Instance.OnHoldingEnded += OnHoldingEnded;
-        HoldingManager.Instance.OnHoldingProgress += OnHoldingProgress;
-    }
-
-    private void OnDisable()
-    {
-        if (HoldingManager.Instance != null)
-        {
-            HoldingManager.Instance.OnHoldingStarted -= OnHoldingStarted;
-            HoldingManager.Instance.OnHoldingEnded -= OnHoldingEnded;
-            HoldingManager.Instance.OnHoldingProgress -= OnHoldingProgress;
-        }
-    }
-
     // 홀딩 시작
-    private void OnHoldingStarted()
+    protected override void OnHoldingStarted()
     {
         if (!isHolding)
         {
             Debug.Log("LaserBeam holding started");
             isHolding = true;
             anim.SetBool(LASER_HASH, true);
+            OnSkill();
         }
     }
 
     // 홀딩 진행 중
-    private void OnHoldingProgress(float duration)
+    protected override void OnHoldingProgress(float elapsed, float duration)
     {
         // 홀딩 중 지속적인 처리가 필요하면 여기에 작성
 
@@ -53,7 +36,7 @@ public class LaserBeam : BaseSkill
     }
 
     // 홀딩 종료
-    private void OnHoldingEnded()
+    protected override void OnHoldingEnded()
     {
         if (isHolding)
         {
@@ -78,4 +61,24 @@ public class LaserBeam : BaseSkill
 
     // 홀딩 상태 확인용 프로퍼티
     public bool IsHolding => isHolding;
+
+    public override void SubscribeSkillEvents()
+    {
+        if (HoldingManager.Instance != null)
+        {
+            HoldingManager.Instance.OnHoldingStarted += OnHoldingStarted;
+            HoldingManager.Instance.OnHoldingEnded += OnHoldingEnded;
+            HoldingManager.Instance.OnHoldingProgress += OnHoldingProgress;
+        }
+    }
+
+    public override void UnsubscribeSkillEvents()
+    {
+        if (HoldingManager.Instance != null)
+        {
+            HoldingManager.Instance.OnHoldingStarted -= OnHoldingStarted;
+            HoldingManager.Instance.OnHoldingEnded -= OnHoldingEnded;
+            HoldingManager.Instance.OnHoldingProgress -= OnHoldingProgress;
+        }
+    }
 }

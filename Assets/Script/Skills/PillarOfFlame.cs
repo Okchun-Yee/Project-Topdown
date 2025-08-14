@@ -19,17 +19,24 @@ public class PillarOfFlame : BaseSkill
     {
         anim = GetComponent<Animator>();
     }
-    private void OnEnable()
+    public override void SubscribeSkillEvents()
     {
-        ChargingManager.Instance.OnChargingProgress += OnChargingProgress;
-        ChargingManager.Instance.OnChargingCompleted += OnChargingCompleted;
-        ChargingManager.Instance.OnChargingCanceled += OnChargingCanceled;
+        if (ChargingManager.Instance != null)
+        {
+            ChargingManager.Instance.OnChargingProgress += OnChargingProgress;
+            ChargingManager.Instance.OnChargingCompleted += OnChargingCompleted;
+            ChargingManager.Instance.OnChargingCanceled += OnChargingCanceled;
+        }
     }
-    private void OnDisable()
+
+    public override void UnsubscribeSkillEvents()
     {
-        ChargingManager.Instance.OnChargingProgress -= OnChargingProgress;
-        ChargingManager.Instance.OnChargingCompleted -= OnChargingCompleted;
-        ChargingManager.Instance.OnChargingCanceled -= OnChargingCanceled;
+        if (ChargingManager.Instance != null)
+        {
+            ChargingManager.Instance.OnChargingProgress -= OnChargingProgress;
+            ChargingManager.Instance.OnChargingCompleted -= OnChargingCompleted;
+            ChargingManager.Instance.OnChargingCanceled -= OnChargingCanceled;
+        }
     }
     protected override void OnChargingCompleted()
     {
@@ -41,7 +48,7 @@ public class PillarOfFlame : BaseSkill
             Destroy(magicCircleInstance);
             magicCircleInstance = null;
         }
-        Instantiate(pillarPrefab, spawnPos, Quaternion.identity); // 불기둥 생성
+        OnSkill();
     }
     protected override void OnChargingCanceled()
     {
@@ -79,6 +86,7 @@ public class PillarOfFlame : BaseSkill
         Debug.Log("PillarOfFlame Activated");
         // 스킬 사용 UI 업데이트
         SkillUIManager.Instance.OnSkillUsed(0); // 예시로 0번 스킬로 업데이트
+        Instantiate(pillarPrefab, spawnPos, Quaternion.identity); // 불기둥 생성
     }
 
     // 마우스 위치를 기준으로 프리팹 생성 위치를 반환하는 함수

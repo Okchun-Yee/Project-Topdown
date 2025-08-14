@@ -23,9 +23,9 @@ public class CastingUIManager : Singleton<CastingUIManager>
         ChargingManager.Instance.OnChargingCompleted += HideSlider;
         ChargingManager.Instance.OnChargingCanceled += HideSlider;
         
-        // 홀딩 이벤트 구독
+        // 홀딩 이벤트 구독 (동일한 UpdateSlider 사용)
         HoldingManager.Instance.OnHoldingStarted += ShowHoldingSlider;
-        HoldingManager.Instance.OnHoldingProgress += UpdateHoldingSlider;
+        HoldingManager.Instance.OnHoldingProgress += UpdateSlider; // 통일!
         HoldingManager.Instance.OnHoldingEnded += HideSlider;
     }
 
@@ -45,7 +45,7 @@ public class CastingUIManager : Singleton<CastingUIManager>
         if (HoldingManager.Instance != null)
         {
             HoldingManager.Instance.OnHoldingStarted -= ShowHoldingSlider;
-            HoldingManager.Instance.OnHoldingProgress -= UpdateHoldingSlider;
+            HoldingManager.Instance.OnHoldingProgress -= UpdateSlider; // 통일!
             HoldingManager.Instance.OnHoldingEnded -= HideSlider;
         }
     }   
@@ -59,29 +59,23 @@ public class CastingUIManager : Singleton<CastingUIManager>
         castingSlider.value = 0;
     }
 
-    // 홀딩 시작 시 슬라이더 표시 (무한 모드)
+    // 홀딩 시작 시 슬라이더 표시 (최대 시간 설정)
     private void ShowHoldingSlider()
     {
         if (castingSlider == null) return;
         castingSlider.gameObject.SetActive(true);
-        castingSlider.maxValue = 100f; // 홀딩은 무한이므로 임의의 큰 값
+        // HoldingManager에서 maxDuration을 전달받거나, 
+        // 홀딩 스킬의 최대 시간을 설정
+        castingSlider.maxValue = 5f; // 예: 최대 5초 홀딩
         castingSlider.value = 0f;
     }
 
-    // 차징용 슬라이더 업데이트
+    // 차징/홀딩 공통 슬라이더 업데이트
     private void UpdateSlider(float elapsed, float duration)
     {
         if (castingSlider == null) return;
+        castingSlider.maxValue = duration;
         castingSlider.value = Mathf.Clamp(elapsed, 0, duration);
-    }
-
-    // 홀딩용 슬라이더 업데이트 (지속시간 표시)
-    private void UpdateHoldingSlider(float duration)
-    {
-        if (castingSlider == null) return;
-        // 홀딩 시간이 길어질수록 슬라이더 값 증가 (최대값은 유동적)
-        castingSlider.maxValue = Mathf.Max(castingSlider.maxValue, duration + 10f);
-        castingSlider.value = duration;
     }
 
     private void HideSlider()

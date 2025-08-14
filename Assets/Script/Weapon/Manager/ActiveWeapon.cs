@@ -9,6 +9,7 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     private IWeapon currentActiveWeapon;
     private PlayerContorls playerContorls;
     private bool attackButtonDown = false;
+    private int? currentActiveSkillIndex = null;
 
     protected override void Awake()
     {
@@ -63,7 +64,14 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     /// </summary>
     public void NewWeapon(IWeapon weapon)
     {
+        // 이전 무기의 모든 스킬 구독 해제
+        if (currentActiveWeapon is BaseWeapon oldWeapon && currentActiveSkillIndex.HasValue)
+        {
+            UnsubscribeSkill(currentActiveSkillIndex.Value);
+        }
+
         currentActiveWeapon = weapon;
+        currentActiveSkillIndex = null;
         attackButtonDown = false;
     }
     /// <summary>
@@ -86,12 +94,48 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
 
     private void OnSkillStarted(int skillIndex)
     {
-        // skillIndex에 따라 타이머/플래그 관리
-        currentActiveWeapon?.UseSkill(skillIndex);
+        if (currentActiveWeapon == null) return;
+
+        // 이전 활성 스킬 구독 해제
+        if (currentActiveSkillIndex.HasValue)
+        {
+            UnsubscribeSkill(currentActiveSkillIndex.Value);
+        }
+
+        // 새 스킬 구독
+        SubscribeSkill(skillIndex);
+        currentActiveSkillIndex = skillIndex;
+
+        // 스킬 사용
+        currentActiveWeapon.UseSkill(skillIndex);
     }
 
     private void OnSkillCanceled(int skillIndex)
     {
-        ChargingManager.Instance.EndCharging();
+        if (currentActiveWeapon == null) return;
+
+        // 해당 스킬 구독 해제
+        UnsubscribeSkill(skillIndex);
+        
+        if (currentActiveSkillIndex == skillIndex)
+        {
+            currentActiveSkillIndex = null;
+        }
+
+        // 차징/홀딩 종료
+        ChargingManager.Instance?.EndCharging();
+        HoldingManager.Instance?.EndHolding();
+    }
+
+    private void SubscribeSkill(int skillIndex)
+    {
+        var skills = (currentActiveWeapon as BaseWeapon)?.GetSkills();
+        skills?[skillIndex]?.SubscribeSkillEvents();
+    }
+
+    private void UnsubscribeSkill(int skillIndex)
+    {
+        var skills = (currentActiveWeapon as BaseWeapon)?.GetSkills();
+        skills?[skillIndex]?.UnsubscribeSkillEvents();
     }
 }

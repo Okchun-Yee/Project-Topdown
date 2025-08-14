@@ -78,52 +78,22 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
     /// <summary>
     /// 객체가 비활성화될 때 코루틴을 정리해 안전하게 멈춥니다.
     /// </summary>
-
-    protected virtual void OnEnable()
-    {
-        ChargingManager.Instance.OnChargingCompleted += OnChargingCompleted;
-        ChargingManager.Instance.OnChargingCanceled += OnChargingCanceled;
-    }
-
     protected virtual void OnDisable()
     {
+        // 쿨다운 코루틴 정리만 남김
         if (CooldownCoroutine != null)
             StopCoroutine(CooldownCoroutine);
-
-        // 이벤트 해제
-        if (ChargingManager.Instance != null)
-        {
-            ChargingManager.Instance.OnChargingCompleted -= OnChargingCompleted;
-            ChargingManager.Instance.OnChargingCanceled -= OnChargingCanceled;
-        }
     }
     public void UseSkill(int index)
     {
-        if (index < 0 || index >= skills.Length) { return; }
-        if (skills[index].SkillInfo.skillCategory == SkillCategory.Charging ||
-        skills[index].SkillInfo.skillCategory == SkillCategory.Holding)
-        {
-            chargingSkillIndex = index; // 어떤 스킬을 차징하는지 저장
-            ChargingManager.Instance.StartCharging(skillCastingTime[index]);
-        }
-        else if (skills[index].SkillInfo.skillCategory == SkillCategory.Performed)
-        {
-            skills[index]?.ActivateSkill();
-        }
+        if (index < 0 || index >= skills.Length) return;
+
+        // 스킬에게 책임 위임
+        skills[index]?.ActivateSkill();
     }
 
-    private void OnChargingCompleted()
+    public ISkill[] GetSkills()
     {
-        if (chargingSkillIndex >= 0 && chargingSkillIndex < skills.Length)
-        {
-            skills[chargingSkillIndex]?.ActivateSkill();
-            chargingSkillIndex = -1;
-        }
-    }
-
-    private void OnChargingCanceled()
-    {
-        chargingSkillIndex = -1;
-        // 필요하다면 차징 취소 시 처리
+        return skills;
     }
 }

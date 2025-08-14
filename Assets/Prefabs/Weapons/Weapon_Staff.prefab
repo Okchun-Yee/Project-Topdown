@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5998587361148625053}
   - component: {fileID: 4111421895858312708}
   - component: {fileID: 13511415444652351}
-  - component: {fileID: 3386602992118141930}
+  - component: {fileID: 4324501584202446422}
   m_Layer: 0
   m_Name: Weapon_Staff
   m_TagString: Untagged
@@ -175,7 +175,7 @@ MonoBehaviour:
   pillarPrefab: {fileID: 988950910461005932, guid: 0f9dabce5e9f43643a5512bd9e7e710f, type: 3}
   maxRange: 7
   minRange: 3
---- !u!114 &3386602992118141930
+--- !u!114 &4324501584202446422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
