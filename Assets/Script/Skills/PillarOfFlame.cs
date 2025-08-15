@@ -12,7 +12,7 @@ public class PillarOfFlame : BaseSkill
     private GameObject magicCircleInstance; // 생성된 마법진 인스턴스
     private Animator anim;
     private Vector3 spawnPos = Vector3.zero; //프리펩 생성 위치
-    private readonly int PILLAR_HASH = Animator.StringToHash("Fire");
+    private readonly int PILLAR_HASH = Animator.StringToHash("Fire_Charging");
     private bool sliderShown = false;
 
     private void Awake()
@@ -83,7 +83,7 @@ public class PillarOfFlame : BaseSkill
     {
         Debug.Log("PillarOfFlame Activated");
         // 스킬 사용 UI 업데이트
-        SkillUIManager.Instance.OnSkillUsed(0); // 예시로 0번 스킬로 업데이트
+        SkillUIManager.Instance.OnSkillUsed(skillIndex); // 예시로 0번 스킬로 업데이트
         Instantiate(pillarPrefab, spawnPos, Quaternion.identity); // 불기둥 생성
     }
 

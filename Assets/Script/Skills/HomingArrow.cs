@@ -18,7 +18,7 @@ public class HomingArrow : BaseSkill
     {
         Debug.Log("HomingArrow Activated");
         anim.SetTrigger(FIRE_HASH); // 애니메이션 트리거 설정
-        SkillUIManager.Instance.OnSkillUsed(1); // 스킬 사용 UI 업데이트
+        SkillUIManager.Instance.OnSkillUsed(skillIndex); // 스킬 사용 UI 업데이트
 
         foreach (Transform spawnPoint in arrowSpawnPoints)
         {

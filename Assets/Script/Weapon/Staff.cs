@@ -41,14 +41,25 @@ public class Staff : BaseWeapon
     {
         BaseWeapon.IsAttacking = false; // 공격 완료 상태로 변경
     }
+
+    // Animation Event용 함수들
+    public void StartCasting()
+    {
+        BaseSkill.IsCasting = true; // 스킬 사용 중 상태 설정
+        Debug.Log("Staff: Casting Started");
+    }
+
+    public void EndCasting()
+    {
+        BaseSkill.IsCasting = false; // 스킬 사용 완료 상태로 변경
+        Debug.Log("Staff: Casting Ended");
+    }
     public Weaponinfo GetWeaponInfo()
     {
         return weaponinfo;
     }
     private void MouseFollowWithOffset()
     {
-        if (BaseSkill.IsCasting) return; // 스킬 사용 중이거나 공격 중이면 마우스 따라가기 중지
-
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position);
 

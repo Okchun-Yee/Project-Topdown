@@ -49,6 +49,15 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
         var ds = GetComponentInChildren<DamageSource>();
         if (ds != null)
             ds.DamageAmount = info.weaponDamge;
+
+        // BaseWeapon.Initialize()에서
+        for (int i = 0; i < skills.Length; i++)
+        {
+            if (skills[i] is BaseSkill baseSkill)
+            {
+                baseSkill.skillIndex = i; // 자동으로 인덱스 설정
+            }
+        }
     }
 
     /// <summary>
@@ -87,7 +96,7 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
         if (index < 0 || index >= skills.Length) return;
 
         // 스킬에게 책임 위임
-        skills[index]?.ActivateSkill();
+        skills[index]?.ActivateSkill(index);
     }
 
     public ISkill[] GetSkills()

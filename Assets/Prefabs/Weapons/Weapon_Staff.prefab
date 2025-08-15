@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 4111421895858312708}
   - component: {fileID: 13511415444652351}
   - component: {fileID: 4324501584202446422}
+  - component: {fileID: 379411011295906217}
   m_Layer: 0
   m_Name: Weapon_Staff
   m_TagString: Untagged
@@ -190,7 +191,23 @@ MonoBehaviour:
   skillIndex: 0
   laserPrefab: {fileID: 5185998158627336787, guid: f11670251926a9c4eb8053fc2765d21c, type: 3}
   laserSpawnPoint: {fileID: 4149301015987597233}
-  maxRange: 10
+  maxRange: 4
+--- !u!114 &379411011295906217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7431873782600916916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd28a36fe8ddc049aebc04b58f727af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillIndex: 0
+  fireBallPrefab: {fileID: 4857811718956911251, guid: 38866eb8b753a0c4da61638343db2efe, type: 3}
+  fireBallSpawnPoint: {fileID: 4149301015987597233}
+  projectileRange: 10
 --- !u!1 &7480248620317035101
 GameObject:
   m_ObjectHideFlags: 0

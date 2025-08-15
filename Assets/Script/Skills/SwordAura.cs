@@ -16,19 +16,12 @@ public class SwordAura : BaseSkill
     {
         anim = GetComponent<Animator>();
     }
-    private void Start()
-    {
-        if (auraSpawnPoint == null)
-        {
-            Debug.LogError("Aura SpawnPoint not found!");
-        }
-    }
-
+    
     protected override void OnSkillActivated()
     {
         Debug.Log("SwordAura Activated");
         anim.SetTrigger(AURA_HASH); // 애니메이션 트리거 설정
-        SkillUIManager.Instance.OnSkillUsed(2); // 스킬 사용 UI 업데이트
+        SkillUIManager.Instance.OnSkillUsed(skillIndex); // 스킬 사용 UI 업데이트
         StartCoroutine(PerformAura());
 
     }

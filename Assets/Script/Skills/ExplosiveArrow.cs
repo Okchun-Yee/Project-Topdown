@@ -19,7 +19,7 @@ public class ExplosiveArrow : BaseSkill
     {
         Debug.Log("ExplosiveArrow Activated");
         anim.SetTrigger(FIRE_HASH); // 애니메이션 트리거 설정
-        SkillUIManager.Instance.OnSkillUsed(0); // 스킬 사용 UI 업데이트
+        SkillUIManager.Instance.OnSkillUsed(skillIndex); // 스킬 사용 UI 업데이트
         GameObject newArrow = Instantiate(arrowPrefab, arrowspawnPoint.position, ActiveWeapon.Instance.transform.rotation);
         newArrow.GetComponent<Projectile>().UpdateProjectilRange(projectileRange);
     }

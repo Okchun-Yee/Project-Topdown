@@ -16,9 +16,15 @@ public abstract class BaseSkill : MonoBehaviour, ISkill
         SkillInfo = info;
         // 추가 초기화 로직이 필요하다면 여기에 작성
     }
-    public virtual void ActivateSkill()
+    public virtual void ActivateSkill(int index = -1)
     {
         if (isOnCooldown) return; // 쿨타임 중이면 아예 홀딩 시작 안 함
+        
+        // 인덱스가 전달되면 skillIndex 업데이트
+        if (index >= 0)
+        {
+            skillIndex = index;
+        }
         
         if (SkillInfo.skillCategory == SkillCategory.Charging)
         {
@@ -51,14 +57,6 @@ public abstract class BaseSkill : MonoBehaviour, ISkill
         yield return new WaitForSeconds(SkillInfo.CooldownTime);
         isOnCooldown = false;
     }
-    public void StartCasting()
-    {
-        BaseSkill.IsCasting = true; // 스킬 사용 중 상태 설정
-    }
-    public void EndCasting()
-    {
-        BaseSkill.IsCasting = false; // 스킬 사용 완료 상태로 변경
-    }
     protected abstract void OnSkillActivated();
 
     //<차징용>
@@ -76,6 +74,8 @@ public abstract class BaseSkill : MonoBehaviour, ISkill
     protected virtual void OnHoldingEnded() { }
     // 홀딩 중
     protected virtual void OnHoldingProgress(float elapsed, float duration) { }
+    // 홀딩 시간이 최대치에 도달했을 때 호출
+    protected virtual void OnHoldingCanceled() { }
 
     // 스킬 이벤트 구독
     public virtual void SubscribeSkillEvents()

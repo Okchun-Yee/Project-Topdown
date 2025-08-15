@@ -37,7 +37,7 @@ public class SwordCross : BaseSkill
         // 대시 방향 결정
         dashDir = PlayerController.Instance.FacingLeft ? Vector2.left : Vector2.right;
         
-        SkillUIManager.Instance.OnSkillUsed(1); // 스킬 사용 UI 업데이트
+        SkillUIManager.Instance.OnSkillUsed(skillIndex); // 스킬 사용 UI 업데이트
         StartCoroutine(PerformSkill());
     }
     private IEnumerator PerformSkill()
