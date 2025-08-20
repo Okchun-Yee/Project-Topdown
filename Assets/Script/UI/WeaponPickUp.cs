@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Collider2D))]
 public class WeaponPickup : MonoBehaviour
 {
-    [SerializeField] private Weaponinfo weaponinfo;
+    [SerializeField] private WeaponInfo weaponinfo;
     private PlayerContorls pc;
     private bool isPlayerInRange = false;
 

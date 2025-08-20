@@ -11,6 +11,7 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
     public static bool IsAttacking = false; // 공격 중 상태를 전역으로 관리
     private Coroutine CooldownCoroutine; //무기 공격 쿨다운 코루틴
     protected ISkill[] skills; // 무기에 적용된 스킬들
+    public WeaponInfo weaponInfo { get; private set; }  // ScriptableObject로부터 주입받는 무기 정보
 
     /// <summary>
     /// 무기 및 스킬 사용 변수
@@ -20,44 +21,50 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
     private float[] skillCastingTime; // 스킬 시전 시간
 
     /// <summary>
-    /// ScriptableObject(Weaponinfo)로부터 설정을 주입합니다.
+    /// ScriptableObject(WeaponInfo)로부터 설정을 주입합니다.
     /// </summary>
-    public virtual void Initialize(Weaponinfo info)
+    public virtual void Initialize(WeaponInfo info)
     {
         if (info == null)
         {
-            Debug.LogError($"[BaseWeapon] Weaponinfo is null on {name}");
+            Debug.LogError($"[BaseWeapon] WeaponInfo is null on {name}");
             return;
         }
 
+        // ========== WEAPON 관련 초기화 ==========
         weaponCooldown = info.CooldownTime;
-        skills = GetComponents<ISkill>();
-        // 배열 크기 초기화 추가
-        skillCastingTime = new float[skills.Length];
-
-        for (int i = 0; i < skills.Length; i++)
-        {
-            if (skills.Length != info.Skills.Length)
-            {
-                Debug.LogWarning($"[BaseWeapon] SkillInfo length ({info.Skills.Length}) != ISkill components ({skills.Length}) on {name}");
-            }
-            skills[i].Initialize(info.Skills[i]);
-            skillCastingTime[i] = info.Skills[i].CastingTime;
-        }
-        SkillUIManager.Instance.Initialized(info.Skills); // 스킬 UI 초기화
-        //추가 사항, 공격피해, 프리펩 등
+        weaponInfo = info; // WeaponInfo 저장
+        
+        // 무기 자체 데미지 소스 설정
         var ds = GetComponentInChildren<DamageSource>();
         if (ds != null)
-            ds.DamageAmount = info.weaponDamge;
+            ds.DamageAmount = info.weaponDamage;
 
-        // BaseWeapon.Initialize()에서
+        // ========== SKILL 관련 초기화 ==========
+        skills = GetComponents<ISkill>();
+        skillCastingTime = new float[skills.Length]; // 배열 크기 초기화
+
+        // 스킬 개수 검증
+        if (skills.Length != info.Skills.Length)
+        {
+            Debug.LogWarning($"[BaseWeapon] SkillInfo length ({info.Skills.Length}) != ISkill components ({skills.Length}) on {name}");
+        }
+
+        // 각 스킬 초기화 및 설정
         for (int i = 0; i < skills.Length; i++)
         {
+            skills[i].Initialize(info.Skills[i]);        // 스킬 초기화
+            skillCastingTime[i] = info.Skills[i].CastingTime; // 캐스팅 시간 설정
+            
+            // 스킬 인덱스 자동 설정
             if (skills[i] is BaseSkill baseSkill)
             {
-                baseSkill.skillIndex = i; // 자동으로 인덱스 설정
+                baseSkill.skillIndex = i;
             }
         }
+
+        // 스킬 UI 초기화
+        SkillUIManager.Instance.Initialized(info.Skills);
     }
 
     /// <summary>

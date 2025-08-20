@@ -11,6 +11,9 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     private bool attackButtonDown = false;
     private int? currentActiveSkillIndex = null;
 
+    // 현재 무기에 접근할 수 있는 public 프로퍼티
+    public IWeapon CurrentWeapon => currentActiveWeapon;
+
     protected override void Awake()
     {
         base.Awake();

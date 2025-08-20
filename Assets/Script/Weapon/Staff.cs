@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class Staff : BaseWeapon
 {
-    [SerializeField] private Weaponinfo weaponinfo;
+    [SerializeField] private WeaponInfo weaponinfo;
     [SerializeField] private GameObject magicLaser;
     [SerializeField] private Transform magicLaserSpawnPoint;
     private Animator anim;
@@ -54,7 +54,7 @@ public class Staff : BaseWeapon
         BaseSkill.IsCasting = false; // 스킬 사용 완료 상태로 변경
         Debug.Log("Staff: Casting Ended");
     }
-    public Weaponinfo GetWeaponInfo()
+    public WeaponInfo GetWeaponInfo()
     {
         return weaponinfo;
     }

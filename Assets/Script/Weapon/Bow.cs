@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class Bow : BaseWeapon
 {
-    [SerializeField] Weaponinfo weaponinfo;
+    [SerializeField] WeaponInfo weaponinfo;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform arrowspawnPoint;
     readonly int FIRE_HASH = Animator.StringToHash("Fire");
@@ -27,7 +27,7 @@ public class Bow : BaseWeapon
 
         BaseWeapon.IsAttacking = false; // 공격 완료 상태 설정
     }
-    public Weaponinfo GetWeaponInfo()
+    public WeaponInfo GetWeaponInfo()
     {
         return weaponinfo;
     }

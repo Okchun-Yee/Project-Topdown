@@ -10,7 +10,7 @@ public enum WeaponCategory
 }
 
 [CreateAssetMenu(menuName = "New Weapon")]
-public class Weaponinfo : ScriptableObject
+public class WeaponInfo : ScriptableObject
 {
     [Header("Prefab")]
     [SerializeField] private GameObject weaponPrefab;
@@ -18,7 +18,7 @@ public class Weaponinfo : ScriptableObject
     [SerializeField] private WeaponCategory category;
     [SerializeField] private float weaponCooldown;
     public SkillInfo[] Skills;  // 스킬 정보 배열
-    public int weaponDamge;
+    public int weaponDamage;
     public float weaponRange;
 
     /// <summary>인스턴스화할 무기 프리팹</summary>

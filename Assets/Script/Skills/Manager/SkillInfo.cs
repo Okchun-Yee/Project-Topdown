@@ -16,8 +16,8 @@ public class SkillInfo : ScriptableObject
     [SerializeField] private float skillCooldown;
     public float CastingTime; // 스킬 시전 시간
     public SkillCategory skillCategory; // 스킬 카테고리
-    public int skillDamage;
-    [Header("연출")]
+    public float skillDamage;
+    [Header("Icon")]
     [SerializeField] private Sprite icon;               // UI용 아이콘
 
     //공격 쿨다운 시간(초)

@@ -90,4 +90,32 @@ public abstract class BaseSkill : MonoBehaviour, ISkill
     }
 
     // OnEnable/OnDisable에서 자동 구독하지 않도록 제거
+
+    // 무기 기본 공격력 가져오기
+    protected float GetWeaponDamage()
+    {
+        // ActiveWeapon에서 현재 무기의 WeaponInfo 접근
+        // weaponDamage 반환
+        float weaponDamage = 0f;
+        if (ActiveWeapon.Instance != null)
+        {
+            weaponDamage = ActiveWeapon.Instance.CurrentWeapon.weaponInfo.weaponDamage;
+        }
+        return weaponDamage;
+    }
+
+    // 최종 데미지 계산 (무기 공격력 × 스킬 계수)
+    protected float CalculateFinalDamage()
+    {
+        float weaponDamage = GetWeaponDamage();
+        float skillMultiplier = SkillInfo.skillDamage / 100f;
+        return weaponDamage * skillMultiplier;
+    }
+
+    // VFX/Projectile에 데미지 설정
+    protected void SetupDamageSource(GameObject target, float damage)
+    {
+        DamageSource damageSource = target.GetComponent<DamageSource>();
+        damageSource?.Initialize(damage);
+    }
 }
