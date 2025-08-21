@@ -36,6 +36,8 @@ public class Staff : BaseWeapon
         // 마법 레이저 생성
         GameObject newLaser = Instantiate(magicLaser, magicLaserSpawnPoint.position, Quaternion.identity);
         newLaser.GetComponent<MagicLaser>().UpdateLaserRange(weaponinfo.weaponRange);
+
+        newLaser.GetComponent<DamageSource>()?.SetDamage(weaponinfo.weaponDamage); // 데미지 설정
     }
     public void ResetAttackState()
     {

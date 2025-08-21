@@ -75,6 +75,30 @@ public class Projectile : BaseVFX
                     // === 스킬별 추가 효과 이벤트 호출 ===
                     OnEnemyHit?.Invoke(transform.position, enemyHealth);
                 }
+                else if (enemyHealth && !isEnemyProjectile)
+                {
+                    // DamageSource에서 현재 설정된 데미지 우선 사용
+                    float currentDamage = damageSource.DamageAmount;
+                    
+                    if (currentDamage > 1f) // 무기에서 설정된 데미지가 있으면
+                    {
+                        damageSource.DealInstantDamage(currentDamage, enemyHealth);
+                        Debug.Log($"Projectile: Used weapon damage {currentDamage}");
+                    }
+                    else if (isInitialized) // 스킬에서 초기화된 데미지
+                    {
+                        damageSource.DealInstantDamage(assignedDamage, enemyHealth);
+                        Debug.Log($"Projectile: Used skill damage {assignedDamage}");
+                    }
+                    else // 기본값
+                    {
+                        damageSource.DealInstantDamage(1f, enemyHealth);
+                        Debug.Log($"Projectile: Used default damage 1");
+                    }
+                    
+                    // === 스킬별 추가 효과 이벤트 호출 ===
+                    OnEnemyHit?.Invoke(transform.position, enemyHealth);
+                }
                 
                 Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
                 Destroy(gameObject);

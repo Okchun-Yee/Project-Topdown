@@ -34,6 +34,7 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
         // ========== WEAPON 관련 초기화 ==========
         weaponCooldown = info.CooldownTime;
         weaponInfo = info; // WeaponInfo 저장
+        Debug.Log($"Weapon Damage: {info.weaponDamage}"); // 디버그 로그 추가
         
         // 무기 자체 데미지 소스 설정
         var ds = GetComponentInChildren<DamageSource>();

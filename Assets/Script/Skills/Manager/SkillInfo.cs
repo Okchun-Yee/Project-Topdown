@@ -16,6 +16,7 @@ public class SkillInfo : ScriptableObject
     [SerializeField] private float skillCooldown;
     public float CastingTime; // 스킬 시전 시간
     public SkillCategory skillCategory; // 스킬 카테고리
+    [Header("Damage ( %)")]
     public float skillDamage;
     [Header("Icon")]
     [SerializeField] private Sprite icon;               // UI용 아이콘

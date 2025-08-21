@@ -79,6 +79,11 @@ public class Sword_02 : BaseWeapon
         {
             // 콜라이더 활성화/비활성화
             comboColliders[i].gameObject.SetActive(i == index);
+            if (i == index)
+            {
+                DamageSource damageSource = comboColliders[i].GetComponent<DamageSource>();
+                damageSource?.SetDamage(weaponInfo.weaponDamage); // 데미지 설정
+            }
             activeColliderIndex = index;
         }
     }
