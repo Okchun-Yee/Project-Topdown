@@ -2,34 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosiveVFX : MonoBehaviour
+public class ExplosiveVFX : BaseVFX
 {
+    [Header("폭발 설정")]
     [SerializeField] private float explosionRadius = 1f;
-    [SerializeField] private int damageAmount = 1;
 
-    private void Start()
+    protected override void OnVFXInitialized()
     {
-        Explode();
-    }
-
-    private void Explode()
-    {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-        foreach (var hit in hits)
-        {
-            if (hit.CompareTag("Enemy"))
-            {
-                EnemyHealth enemy = hit.GetComponent<EnemyHealth>();
-                enemy?.TakeDamage(damageAmount);
-            }
-            else if (hit.CompareTag("Player"))
-            {
-                PlayerHealth player = hit.GetComponent<PlayerHealth>();
-                player?.TakeDamage(damageAmount, transform);
-            }
-            // 필요시 다른 Tag도 추가
-        }
-        // 폭발 이펙트 후 오브젝트 제거
+        // DamageSource의 범위 데미지 메서드 직접 호출
+        damageSource.DealAreaDamage(assignedDamage, explosionRadius);
+        
+        Debug.Log($"ExplosiveVFX: Exploded with damage {assignedDamage} in radius {explosionRadius}");
     }
 
     private void OnDrawGizmos()

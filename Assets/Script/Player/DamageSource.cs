@@ -66,19 +66,4 @@ public class DamageSource : MonoBehaviour
             elapsed += interval;
         }
     }
-
-    // 기존 트리거 시스템 유지 (하위 호환성)
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
-        if (enemyHealth != null)
-        {
-            DealInstantDamage(damageAmount, enemyHealth);
-        }
-        
-        if (collision.gameObject.GetComponent<Projectile>())
-        {
-            collision.gameObject.GetComponent<Projectile>().DeleteProjectile();
-        }
-    }
 }
