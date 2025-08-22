@@ -26035,6 +26035,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2567465923816974520, guid: 0d0c70c88f634f84caf90cf113ab60f1, type: 3}
+      propertyPath: knockBackThrust
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5592072063393469953, guid: 0d0c70c88f634f84caf90cf113ab60f1, type: 3}
       propertyPath: m_Name
       value: Temp

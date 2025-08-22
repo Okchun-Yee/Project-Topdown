@@ -15,5 +15,5 @@ MonoBehaviour:
   skillCooldown: 3
   CastingTime: 0
   skillCategory: 1
-  skillDamage: 3
+  skillDamage: 110
   icon: {fileID: -1645803735, guid: 758585df94498284bb94f133629102ac, type: 3}

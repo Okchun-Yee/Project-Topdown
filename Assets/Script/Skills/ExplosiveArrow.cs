@@ -30,15 +30,11 @@ public class ExplosiveArrow : BaseSkill
         // 사거리 설정
         projectile.UpdateProjectilRange(projectileRange);
         
-        // === 기존에 누락된 데미지 초기화 ===
-        float finalDamage = CalculateFinalDamage(); // BaseSkill의 계산식 사용
-        projectile.Initialize(finalDamage);
+        projectile.Initialize(GetWeaponDamage());   //Initialize로 데미지 설정, 폭발 화살의 화살은 무기 기본 데미지
         
         // === 이벤트 구독 방식 추가 ===
         projectile.OnEnemyHit += OnArrowHitEnemy;
         projectile.OnObstacleHit += OnArrowHitObstacle;
-        
-        Debug.Log($"ExplosiveArrow: Created with damage {finalDamage}");
     }
 
     /// <summary>
@@ -66,8 +62,8 @@ public class ExplosiveArrow : BaseSkill
         {
             GameObject explosionObj = Instantiate(explosiveVFXPrefab, position, Quaternion.identity);
             ExplosiveVFX explosion = explosionObj.GetComponent<ExplosiveVFX>();
-            
-            float explosionDamage = CalculateFinalDamage() * 0.8f; // 폭발은 80% 데미지
+
+            float explosionDamage = CalculateFinalDamage(); // 폭발 데미지 (무기 공격력 * 스킬 계수)
             explosion?.Initialize(explosionDamage);
         }
     }

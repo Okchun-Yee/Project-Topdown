@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParabolaProjectile : MonoBehaviour
+public class ParabolaProjectile : BaseVFX
 {
     [SerializeField] private float duration = 1f;
     [SerializeField] private float heightY = 3f;
@@ -10,9 +10,15 @@ public class ParabolaProjectile : MonoBehaviour
     [SerializeField] private AnimationCurve animCurve;
     [SerializeField] private GameObject impactVFXPrefab;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         SetTargetByMousePosition(Range);
+    }
+    protected override void OnVFXInitialized()
+    {
+        Debug.Log($"ParabolaProjectile: Initialized with damage {assignedDamage}");
+        // 초기화 시 특별한 동작 없음 (포물선 시작은 Start()에서)
     }
 
     // 마우스 위치를 기준으로, 스킬 범위 내면 그대로, 범위 밖이면 최대 범위로 타겟 지정
@@ -36,6 +42,7 @@ public class ParabolaProjectile : MonoBehaviour
     }
 
 
+    //포물선 궤적 계산 코루틴
     private IEnumerator ProjectileCurveRoutine(Vector3 startPos, Vector3 endPos)
     {
         float timePassed = 0f;
@@ -70,16 +77,21 @@ public class ParabolaProjectile : MonoBehaviour
             }
             else { angle = Mathf.Lerp(0f, endAngle, (linearT - 0.5f) * 2f); }
             // 무기 회전값을 더해서 적용
-            if (baseAngle > 90f && baseAngle < 270f) { angle = 180f - angle;} // 왼쪽 방향일 때 각도 보정
+            if (baseAngle > 90f && baseAngle < 270f) { angle = 180f - angle; } // 왼쪽 방향일 때 각도 보정
             transform.rotation = Quaternion.Euler(0, 0, angle);
 
-            // 각도 로그 출력
-            //Debug.Log($"[ParabolaProjectile] Current Angle: {angle}");
             yield return null;
         }
-
-        if (impactVFXPrefab != null)
-            Instantiate(impactVFXPrefab, transform.position, Quaternion.identity);
+        Impact();
         Destroy(gameObject);
+    }
+
+    private void Impact()
+    {
+        if (impactVFXPrefab != null)
+        {
+            GameObject impactVFX = Instantiate(impactVFXPrefab, transform.position, Quaternion.identity);
+            impactVFX.GetComponent<LaningProjectile>().Initialize(assignedDamage * 0.2f);
+        }
     }
 }

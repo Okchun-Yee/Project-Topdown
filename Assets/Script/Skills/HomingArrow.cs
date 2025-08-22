@@ -24,6 +24,10 @@ public class HomingArrow : BaseSkill
         {
             GameObject arrow = Instantiate(arrowPrefab, spawnPoint.position, ActiveWeapon.Instance.transform.rotation);
             arrow.GetComponent<Projectile>().UpdateProjectilRange(projectileRange);
+            
+            // === 데미지 초기화 ===
+            float finalDamage = CalculateFinalDamage(); // BaseSkill의 계산식 사용
+            arrow.GetComponent<Projectile>().Initialize(finalDamage);
         }
     }
 }
