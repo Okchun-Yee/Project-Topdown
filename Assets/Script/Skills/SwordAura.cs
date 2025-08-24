@@ -38,6 +38,7 @@ public class SwordAura : BaseSkill
         // 오라 애니메이션 프리팹 생성 (마우스 방향)
         GameObject auraInstance = Instantiate(auraPrefab, auraSpawnPoint.position, auraRotation);
         auraInstance.GetComponent<Projectile>().UpdateProjectilRange(skillRange);
+        auraInstance.GetComponent<Projectile>().Initialize(CalculateFinalDamage()); // 데미지 설정
 
         yield return null;
     }

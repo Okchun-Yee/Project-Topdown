@@ -19,5 +19,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 00b02156d2cc4d9409c0b1fc50d74999, type: 2}
   - {fileID: 11400000, guid: febd0cfd7c4d8ae4cbb0883000d6bc51, type: 2}
   - {fileID: 11400000, guid: 203f1771e3fb6804a81c829cfc957c73, type: 2}
-  weaponDamge: 2
+  weaponDamage: 12
   weaponRange: 6

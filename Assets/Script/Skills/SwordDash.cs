@@ -33,6 +33,9 @@ public class SwordDash : BaseSkill
 
         // SwordDash 충돌 및 UI 시동 로직
         dashCollider.gameObject.SetActive(true);
+        //Dash 데미지 지정
+        dashCollider.GetComponent<DamageSource>()?.SetDamage(CalculateFinalDamage());
+
         SkillUIManager.Instance.OnSkillUsed(skillIndex); // 스킬 사용 UI 업데이트
         StartCoroutine(PerformDash());
     }

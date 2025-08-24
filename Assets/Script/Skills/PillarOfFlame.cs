@@ -40,6 +40,8 @@ public class PillarOfFlame : BaseSkill
     }
     protected override void OnChargingCompleted()
     {
+        if (anim == null) return; // null 체크 추가
+
         anim.SetBool(PILLAR_HASH, false); // 애니메이션 트리거 설정
         sliderShown = false;
         // 차징 취소 시 프리팹 삭제
@@ -52,6 +54,8 @@ public class PillarOfFlame : BaseSkill
     }
     protected override void OnChargingCanceled()
     {
+        if (anim == null) return; // null 체크 추가
+
         BaseSkill.IsCasting = false; // 스킬 사용 완료 상태로 변경
         anim.SetBool(PILLAR_HASH, false); // 애니메이션 트리거 설정
         sliderShown = false;
@@ -65,6 +69,8 @@ public class PillarOfFlame : BaseSkill
     // 차징 중(프로그레스) 이벤트에서 프리팹 최초 1회 생성
     protected override void OnChargingProgress(float elapsed, float duration)
     {
+        if (anim == null) return; // null 체크 추가
+        
         anim.SetBool(PILLAR_HASH, true);
 
         if (!sliderShown)
@@ -84,7 +90,9 @@ public class PillarOfFlame : BaseSkill
         Debug.Log("PillarOfFlame Activated");
         // 스킬 사용 UI 업데이트
         SkillUIManager.Instance.OnSkillUsed(skillIndex); // 예시로 0번 스킬로 업데이트
-        Instantiate(pillarPrefab, spawnPos, Quaternion.identity); // 불기둥 생성
+        GameObject pillarInstance = Instantiate(pillarPrefab, spawnPos, Quaternion.identity); // 불기둥 생성
+
+        pillarInstance.GetComponent<ExplosiveVFX>().Initialize(CalculateFinalDamage()); // 데미지 설정
     }
 
     // 마우스 위치를 기준으로 프리팹 생성 위치를 반환하는 함수
@@ -98,5 +106,24 @@ public class PillarOfFlame : BaseSkill
         float clampedDist = Mathf.Clamp(dist, minRange, maxRange);
 
         return playerPos + dir * clampedDist;
+    }
+
+    private void OnDestroy()
+    {
+        // 이벤트 구독 해제
+        UnsubscribeSkillEvents();
+        
+        // 차징 상태 강제 종료
+        if (BaseSkill.IsCasting)
+        {
+            BaseSkill.IsCasting = false;
+        }
+        
+        // 마법진 인스턴스 정리
+        if (magicCircleInstance != null)
+        {
+            Destroy(magicCircleInstance);
+            magicCircleInstance = null;
+        }
     }
 }

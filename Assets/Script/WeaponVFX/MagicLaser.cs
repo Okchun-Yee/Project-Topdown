@@ -20,9 +20,22 @@ public class MagicLaser : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<Indestructible>() && !collision.isTrigger)
+        // 기존 장애물 충돌 처리
+        if (collision.gameObject.GetComponent<Indestructible>() && !collision.isTrigger)
         {
             isGrowing = false;
+        }
+        
+        // Enemy 충돌 시 데미지 처리 추가
+        if (!collision.isTrigger)
+        {
+            EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                // DamageSource를 통해 데미지 처리
+                DamageSource damageSource = GetComponent<DamageSource>();
+                damageSource.DealInstantDamage(damageSource.DamageAmount, enemyHealth);
+            }
         }
     }
     public void UpdateLaserRange(float range)

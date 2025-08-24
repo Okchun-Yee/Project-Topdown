@@ -156,7 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f939b5ea6abfbe34297a7a0ba4d4f317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponinfo: {fileID: 11400000, guid: 4a413fa8014a86348bb238a8ecbdd25c, type: 2}
   magicLaser: {fileID: 5185998158627336787, guid: d80f93ae69cac464fb89135e1bedc082, type: 3}
   magicLaserSpawnPoint: {fileID: 4149301015987597233}
 --- !u!114 &13511415444652351
@@ -192,6 +191,7 @@ MonoBehaviour:
   laserPrefab: {fileID: 5185998158627336787, guid: f11670251926a9c4eb8053fc2765d21c, type: 3}
   laserSpawnPoint: {fileID: 4149301015987597233}
   maxRange: 4
+  damageInterval: 0.4
 --- !u!114 &379411011295906217
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -37,6 +37,7 @@ public class FireBall : BaseSkill
         // 화염구 프리팹 생성 (마우스 방향)
         GameObject fireBallInstance = Instantiate(fireBallPrefab, fireBallSpawnPoint.position, fireBallRotation);
         fireBallInstance.GetComponent<Projectile>().UpdateProjectilRange(projectileRange);
+        fireBallInstance.GetComponent<Projectile>().Initialize(CalculateFinalDamage()); // 데미지 설정
 
         yield return null;
     }

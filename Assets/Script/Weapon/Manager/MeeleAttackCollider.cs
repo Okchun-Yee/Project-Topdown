@@ -10,10 +10,6 @@ public class MeeleAttackCollider : MonoBehaviour
     private void Awake()
     {
         damageSource = GetComponent<DamageSource>();
-        if (damageSource == null)
-        {
-            damageSource = gameObject.AddComponent<DamageSource>();
-        }
     }
 
     private void OnEnable()

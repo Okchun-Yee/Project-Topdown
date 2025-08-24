@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 8221582351804230418}
   - component: {fileID: 4997164683633704647}
   - component: {fileID: 4293865246173311600}
+  - component: {fileID: 7936752158376075804}
   m_Layer: 0
   m_Name: CrossSwordCollider
   m_TagString: Untagged
@@ -531,6 +532,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
+--- !u!114 &7936752158376075804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5345512126221106408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38341b5a5a8e48e4580684036219a13b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5940824121705188048
 GameObject:
   m_ObjectHideFlags: 0

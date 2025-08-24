@@ -8,7 +8,6 @@ using UnityEngine;
 /// </summary>
 public class Staff : BaseWeapon
 {
-    [SerializeField] private WeaponInfo weaponinfo;
     [SerializeField] private GameObject magicLaser;
     [SerializeField] private Transform magicLaserSpawnPoint;
     private Animator anim;
@@ -35,9 +34,9 @@ public class Staff : BaseWeapon
     {
         // 마법 레이저 생성
         GameObject newLaser = Instantiate(magicLaser, magicLaserSpawnPoint.position, Quaternion.identity);
-        newLaser.GetComponent<MagicLaser>().UpdateLaserRange(weaponinfo.weaponRange);
+        newLaser.GetComponent<MagicLaser>().UpdateLaserRange(weaponInfo.weaponRange);
 
-        newLaser.GetComponent<DamageSource>()?.SetDamage(weaponinfo.weaponDamage); // 데미지 설정
+        newLaser.GetComponent<DamageSource>()?.SetDamage(weaponInfo.weaponDamage); // ✅ 이미 구현됨
     }
     public void ResetAttackState()
     {
@@ -55,10 +54,6 @@ public class Staff : BaseWeapon
     {
         BaseSkill.IsCasting = false; // 스킬 사용 완료 상태로 변경
         Debug.Log("Staff: Casting Ended");
-    }
-    public WeaponInfo GetWeaponInfo()
-    {
-        return weaponinfo;
     }
     private void MouseFollowWithOffset()
     {

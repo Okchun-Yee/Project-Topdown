@@ -116,6 +116,6 @@ public abstract class BaseSkill : MonoBehaviour, ISkill
     protected void SetupDamageSource(GameObject target, float damage)
     {
         DamageSource damageSource = target.GetComponent<DamageSource>();
-        damageSource?.Initialize(damage);
+        damageSource?.Initialize(damage); 
     }
 }

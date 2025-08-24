@@ -43,24 +43,24 @@ public class SwordCross : BaseSkill
     private IEnumerator PerformSkill()
     {
         BaseSkill.IsCasting = true; // 스킬 사용 중 상태 설정
-        // 콜라이더 활성화
-        weaponCollider.gameObject.SetActive(true);
-
+        
         for (int i = 0; i < slashcount; i++)
         {
+             // 콜라이더 활성화
+            weaponCollider.gameObject.SetActive(true);
             anim.SetTrigger(SKILL2_HASH); // 애니메이션 트리거 설정
             
             // 참격 애니메이션 프리팹 생성
             skill2_Anim = Instantiate(skill2_AnimPrefab, skill2_SpawnPoint.position, Quaternion.identity);
             skill2_Anim.transform.parent = this.transform.parent; // 참격 애니메이션을 Player의 자식으로 설정
+            weaponCollider.GetComponent<DamageSource>()?.SetDamage(CalculateFinalDamage());
 
             dashMove.Dash(dashDir, dashForce, 0.15f);
 
             // 콜라이더 비활성화 및 애니메이션 제거
             yield return new WaitForSeconds(0.5f); // 애니메이션 지속 시간에 맞춰 조정
+            weaponCollider.gameObject.SetActive(false);
         }
-
-        weaponCollider.gameObject.SetActive(false);
         BaseSkill.IsCasting = false; // 스킬 사용 완료 상태 설정
         Destroy(skill2_Anim);
     }
