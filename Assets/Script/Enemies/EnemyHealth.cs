@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 3;
+    [SerializeField] private float maxHealth = 3;
     [SerializeField] private GameObject deathVFXPrefab;
     [SerializeField] private float knockBackThrust = 15f;
-    private int curHealth;
+    public float curHealth;
     private Knockback knockback;
     private Flash flash;
     private void Awake()
@@ -19,12 +19,13 @@ public class EnemyHealth : MonoBehaviour
     {
         curHealth = maxHealth;
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         curHealth -= damage;
         knockback.GetKnockedBack(PlayerController.Instance.transform, knockBackThrust);
         StartCoroutine(flash.FlashRoutine());
         StartCoroutine(CheckDetectDeathRoutine());
+        Debug.Log($"[EnemyHealth] Took {damage} damage");
     }
     private IEnumerator CheckDetectDeathRoutine()
     {

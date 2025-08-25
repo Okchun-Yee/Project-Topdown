@@ -31,17 +31,14 @@ public class ActiveInventory : MonoBehaviour
     }
     private void OnEnable()
     {
-        //Debug.Log($"[ActiveInventory] OnEnable called (InstanceID: {GetInstanceID()})");
         StartCoroutine(SubscribeWhenReady());
     }
 
     private void OnDestroy()
     {
-        //Debug.Log($"[ActiveInventory] OnDestroy called (InstanceID: {GetInstanceID()})");
         if (WeaponManager.Instance != null)
         {
             WeaponManager.Instance.onCategoryIconChanged -= UpdateIcon;
-            //Debug.Log("[ActiveInventory] Unsubscribed from WeaponManager icon change event (OnDestroy)");
         }
     }
 
@@ -50,13 +47,10 @@ public class ActiveInventory : MonoBehaviour
         while (WeaponManager.Instance == null)
             yield return null;
 
-        //Debug.Log($"[ActiveInventory] Subscribing to WeaponManager (WeaponManager.InstanceID: {WeaponManager.Instance.GetInstanceID()})");
         WeaponManager.Instance.onCategoryIconChanged += UpdateIcon;
-        //Debug.Log("[ActiveInventory] Subscribed to WeaponManager icon change event");
     }
     private void UpdateIcon(Sprite newIcon)
     {
-        //Debug.Log($"[ActiveInventory] UpdateIcon called (sprite: {(newIcon != null ? newIcon.name : "null")})");
         curWeaponImage.sprite = newIcon;
         curWeaponImage.enabled = newIcon != null;
     }

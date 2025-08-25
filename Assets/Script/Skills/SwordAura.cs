@@ -16,19 +16,12 @@ public class SwordAura : BaseSkill
     {
         anim = GetComponent<Animator>();
     }
-    private void Start()
-    {
-        if (auraSpawnPoint == null)
-        {
-            Debug.LogError("Aura SpawnPoint not found!");
-        }
-    }
-
+    
     protected override void OnSkillActivated()
     {
         Debug.Log("SwordAura Activated");
         anim.SetTrigger(AURA_HASH); // 애니메이션 트리거 설정
-        SkillUIManager.Instance.OnSkillUsed(2); // 스킬 사용 UI 업데이트
+        SkillUIManager.Instance.OnSkillUsed(skillIndex); // 스킬 사용 UI 업데이트
         StartCoroutine(PerformAura());
 
     }
@@ -45,6 +38,7 @@ public class SwordAura : BaseSkill
         // 오라 애니메이션 프리팹 생성 (마우스 방향)
         GameObject auraInstance = Instantiate(auraPrefab, auraSpawnPoint.position, auraRotation);
         auraInstance.GetComponent<Projectile>().UpdateProjectilRange(skillRange);
+        auraInstance.GetComponent<Projectile>().Initialize(CalculateFinalDamage()); // 데미지 설정
 
         yield return null;
     }

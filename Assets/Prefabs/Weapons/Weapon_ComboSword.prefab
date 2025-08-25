@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 4405329959767897130}
   - component: {fileID: 316696644030092221}
   - component: {fileID: 3930728007750622129}
+  - component: {fileID: 6882975984066651626}
   m_Layer: 0
   m_Name: Weapon Collider_2
   m_TagString: Untagged
@@ -128,6 +129,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
+--- !u!114 &6882975984066651626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775632356667247449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38341b5a5a8e48e4580684036219a13b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4215336444260907637
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +152,7 @@ GameObject:
   - component: {fileID: 6263439819670976258}
   - component: {fileID: 8551673722245011203}
   - component: {fileID: 8340774138958058009}
+  - component: {fileID: 4632622776982156581}
   m_Layer: 0
   m_Name: Weapon Collider_1
   m_TagString: Untagged
@@ -225,6 +239,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
+--- !u!114 &4632622776982156581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215336444260907637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38341b5a5a8e48e4580684036219a13b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4651361025697121399
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +267,7 @@ GameObject:
   - component: {fileID: 3938156668023680887}
   - component: {fileID: 7586359770700808095}
   m_Layer: 0
-  m_Name: Weapon_Sword_2
+  m_Name: Weapon_ComboSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -373,22 +399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3ef3c1887785f48bf139260e436988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillInfo: {fileID: 11400000, guid: 458917f8c5c4e5f4fa492d5ff09f1e4e, type: 2}
-  onSkillUsed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 8a3ef3c1887785f48bf139260e436988, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 0
   skillIndex: 0
   dashForce: 30
   dashAnimPrefab: {fileID: 3401198425847193656, guid: a2a3fc7ff8822cc45a937ee4bb5bdfc6, type: 3}
@@ -404,10 +414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7f3ddebb167184ba01594384b58e7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillInfo: {fileID: 11400000, guid: a5d3b49e5ed4ac547888abc0c3744317, type: 2}
-  onSkillUsed:
-    m_PersistentCalls:
-      m_Calls: []
   skillIndex: 0
   slashcount: 2
   skill2_AnimPrefab: {fileID: 655316301406190869, guid: 755ac857bca6f7348a9c612d05f7a7dc, type: 3}
@@ -424,10 +430,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864922e0f7ddf6c47b80244bb9116cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillInfo: {fileID: 11400000, guid: 80dfc25eef2fe44428585ee8ce2e9491, type: 2}
-  onSkillUsed:
-    m_PersistentCalls:
-      m_Calls: []
   skillIndex: 0
   auraPrefab: {fileID: 876333789422812387, guid: cfb6e24f44ca3904d8a3ee5239630c43, type: 3}
   skillRange: 12
@@ -443,6 +445,7 @@ GameObject:
   - component: {fileID: 8221582351804230418}
   - component: {fileID: 4997164683633704647}
   - component: {fileID: 4293865246173311600}
+  - component: {fileID: 7936752158376075804}
   m_Layer: 0
   m_Name: CrossSwordCollider
   m_TagString: Untagged
@@ -529,6 +532,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
+--- !u!114 &7936752158376075804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5345512126221106408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38341b5a5a8e48e4580684036219a13b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5940824121705188048
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +555,7 @@ GameObject:
   - component: {fileID: 4217721841102557820}
   - component: {fileID: 4178102820775857873}
   - component: {fileID: 7104480636209735151}
+  - component: {fileID: 901181030101868919}
   m_Layer: 0
   m_Name: Weapon Collider_3
   m_TagString: Untagged
@@ -610,3 +626,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
+--- !u!114 &901181030101868919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5940824121705188048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38341b5a5a8e48e4580684036219a13b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -2,65 +2,75 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaningProjectile : MonoBehaviour
+public class LaningProjectile : BaseVFX
 {
-    [SerializeField] float totalDuration = 5.2f;
-    [SerializeField] float initialDuration = 0.2f; // 첫 0.2초 동안 5의 데미지
+    [Header("지속 데미지 설정")]
+    [SerializeField] private float tickInterval = 1f; // 데미지 간격 (1초마다)
+    [SerializeField] private float totalDuration = 5.2f; // 전체 지속 시간
+    [SerializeField] private float damageRadius = 1f; // 데미지 범위
+    [SerializeField] private LayerMask enemyLayers = -1; // 적 레이어
+
     private SpriteFade spriteFader; 
-    // private CapsuleCollider2D capsuleCollider;
-    private float _spawnTime;
-    private void Awake()
+    private CapsuleCollider2D capsuleCollider;
+
+    protected override void Awake()
     {
+        base.Awake();
         spriteFader = GetComponent<SpriteFade>();
-        _spawnTime = Time.time;
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
-    private void Start()
-    {
-        StartCoroutine(spriteFader.SlowFadeRoutine());
-        StartCoroutine(DamageRoutine());
-        Invoke("DisableCollider", totalDuration + 0.1f); // 1초 후에 콜라이더 비활성화
-    }
-    private IEnumerator DamageRoutine()
-    {
-        // 첫 0.2초 동안 5의 데미지
-        float tickDuration = 1f;
-        CapsuleCollider2D col = GetComponent<CapsuleCollider2D>();
-        col.enabled = true;
 
-        // 첫 0.2초 동안 5의 데미지
-        float timer = 0f;
-        while (timer < initialDuration)
-        {
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        // 이후 5초 동안 1초마다 1의 데미지
-        while (timer < totalDuration)
-        {
-            yield return new WaitForSeconds(tickDuration);
-            timer += tickDuration;
-        }
-        col.enabled = false;
-    }
-    private void OnTriggerEnter2D(Collider2D collider)
+    protected override void Start()
     {
-        EnemyHealth enemyHealth = collider.GetComponent<EnemyHealth>();
-        if (enemyHealth == null) return;
-
-        // 첫 0.2초 동안은 5의 데미지, 이후에는 1의 데미지
-        float timeSinceStart = Time.time - _spawnTime;
-        if (timeSinceStart < initialDuration)
+        base.Start();
+        
+        // 시각적 효과 시작
+        if (spriteFader != null)
         {
-            enemyHealth.TakeDamage(5);
+            StartCoroutine(spriteFader.SlowFadeRoutine());
         }
-        else if (timeSinceStart < totalDuration)
+        
+        // 충돌체 활성화 및 정리 예약
+        capsuleCollider.enabled = true;
+        Invoke(nameof(DisableCollider), totalDuration + 0.1f);
+    }
+
+    protected override void OnVFXInitialized()
+    {
+        // === 지속 데미지 시작 ===
+        if (damageSource != null)
         {
-            enemyHealth.TakeDamage(1);
+            damageSource.StartAreaContinuousDamage(
+                damagePerTick: assignedDamage,
+                interval: tickInterval,
+                duration: totalDuration,
+                radius: damageRadius,
+                targetLayers: enemyLayers
+            );    
         }
     }
+
     private void DisableCollider()
     {
-        GetComponent<CapsuleCollider2D>().enabled = false;
+        if (capsuleCollider != null)
+        {
+            capsuleCollider.enabled = false;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // 데미지 범위 시각화
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, damageRadius);
+    }
+
+    private void OnDestroy()
+    {
+        // 오브젝트 파괴 시 지속 데미지 정리
+        if (damageSource != null)
+        {
+            damageSource.StopContinuousDamage();
+        }
     }
 }

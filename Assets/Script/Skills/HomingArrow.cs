@@ -18,12 +18,16 @@ public class HomingArrow : BaseSkill
     {
         Debug.Log("HomingArrow Activated");
         anim.SetTrigger(FIRE_HASH); // 애니메이션 트리거 설정
-        SkillUIManager.Instance.OnSkillUsed(1); // 스킬 사용 UI 업데이트
+        SkillUIManager.Instance.OnSkillUsed(skillIndex); // 스킬 사용 UI 업데이트
 
         foreach (Transform spawnPoint in arrowSpawnPoints)
         {
             GameObject arrow = Instantiate(arrowPrefab, spawnPoint.position, ActiveWeapon.Instance.transform.rotation);
             arrow.GetComponent<Projectile>().UpdateProjectilRange(projectileRange);
+            
+            // === 데미지 초기화 ===
+            float finalDamage = CalculateFinalDamage(); // BaseSkill의 계산식 사용
+            arrow.GetComponent<Projectile>().Initialize(finalDamage);
         }
     }
 }

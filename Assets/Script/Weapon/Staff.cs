@@ -8,7 +8,6 @@ using UnityEngine;
 /// </summary>
 public class Staff : BaseWeapon
 {
-    [SerializeField] private Weaponinfo weaponinfo;
     [SerializeField] private GameObject magicLaser;
     [SerializeField] private Transform magicLaserSpawnPoint;
     private Animator anim;
@@ -17,10 +16,6 @@ public class Staff : BaseWeapon
     private void Awake()
     {
         anim = GetComponent<Animator>();
-    }
-    private void Start()
-    {
-
     }
     private void Update()
     {
@@ -39,20 +34,29 @@ public class Staff : BaseWeapon
     {
         // 마법 레이저 생성
         GameObject newLaser = Instantiate(magicLaser, magicLaserSpawnPoint.position, Quaternion.identity);
-        newLaser.GetComponent<MagicLaser>().UpdateLaserRange(weaponinfo.weaponRange);
+        newLaser.GetComponent<MagicLaser>().UpdateLaserRange(weaponInfo.weaponRange);
+
+        newLaser.GetComponent<DamageSource>()?.SetDamage(weaponInfo.weaponDamage); // ✅ 이미 구현됨
     }
     public void ResetAttackState()
     {
         BaseWeapon.IsAttacking = false; // 공격 완료 상태로 변경
     }
-    public Weaponinfo GetWeaponInfo()
+
+    // Animation Event용 함수들
+    public void StartCasting()
     {
-        return weaponinfo;
+        BaseSkill.IsCasting = true; // 스킬 사용 중 상태 설정
+        Debug.Log("Staff: Casting Started");
+    }
+
+    public void EndCasting()
+    {
+        BaseSkill.IsCasting = false; // 스킬 사용 완료 상태로 변경
+        Debug.Log("Staff: Casting Ended");
     }
     private void MouseFollowWithOffset()
     {
-        if (BaseSkill.IsCasting) return; // 스킬 사용 중이거나 공격 중이면 마우스 따라가기 중지
-
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position);
 

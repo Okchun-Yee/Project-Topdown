@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7986262083650478282}
   - component: {fileID: 6039740286906919514}
   - component: {fileID: 7503834369943478882}
+  - component: {fileID: 1526058276137941925}
   m_Layer: 0
   m_Name: RainArrow
   m_TagString: Untagged
@@ -125,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748408049f3594c48b88cac8b7d47b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifetime: 2
+  autoDestroy: 1
   duration: 0.6
   heightY: 3
   Range: 12
@@ -153,3 +156,16 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   impactVFXPrefab: {fileID: 6986754662026502157, guid: 2cdbbc6f75e1d7147ab04af55a0528d4, type: 3}
+--- !u!114 &1526058276137941925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825707573823667030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f32d33744936d24a908a4a31d11c00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1

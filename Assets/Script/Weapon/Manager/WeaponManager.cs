@@ -19,12 +19,12 @@ public class WeaponManager : Singleton<WeaponManager>
         base.Awake();
         //Debug.Log($"[WeaponManager] Awake called (InstanceID: {GetInstanceID()})");
     }
-    public void EquipWeapon(Weaponinfo info)
+    public void EquipWeapon(WeaponInfo info)
     {
         //Debug.Log($"[WeaponManager] EquipWeapon called (InstanceID: {GetInstanceID()})");
         if (info == null)
         {
-            Debug.LogError("[WeaponManager] Weaponinfo is null");
+            Debug.LogError("[WeaponManager] WeaponInfo is null");
             return;
         }
         // 1) 기존 장착 무기 제거

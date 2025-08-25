@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class Bow : BaseWeapon
 {
-    [SerializeField] Weaponinfo weaponinfo;
+    [SerializeField] WeaponInfo weaponinfo;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform arrowspawnPoint;
     readonly int FIRE_HASH = Animator.StringToHash("Fire");
@@ -25,9 +25,13 @@ public class Bow : BaseWeapon
         GameObject newArrow = Instantiate(arrowPrefab, arrowspawnPoint.position, ActiveWeapon.Instance.transform.rotation);
         newArrow.GetComponent<Projectile>().UpdateProjectilRange(weaponinfo.weaponRange);
 
+        newArrow.GetComponent<Projectile>().Initialize(weaponinfo.weaponDamage); // Initialize로 데미지 설정
+
+        Debug.Log($"[Bow] weaponinfo.weaponDamage: {weaponinfo.weaponDamage}");
+
         BaseWeapon.IsAttacking = false; // 공격 완료 상태 설정
     }
-    public Weaponinfo GetWeaponInfo()
+    public WeaponInfo GetWeaponInfo()
     {
         return weaponinfo;
     }
