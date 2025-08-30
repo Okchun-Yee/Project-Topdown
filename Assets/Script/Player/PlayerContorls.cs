@@ -279,6 +279,15 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""InventoryUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""1aff4605-9cb7-4285-8e1b-3a72b6bf9641"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -290,6 +299,17 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pickup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7015c63-5162-4a20-a167-fe8a3dbbd1e5"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryUI"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -311,6 +331,7 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_Pickup = m_Inventory.FindAction("Pickup", throwIfNotFound: true);
+        m_Inventory_InventoryUI = m_Inventory.FindAction("InventoryUI", throwIfNotFound: true);
     }
 
     ~@PlayerContorls()
@@ -630,6 +651,7 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Inventory;
     private List<IInventoryActions> m_InventoryActionsCallbackInterfaces = new List<IInventoryActions>();
     private readonly InputAction m_Inventory_Pickup;
+    private readonly InputAction m_Inventory_InventoryUI;
     /// <summary>
     /// Provides access to input actions defined in input action map "Inventory".
     /// </summary>
@@ -645,6 +667,10 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Inventory/Pickup".
         /// </summary>
         public InputAction @Pickup => m_Wrapper.m_Inventory_Pickup;
+        /// <summary>
+        /// Provides access to the underlying input action "Inventory/InventoryUI".
+        /// </summary>
+        public InputAction @InventoryUI => m_Wrapper.m_Inventory_InventoryUI;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -674,6 +700,9 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
             @Pickup.started += instance.OnPickup;
             @Pickup.performed += instance.OnPickup;
             @Pickup.canceled += instance.OnPickup;
+            @InventoryUI.started += instance.OnInventoryUI;
+            @InventoryUI.performed += instance.OnInventoryUI;
+            @InventoryUI.canceled += instance.OnInventoryUI;
         }
 
         /// <summary>
@@ -688,6 +717,9 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
             @Pickup.started -= instance.OnPickup;
             @Pickup.performed -= instance.OnPickup;
             @Pickup.canceled -= instance.OnPickup;
+            @InventoryUI.started -= instance.OnInventoryUI;
+            @InventoryUI.performed -= instance.OnInventoryUI;
+            @InventoryUI.canceled -= instance.OnInventoryUI;
         }
 
         /// <summary>
@@ -793,5 +825,12 @@ public partial class @PlayerContorls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPickup(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "InventoryUI" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInventoryUI(InputAction.CallbackContext context);
     }
 }
