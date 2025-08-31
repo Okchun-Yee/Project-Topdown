@@ -5216,7 +5216,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPage: {fileID: 1979393880145125875}
   inventoryInfo: {fileID: 11400000, guid: 7083b5ac18a951d4ca80a6b17cd499b6, type: 2}
-  inventorySize: 30
+  initItems:
+  - item: {fileID: 11400000, guid: bcb9a8f901b1d5f4798a659cfcfa70ad, type: 2}
+    quantity: 24
+  - item: {fileID: 11400000, guid: 55f8b5a5f6af6e64eabaf02e62450db0, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: bcb9a8f901b1d5f4798a659cfcfa70ad, type: 2}
+    quantity: 32
 --- !u!1001 &223954315
 PrefabInstance:
   m_ObjectHideFlags: 0

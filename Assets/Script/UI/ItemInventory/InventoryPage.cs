@@ -65,10 +65,11 @@ namespace Inventory.UI
         private void HandleSwap(InventoryItem item)
         {
             int index = itemList.IndexOf(item);  // 현재 드래그 중인 아이템 인덱스
-            
+
             if (index == -1)
                 return;  // 아이템이 리스트에 없으면 무시
             OnSwapItems?.Invoke(currentDraggedItemIndex, index);
+            HandleSelected(item);
         }
         // 아이템 정보 리셋
         private void ResetDraggedItem()
@@ -133,6 +134,15 @@ namespace Inventory.UI
             itemDescription.SetDescription(item_Image, item_Name, item_Description);
             DeselectAllItems();
             itemList[itemIndex].Select();
+        }
+
+        public void ResetAllItems()
+        {
+            foreach (InventoryItem item in itemList)
+            {
+                item.ResetData();
+                item.Deselect();
+            }
         }
     }
 }

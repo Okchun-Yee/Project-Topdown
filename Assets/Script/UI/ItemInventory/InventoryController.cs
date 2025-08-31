@@ -12,8 +12,8 @@ namespace Inventory
     {
         [SerializeField] private InventoryPage inventoryPage; // 같은 오브젝트에서 쉽게 참조
         [SerializeField] private InventoryInfo inventoryInfo; // 인벤토리 데이터
+        public List<InventorySlot> initItems = new List<InventorySlot>(); // 초기 아이템 리스트
         private PlayerContorls pc;
-        public int inventorySize = 10;
 
         protected override void Awake()
         {
@@ -30,13 +30,37 @@ namespace Inventory
             if (inventoryPage != null)
             {
                 PrepareUI();
-                //inventoryInfo.Initialized();    // 인벤토리 데이터 초기화
+                PrepareInventoryData();
+            }
+        }
+
+        private void PrepareInventoryData()
+        {
+            inventoryInfo.Initialized();    // 인벤토리 데이터 초기화
+            inventoryInfo.OnInventoryUpdated += UpdateInventoryUI; // 인벤토리 업데이트 이벤트 구독
+            foreach (InventorySlot item in initItems)
+            {
+                if (item.IsEmpty)
+                    continue;
+                inventoryInfo.AddItem(item);
+            }
+        }
+
+        private void UpdateInventoryUI(Dictionary<int, InventorySlot> inventoryState)
+        {
+            inventoryPage.ResetAllItems();
+
+            foreach (var slot in inventoryState)
+            {
+                inventoryPage.UpdateData(slot.Key, // index
+                    slot.Value.item.Item_Image, // sprite
+                    slot.Value.quantity);   // quantity
             }
         }
 
         private void PrepareUI()
         {
-            inventoryPage.Initialize_Inventory(inventorySize);  // 인벤토리 페이지 초기화
+            inventoryPage.Initialize_Inventory(inventoryInfo.Size);  // 인벤토리 페이지 초기화
 
             // UI 이벤트 구독
             inventoryPage.OnDescriptionRequested += HandleDescriptionRequested;
@@ -51,10 +75,16 @@ namespace Inventory
 
         private void HandleDragging(int itemIndex)
         {
+            InventorySlot inventorySlot = inventoryInfo.GetItemAt(itemIndex);
+            if (inventorySlot.IsEmpty)
+                return;
+            
+            inventoryPage.CreateDraggedItem(inventorySlot.item.Item_Image, inventorySlot.quantity); // 아이템 생성
         }
 
         private void HandleSwapItems(int itemIndex1, int itemIndex2)
         {
+            inventoryInfo.SwapItems(itemIndex1, itemIndex2);
         }
 
         private void HandleDescriptionRequested(int itemIndex)

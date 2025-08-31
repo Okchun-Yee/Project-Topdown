@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 namespace Inventory.ItemData
 {
@@ -11,6 +12,7 @@ namespace Inventory.ItemData
         [SerializeField] private List<InventorySlot> inventorySlots;
 
         [field: SerializeField] public int Size { get; private set; } = 10;
+        public event Action<Dictionary<int, InventorySlot>> OnInventoryUpdated; // 인벤토리 업데이트 (딕셔너리 구조 이벤트)
         public void Initialized()
         {
             inventorySlots = new List<InventorySlot>(Size);
@@ -20,8 +22,8 @@ namespace Inventory.ItemData
             }
         }
 
-        // 테스트
-        public void AddItem(ItemInfo item, int quantity)
+        // 외부 아이템 추가 => 내부에서 자세한 데이터 추가
+        private void AddItem(ItemInfo item, int quantity)
         {
             for (int i = 0; i < inventorySlots.Count; i++)
             {
@@ -32,8 +34,15 @@ namespace Inventory.ItemData
                         item = item,
                         quantity = quantity
                     };
+                    return;
                 }
             }
+        }
+
+        // 외부에서 아이템 추가
+        public void AddItem(InventorySlot item)
+        {
+            AddItem(item.item, item.quantity);
         }
 
         // Key(index) : Val(item) 
@@ -53,6 +62,20 @@ namespace Inventory.ItemData
         public InventorySlot GetItemAt(int itemIndex)
         {
             return inventorySlots[itemIndex];
+        }
+
+        public void SwapItems(int itemIndex1, int itemIndex2)
+        {
+            InventorySlot temp = inventorySlots[itemIndex1];
+            inventorySlots[itemIndex1] = inventorySlots[itemIndex2];
+            inventorySlots[itemIndex2] = temp;
+
+            InformAboutChange();
+        }
+
+        private void InformAboutChange()
+        {
+            OnInventoryUpdated?.Invoke(GetCurrentInventoryState());
         }
     }
 
