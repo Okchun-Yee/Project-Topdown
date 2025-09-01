@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2173119706569657928}
   - component: {fileID: 8275686695201055854}
   - component: {fileID: 3914137520790165978}
+  - component: {fileID: -745640974448260183}
   - component: {fileID: 7778453517388060295}
   m_Layer: 0
   m_Name: Item_Sword_2
@@ -121,6 +122,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-745640974448260183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8651934183340078379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d6b68084f61d04ebe67a9c303e9787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryInfo: {fileID: 11400000, guid: 7083b5ac18a951d4ca80a6b17cd499b6, type: 2}
 --- !u!114 &7778453517388060295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,3 +148,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponinfo: {fileID: 11400000, guid: ea49fa904ca166048b720c5cfc54f4e3, type: 2}
+  pickUpSound: {fileID: 0}

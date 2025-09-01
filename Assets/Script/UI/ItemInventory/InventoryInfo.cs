@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Unity.VisualScripting;
+using System.Linq;
 
 namespace Inventory.ItemData
 {
@@ -23,20 +23,79 @@ namespace Inventory.ItemData
         }
 
         // 외부 아이템 추가 => 내부에서 자세한 데이터 추가
-        private void AddItem(ItemInfo item, int quantity)
+        public int AddItem(ItemInfo item, int quantity)
         {
+            if (item.IsStackable == false)
+            {
+                for (int i = 0; i < inventorySlots.Count; i++)
+                {
+                    while (quantity > 0 && IsInventoryFull() == false)
+                    {
+                        quantity -= AddItemToEmptySlot(item, 1);
+                    }
+                    InformAboutChange();
+                    return quantity;
+                }
+            }
+            quantity = AddStackableItem(item, quantity);
+            InformAboutChange();
+            return quantity; // 남은 수량 반환
+        }
+
+        private int AddItemToEmptySlot(ItemInfo item, int quantity)
+        {
+            InventorySlot newItem = new InventorySlot
+            {
+                item = item,
+                quantity = quantity
+            };
             for (int i = 0; i < inventorySlots.Count; i++)
             {
                 if (inventorySlots[i].IsEmpty)
                 {
-                    inventorySlots[i] = new InventorySlot
-                    {
-                        item = item,
-                        quantity = quantity
-                    };
-                    return;
+                    inventorySlots[i] = newItem;
+                    return quantity;
                 }
             }
+            return 0; // 인벤토리가 가득 찼을 때 0 반환
+        }
+
+        private bool IsInventoryFull()
+         => inventorySlots.Where(slot => slot.IsEmpty).Any() == false;
+
+        private int AddStackableItem(ItemInfo item, int quantity)
+        {
+            for (int i = 0; i < inventorySlots.Count; i++)
+            {
+                if (inventorySlots[i].IsEmpty)
+                    continue;
+                if (inventorySlots[i].item.itemID == item.itemID)
+                {
+                    // 최대 스택 수량 - 현재 수량 = 가능한 수량
+                    int amountPossibleToTake =
+                        inventorySlots[i].item.MaxStackSize - inventorySlots[i].quantity;
+                    if (quantity > amountPossibleToTake)
+                    {
+                        inventorySlots[i] = inventorySlots[i].ChangeQuantity(
+                            inventorySlots[i].item.MaxStackSize);
+                        quantity -= amountPossibleToTake;
+                    }
+                    else
+                    {
+                        inventorySlots[i] = inventorySlots[i].ChangeQuantity(
+                            inventorySlots[i].quantity + quantity);
+                        InformAboutChange();
+                        return 0; // 다 넣었으므로 0 반환
+                    }
+                }
+            }
+            while (quantity > 0 && IsInventoryFull() == false)
+            {
+                int newQuantity = Mathf.Clamp(quantity, 0, item.MaxStackSize);
+                quantity -= newQuantity;
+                AddItemToEmptySlot(item, newQuantity);
+            }
+            return quantity; // 남은 수량 반환
         }
 
         // 외부에서 아이템 추가

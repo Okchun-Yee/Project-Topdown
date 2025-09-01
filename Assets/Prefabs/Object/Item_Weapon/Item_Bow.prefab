@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1926912588606435543}
   - component: {fileID: 7172534080105482432}
   - component: {fileID: 8429920037812853276}
+  - component: {fileID: 3357489706220287853}
   - component: {fileID: 8556963529947882222}
   m_Layer: 0
   m_Name: Item_Bow
@@ -121,6 +122,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &3357489706220287853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5336088213212936582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d6b68084f61d04ebe67a9c303e9787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryInfo: {fileID: 11400000, guid: 7083b5ac18a951d4ca80a6b17cd499b6, type: 2}
 --- !u!114 &8556963529947882222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,3 +148,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponinfo: {fileID: 11400000, guid: 168c42aa39c18f9408ad0cedea7ec6d9, type: 2}
+  pickUpSound: {fileID: 0}

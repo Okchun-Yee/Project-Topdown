@@ -1,20 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using Inventory.ItemData;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Collider2D))]
-public class WeaponPickup : MonoBehaviour
+public class PickUpSystem : MonoBehaviour
 {
-    [SerializeField] private WeaponInfo weaponinfo;
+    [SerializeField] private InventoryInfo inventoryInfo;
     private PlayerContorls pc;
     private bool isPlayerInRange = false;
 
+    // 현재 아이템 판별
+    private ItemPickUp itemPickup;
+    private WeaponPickup weaponPickup;
+
     private void Awake()
     {
-        if (weaponinfo == null)
-        { Debug.LogError($"[WeaponPickup] WeaponInfo is missing on {name}"); }
         pc = new PlayerContorls();
+        // 자신이 어떤 타입인지 확인
+        itemPickup = GetComponent<ItemPickUp>();
+        weaponPickup = GetComponent<WeaponPickup>();
     }
     private void OnEnable()
     {
@@ -31,6 +36,7 @@ public class WeaponPickup : MonoBehaviour
         if (!collision.CompareTag("Player")) { return; }
         isPlayerInRange = true;
         //UI 이벤트 (EX. "G" 키를 누르시오)
+        Debug.Log($"Player in range of {GetPickupType()}");
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -38,21 +44,29 @@ public class WeaponPickup : MonoBehaviour
         isPlayerInRange = false;
         //UI 이벤트 종료
     }
+    // 입력 처리
     private void PlayerInput(InputAction.CallbackContext ctx)
-    {
+    { 
         if (!isPlayerInRange)
             return;
 
-        Pickup();
+        // 아이템 또는 무기 획득
+        if (weaponPickup != null)
+        {
+            Debug.Log("Picking up weapon");
+            weaponPickup.Weapon_Pickup();
+        }
+        else if (itemPickup != null)
+        {
+            Debug.Log("Picking up item");
+            itemPickup.Item_Pickup(inventoryInfo);
+        }
     }
-    private void Pickup()
+    // 디버깅용: 현재 픽업 타입 확인
+    private string GetPickupType()
     {
-         // 1) 무기 장착 요청
-        WeaponManager.Instance.EquipWeapon(weaponinfo);
-
-        // 2) 획득 효과 재생 (사운드, 파티클)
-        
-        // 3) 즉시 제거하여 리소스 최소화
-        Destroy(gameObject);
+        if (weaponPickup != null) return "Weapon";
+        if (itemPickup != null) return "Item";
+        return "Unknown";
     }
 }
